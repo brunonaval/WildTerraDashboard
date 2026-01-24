@@ -195,19 +195,28 @@ namespace WildTerraDashboard
                 return;
             }
 
+            // PEGA O NOME DA ARMA (USADO TANTO PARA CAÇA QUANTO PARA DEFESA NA COLETA)
+            string nomeArma = "";
+            if (txtWeaponName != null) nomeArma = txtWeaponName.Text.Trim();
+
             // === PRIORIDADE 1: CAÇA ===
             string comandoHunt = botCaçador.VerificarRadar(entidadesRadar);
             if (comandoHunt != null)
             {
-                string nomeArma = "";
-                if (txtWeaponName != null) nomeArma = txtWeaponName.Text.Trim();
+                // Envia: HUNT;TipoMob;NomeArma
                 EnviarComandoJogo($"{comandoHunt};{nomeArma}");
                 return;
             }
 
             // === PRIORIDADE 2: COLETA ===
             string comandoColeta = botColeta.VerificarRadar(entidadesRadar);
-            if (comandoColeta != null) { EnviarComandoJogo(comandoColeta); return; }
+            if (comandoColeta != null)
+            {
+                // CORREÇÃO AQUI: Agora enviamos HARVEST;Alvo;NomeArma
+                // O bot na DLL vai ler esse terceiro parâmetro e configurar a defesa
+                EnviarComandoJogo($"{comandoColeta};{nomeArma}");
+                return;
+            }
 
             // === PRIORIDADE 3: ROTA ===
             string comandoMove = botMovimento.ProcessarLogica(statsJogador.X, statsJogador.Z, statsJogador.SP);
