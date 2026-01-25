@@ -464,8 +464,9 @@ namespace WildTerraDashboard
                     return;
                 }
 
-                // Envia: COMANDO;ON;VARA;ISCA;LOCAL
-                EnviarComandoJogo($"FISHING;ON;{vara};{isca};{local}");
+                // Envia: COMANDO;ON;VARA;ISCA;LOCAL;ARMADEF
+                string armaDef = (txtWeaponName != null) ? txtWeaponName.Text.Trim() : "";
+                EnviarComandoJogo($"FISHING;ON;{vara};{isca};{local};{armaDef}");
 
                 isFishingRunning = true;
                 btnStartFishing.Text = "PARAR PESCA";
