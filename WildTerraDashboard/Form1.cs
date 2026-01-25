@@ -453,17 +453,24 @@ namespace WildTerraDashboard
             {
                 string vara = txtRodName.Text.Trim();
                 string isca = txtBaitName.Text.Trim();
+
+                // NOVO: Pega o local do ComboBox, se vazio assume "River"
+                string local = (cmbFishingSpot.SelectedItem != null) ? cmbFishingSpot.SelectedItem.ToString() : "River";
+
                 if (string.IsNullOrEmpty(vara) || string.IsNullOrEmpty(isca))
                 {
                     MessageBox.Show("Preencha o nome da Vara e da Isca!");
                     return;
                 }
-                EnviarComandoJogo($"FISHING;ON;{vara};{isca}");
+
+                // NOVO: Envia também o LOCAL no final do comando
+                EnviarComandoJogo($"FISHING;ON;{vara};{isca};{local}");
+
                 isFishingRunning = true;
                 btnStartFishing.Text = "PARAR PESCA";
                 btnStartFishing.BackColor = Color.Red;
                 btnStartBot.Enabled = false;
-                LogarMensagem($"[PESCA] Iniciando... Vara: {vara}, Isca: {isca}");
+                LogarMensagem($"[PESCA] Iniciando em {local}... Vara: {vara}, Isca: {isca}");
             }
         }
 

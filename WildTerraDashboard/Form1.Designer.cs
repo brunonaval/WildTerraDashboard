@@ -80,23 +80,25 @@
             this.numEatThreshold = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.txtAutoEat = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnStartFishing = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtBaitName = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtRodName = new System.Windows.Forms.TextBox();
+            this.btnTestHome = new System.Windows.Forms.Button();
+            this.cmbFishingSpot = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.barSP = new WildTerraDashboard.ColoredProgressBar();
             this.barHP = new WildTerraDashboard.ColoredProgressBar();
             this.visualRadar1 = new WildTerraDashboard.VisualRadar();
-            this.btnTestHome = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.txtRodName = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtBaitName = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnStartFishing = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEatThreshold)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visualRadar1)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visualRadar1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnConnect
@@ -605,6 +607,99 @@
             this.txtAutoEat.Size = new System.Drawing.Size(341, 380);
             this.txtAutoEat.TabIndex = 0;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.label13);
+            this.tabPage4.Controls.Add(this.cmbFishingSpot);
+            this.tabPage4.Controls.Add(this.btnStartFishing);
+            this.tabPage4.Controls.Add(this.label12);
+            this.tabPage4.Controls.Add(this.txtBaitName);
+            this.tabPage4.Controls.Add(this.label11);
+            this.tabPage4.Controls.Add(this.txtRodName);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(725, 649);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Pesca";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnStartFishing
+            // 
+            this.btnStartFishing.Location = new System.Drawing.Point(452, 20);
+            this.btnStartFishing.Name = "btnStartFishing";
+            this.btnStartFishing.Size = new System.Drawing.Size(75, 23);
+            this.btnStartFishing.TabIndex = 4;
+            this.btnStartFishing.Text = "INICIAR PESCA";
+            this.btnStartFishing.UseVisualStyleBackColor = true;
+            this.btnStartFishing.Click += new System.EventHandler(this.btnStartFishing_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 58);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(80, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Nome da Isca:";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // txtBaitName
+            // 
+            this.txtBaitName.Location = new System.Drawing.Point(95, 49);
+            this.txtBaitName.Name = "txtBaitName";
+            this.txtBaitName.Size = new System.Drawing.Size(248, 22);
+            this.txtBaitName.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 20);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(83, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Nome da Vara:";
+            // 
+            // txtRodName
+            // 
+            this.txtRodName.Location = new System.Drawing.Point(95, 11);
+            this.txtRodName.Name = "txtRodName";
+            this.txtRodName.Size = new System.Drawing.Size(248, 22);
+            this.txtRodName.TabIndex = 0;
+            // 
+            // btnTestHome
+            // 
+            this.btnTestHome.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestHome.Location = new System.Drawing.Point(605, 322);
+            this.btnTestHome.Name = "btnTestHome";
+            this.btnTestHome.Size = new System.Drawing.Size(75, 23);
+            this.btnTestHome.TabIndex = 35;
+            this.btnTestHome.Text = "HOME";
+            this.btnTestHome.UseVisualStyleBackColor = true;
+            this.btnTestHome.Click += new System.EventHandler(this.btnTestHome_Click);
+            // 
+            // cmbFishingSpot
+            // 
+            this.cmbFishingSpot.FormattingEnabled = true;
+            this.cmbFishingSpot.Items.AddRange(new object[] {
+            "River",
+            "Ocean",
+            "Desert",
+            "Withered Canyon"});
+            this.cmbFishingSpot.Location = new System.Drawing.Point(95, 88);
+            this.cmbFishingSpot.Name = "cmbFishingSpot";
+            this.cmbFishingSpot.Size = new System.Drawing.Size(248, 21);
+            this.cmbFishingSpot.TabIndex = 5;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 91);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(85, 13);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Local de Pesca:";
+            // 
             // barSP
             // 
             this.barSP.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
@@ -640,75 +735,6 @@
             this.visualRadar1.TabIndex = 8;
             this.visualRadar1.TabStop = false;
             // 
-            // btnTestHome
-            // 
-            this.btnTestHome.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestHome.Location = new System.Drawing.Point(605, 322);
-            this.btnTestHome.Name = "btnTestHome";
-            this.btnTestHome.Size = new System.Drawing.Size(75, 23);
-            this.btnTestHome.TabIndex = 35;
-            this.btnTestHome.Text = "HOME";
-            this.btnTestHome.UseVisualStyleBackColor = true;
-            this.btnTestHome.Click += new System.EventHandler(this.btnTestHome_Click);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.btnStartFishing);
-            this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Controls.Add(this.txtBaitName);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.txtRodName);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(725, 649);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Pesca";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // txtRodName
-            // 
-            this.txtRodName.Location = new System.Drawing.Point(95, 11);
-            this.txtRodName.Name = "txtRodName";
-            this.txtRodName.Size = new System.Drawing.Size(248, 22);
-            this.txtRodName.TabIndex = 0;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 20);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 13);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Nome da Vara:";
-            // 
-            // txtBaitName
-            // 
-            this.txtBaitName.Location = new System.Drawing.Point(95, 49);
-            this.txtBaitName.Name = "txtBaitName";
-            this.txtBaitName.Size = new System.Drawing.Size(248, 22);
-            this.txtBaitName.TabIndex = 2;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 58);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 13);
-            this.label12.TabIndex = 3;
-            this.label12.Text = "Nome da Isca:";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
-            // 
-            // btnStartFishing
-            // 
-            this.btnStartFishing.Location = new System.Drawing.Point(452, 20);
-            this.btnStartFishing.Name = "btnStartFishing";
-            this.btnStartFishing.Size = new System.Drawing.Size(75, 23);
-            this.btnStartFishing.TabIndex = 4;
-            this.btnStartFishing.Text = "INICIAR PESCA";
-            this.btnStartFishing.UseVisualStyleBackColor = true;
-            this.btnStartFishing.Click += new System.EventHandler(this.btnStartFishing_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -743,9 +769,9 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEatThreshold)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visualRadar1)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visualRadar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -813,6 +839,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtRodName;
         private System.Windows.Forms.Button btnStartFishing;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cmbFishingSpot;
     }
 }
 
