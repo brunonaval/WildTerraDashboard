@@ -436,7 +436,7 @@ namespace WildTerraDashboard
         {
             if (botMovimento.IsRodando)
             {
-                MessageBox.Show("Pare o Bot Principal (Caça/Coleta) antes de iniciar a Pesca!");
+                MessageBox.Show("Pare o Bot Principal antes de iniciar a Pesca!");
                 return;
             }
 
@@ -454,23 +454,24 @@ namespace WildTerraDashboard
                 string vara = txtRodName.Text.Trim();
                 string isca = txtBaitName.Text.Trim();
 
-                // NOVO: Pega o local do ComboBox, se vazio assume "River"
-                string local = (cmbFishingSpot.SelectedItem != null) ? cmbFishingSpot.SelectedItem.ToString() : "River";
+                // Pega o valor do ComboBox, se for nulo usa "River" como segurança
+                string local = cmbFishingSpot.Text.Trim();
+                if (string.IsNullOrEmpty(local)) local = "River";
 
                 if (string.IsNullOrEmpty(vara) || string.IsNullOrEmpty(isca))
                 {
-                    MessageBox.Show("Preencha o nome da Vara e da Isca!");
+                    MessageBox.Show("Preencha Vara, Isca e Local!");
                     return;
                 }
 
-                // NOVO: Envia também o LOCAL no final do comando
+                // Envia: COMANDO;ON;VARA;ISCA;LOCAL
                 EnviarComandoJogo($"FISHING;ON;{vara};{isca};{local}");
 
                 isFishingRunning = true;
                 btnStartFishing.Text = "PARAR PESCA";
                 btnStartFishing.BackColor = Color.Red;
                 btnStartBot.Enabled = false;
-                LogarMensagem($"[PESCA] Iniciando em {local}... Vara: {vara}, Isca: {isca}");
+                LogarMensagem($"[PESCA] Iniciando... Local: {local}, Isca: {isca}");
             }
         }
 
