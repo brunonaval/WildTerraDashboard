@@ -44,7 +44,7 @@ namespace WildTerraDashboard
 
             foreach (var entity in radarEntities)
             {
-                if (entity.Tipo != "R" && entity.Tipo != "M" && entity.Tipo != "D") continue;
+                if (entity.Tipo != "R" && entity.Tipo != "D") continue; // Não tratar mobs (M) como colheita; mobs são tratados pela caça.
 
                 foreach (string desejo in ItensParaColetar)
                 {

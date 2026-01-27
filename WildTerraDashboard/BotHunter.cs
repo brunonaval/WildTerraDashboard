@@ -6,6 +6,10 @@ namespace WildTerraDashboard
 {
     public class BotHunter
     {
+        // Distância máxima (em metros) para engajar um alvo de caça.
+        // Importante para o bot não "parar" tentando caçar um alvo muito longe enquanto deveria seguir a rota.
+        private const float DIST_MAX_ENGAGE = 18f;
+
         public bool IsAtivo { get; set; } = false;
         private List<string> listaAlvos = new List<string>();
 
@@ -32,7 +36,7 @@ namespace WildTerraDashboard
         {
             if (!IsAtivo) return null;
             if (listaAlvos.Count == 0) return null;
-            if ((DateTime.Now - ultimoComando).TotalMilliseconds < 500) return null; // Evita spam
+            if ((DateTime.Now - ultimoComando).TotalMilliseconds < 700) return null; // Evita spam
 
             RadarEntity melhorAlvo = null;
             float menorDistancia = 9999f;
@@ -60,7 +64,7 @@ namespace WildTerraDashboard
 
                 // Lógica de Prioridade: Perto < Longe
                 // Ignora mobs muito longe (> 60m)
-                if (dist < menorDistancia && dist < 60)
+                if (dist < menorDistancia && dist <= DIST_MAX_ENGAGE)
                 {
                     menorDistancia = dist;
                     melhorAlvo = ent;
