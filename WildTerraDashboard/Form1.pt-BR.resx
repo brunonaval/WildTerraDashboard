@@ -117,148 +117,89 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Dialog_DefaultFile_HarvestList" xml:space="preserve">
-    <value>harvest_list.txt</value>
+  <data name="btnConnect.Text" xml:space="preserve">
+    <value>🔌 Conectar</value>
   </data>
-  <data name="Dialog_DefaultFile_Route" xml:space="preserve">
-    <value>new_route.txt</value>
+  <data name="btnLoadRoute.Text" xml:space="preserve">
+    <value>📂 Carregar Rota</value>
   </data>
-  <data name="Dialog_DefaultFile_SafeList" xml:space="preserve">
-    <value>safe_list.txt</value>
+  <data name="btnStartBot.Text" xml:space="preserve">
+    <value>▶ Iniciar</value>
   </data>
-  <data name="Dialog_Filter_RouteFile" xml:space="preserve">
-    <value>`Route file</value>
+  <data name="btnRecordRoute.Text" xml:space="preserve">
+    <value>⏺ Gravar Rota</value>
   </data>
-  <data name="Dialog_Filter_SafeList" xml:space="preserve">
-    <value>`Safe List</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkAtivarColeta.Location" type="System.Drawing.Point, System.Drawing">
+    <value>598, 3</value>
   </data>
-  <data name="Dialog_Filter_TextFiles" xml:space="preserve">
-    <value>`Text files</value>
+  <data name="chkAtivarColeta.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 17</value>
   </data>
-  <data name="Filter_RouteFile" xml:space="preserve">
-    <value>Route file|*.txt</value>
+  <data name="chkAtivarColeta.Text" xml:space="preserve">
+    <value>HABILITAR COLETA</value>
   </data>
-  <data name="Filter_SafeList" xml:space="preserve">
-    <value>Safe list|*.txt</value>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
   </data>
-  <data name="Filter_TextFiles" xml:space="preserve">
-    <value>Text files|*.txt</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>COLETAR</value>
   </data>
-  <data name="Log_Alert_MissingTool" xml:space="preserve">
-    <value>[ALERT] Missing tool for {0}.</value>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 13</value>
   </data>
-  <data name="Log_Error" xml:space="preserve">
-    <value>Error: {0}</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>NÃO DEPOSITAR</value>
   </data>
-  <data name="Log_Error_FillCoordsXZ" xml:space="preserve">
-    <value>[ERROR] Fill in coordinates X and Z!</value>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
   </data>
-  <data name="Log_Fishing_Disabled" xml:space="preserve">
-    <value>[FISHING] System disabled.</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>DROPAR</value>
   </data>
-  <data name="Log_Fishing_Starting" xml:space="preserve">
-    <value>[FISHING] Starting... Spot: {0}, Bait: {1}</value>
+  <data name="btnTestMount.Text" xml:space="preserve">
+    <value>Montaria</value>
   </data>
-  <data name="Log_HarvestStatus" xml:space="preserve">
-    <value>Harvest: {0}</value>
+  <data name="chkUseMount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 17</value>
   </data>
-  <data name="Log_HunterStatus" xml:space="preserve">
-    <value>Hunter: {0}</value>
+  <data name="chkUseMount.Text" xml:space="preserve">
+    <value>USAR MONTARIA (&gt;15m)</value>
   </data>
-  <data name="Log_Navigation_MovingAway" xml:space="preserve">
-    <value>[NAVIGATION] Moving away...</value>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
   </data>
-  <data name="Log_System_ArrivedCabinDeposit" xml:space="preserve">
-    <value>[SYSTEM] Reached the Cabin. Starting deposit...</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Equipar Arma:</value>
   </data>
-  <data name="Log_System_BagFullGoingCabin" xml:space="preserve">
-    <value>[SYSTEM] BAG FULL! Going to the Cabin...</value>
+  <data name="chkAtivarHunt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 17</value>
   </data>
-  <data name="Log_System_BotStarted" xml:space="preserve">
-    <value>[SYSTEM] Bot started.</value>
+  <data name="chkAtivarHunt.Text" xml:space="preserve">
+    <value>Habilitar caça</value>
   </data>
-  <data name="Log_System_BotStopped" xml:space="preserve">
-    <value>[SYSTEM] Bot stopped.</value>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 13</value>
   </data>
-  <data name="Log_System_DepositFinished" xml:space="preserve">
-    <value>[SYSTEM] Deposit finished.</value>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Local de Pesca:</value>
   </data>
-  <data name="Log_System_RequirementMet" xml:space="preserve">
-    <value>[SYSTEM] Requirement met: {0}</value>
+  <data name="btnStartFishing.Text" xml:space="preserve">
+    <value>INICIAR PESCA</value>
   </data>
-  <data name="Log_Test_ReturningHome" xml:space="preserve">
-    <value>[TEST] Returning Home ({0}, {1})...</value>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 13</value>
   </data>
-  <data name="Log_Test_SendingMount" xml:space="preserve">
-    <value>[TEST] Sending manual Mount command...</value>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Nome da Isca:</value>
   </data>
-  <data name="Log_UdpStarted" xml:space="preserve">
-    <value>UDP started.</value>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
   </data>
-  <data name="Msg_Error" xml:space="preserve">
-    <value>Error: {0}</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Nome da Vara:</value>
   </data>
-  <data name="Msg_FillCoordsXZ" xml:space="preserve">
-    <value>Fill in coordinates X and Z!</value>
-  </data>
-  <data name="Msg_FillRodBaitSpot" xml:space="preserve">
-    <value>Fill Rod, Bait and Spot!</value>
-  </data>
-  <data name="Msg_Saved" xml:space="preserve">
-    <value>Saved!</value>
-  </data>
-  <data name="Msg_StopFishingFirst" xml:space="preserve">
-    <value>Stop the Fishing Bot first!</value>
-  </data>
-  <data name="Msg_StopMainBotBeforeFishing" xml:space="preserve">
-    <value>Stop the Main Bot before starting Fishing!</value>
-  </data>
-  <data name="Msg_StopRecordingFirst" xml:space="preserve">
-    <value>Stop recording first!</value>
-  </data>
-  <data name="Ui_Off" xml:space="preserve">
-    <value>OFF</value>
-  </data>
-  <data name="Ui_CoordX" xml:space="preserve">
-    <value>X: {0}</value>
-  </data>
-  <data name="Ui_CoordY" xml:space="preserve">
-    <value>Y: {0}</value>
-  </data>
-  <data name="Ui_CoordZ" xml:space="preserve">
-    <value>Z: {0}</value>
-  </data>
-  <data name="Ui_Listening" xml:space="preserve">
-    <value>Listening...</value>
-  </data>
-  <data name="Ui_On" xml:space="preserve">
-    <value>ON</value>
-  </data>
-  <data name="Ui_RecordRoute" xml:space="preserve">
-    <value>RECORD ROUTE</value>
-  </data>
-  <data name="Ui_StartBot" xml:space="preserve">
-    <value>START BOT</value>
-  </data>
-  <data name="Ui_StartFishing" xml:space="preserve">
-    <value>START FISHING</value>
-  </data>
-  <data name="Ui_StopBot" xml:space="preserve">
-    <value>STOP BOT</value>
-  </data>
-  <data name="Ui_StopFishing" xml:space="preserve">
-    <value>STOP FISHING</value>
-  </data>
-  <data name="Ui_StopRecording" xml:space="preserve">
-    <value>STOP RECORDING</value>
-  </data>
-  <data name="Ui_Synced" xml:space="preserve">
-    <value>Synced</value>
-  </data>
-  <data name="Ui_UdpStarted" xml:space="preserve">
-    <value>UDP started.</value>
-  </data>
-  <data name="FishingSpot_Default" xml:space="preserve">
-    <value>River</value>
+  <data name="btnTestHome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1062, 42</value>
   </data>
 </root>

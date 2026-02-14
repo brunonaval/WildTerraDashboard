@@ -37,6 +37,13 @@ namespace WildTerraDashboard
         private bool _ultimoEstadoMountEnviado = false;
         private bool isFishingRunning = false; // Controle de Pesca
 
+        // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
+        // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
+        private DateTime _lastHarvestSentTime = DateTime.MinValue;
+        private string _lastHarvestCmdSent = null;
+        private const int HARVEST_SEND_COOLDOWN_MS = 700;
+
+
         // =========================
         // WATCHDOG (ANTI TRAVAMENTO)
         // =========================
@@ -441,7 +448,21 @@ namespace WildTerraDashboard
             string comandoColeta = botColeta.VerificarRadar(entidadesRadar);
             if (comandoColeta != null)
             {
-                EnviarComandoJogo($"{comandoColeta};{nomeArma}");
+                string fullHarvestCmd = $"{comandoColeta};{nomeArma}";
+
+                // Dedup/Throttle: se já enviamos o mesmo HARVEST há menos de X ms, não reenviar.
+                // Importante: retornar aqui impede o envio de MOVE no mesmo tick, evitando interferência na coleta em andamento.
+                if (_lastHarvestCmdSent != null &&
+                    string.Equals(_lastHarvestCmdSent, fullHarvestCmd, StringComparison.OrdinalIgnoreCase) &&
+                    (DateTime.Now - _lastHarvestSentTime).TotalMilliseconds < HARVEST_SEND_COOLDOWN_MS)
+                {
+                    return;
+                }
+
+                _lastHarvestCmdSent = fullHarvestCmd;
+                _lastHarvestSentTime = DateTime.Now;
+
+                EnviarComandoJogo(fullHarvestCmd);
                 return;
             }
 
@@ -871,6 +892,7 @@ namespace WildTerraDashboard
                             LogarMensagem("[SISTEMA] MOCHILA CHEIA! Indo para a Cabana...");
                             if (txtSafeList != null) EnviarComandoJogo("SAFE_LIST;" + txtSafeList.Text.Replace("\r\n", "~"));
                             botColeta.IsAtivo = false;
+                            EnviarComandoJogo("RESET_MODES"); // libera montaria (reseta _modoColeta/_modoHunter no client)
                             if (txtBankX != null) EnviarComandoJogo($"MOVE;{txtBankX.Text};{txtBankZ.Text}");
                             ResetWatchdogMovement();
                         }

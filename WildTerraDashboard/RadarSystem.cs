@@ -36,6 +36,8 @@ namespace WildTerraDashboard
                     ent.Tipo = p[0];
                     ent.Nome = p[1];
 
+                    bool isHideoutEnter = !string.IsNullOrEmpty(ent.Nome) && ent.Nome.IndexOf("HideoutEnter", StringComparison.OrdinalIgnoreCase) >= 0;
+
                     // Parse Distância
                     string distStr = p[2].Replace(',', '.');
                     float.TryParse(distStr, NumberStyles.Any, CultureInfo.InvariantCulture, out float dist);
@@ -70,7 +72,9 @@ namespace WildTerraDashboard
                             break;
                         case "D": ent.Cor = Color.Blue; break;     // Drop
                         case "C": ent.Cor = Color.Magenta; break;  // Loot/Corpo
-                        default: ent.Cor = Color.LimeGreen; break;// Recurso
+                        default:
+                            ent.Cor = isHideoutEnter ? Color.DeepPink : Color.LimeGreen;
+                            break; // Recurso
                     }
                     lista.Add(ent);
                 }
@@ -111,6 +115,7 @@ namespace WildTerraDashboard
                 else if (ent.Tipo == "P") lvi.ForeColor = Color.DarkBlue;
                 else if (ent.Tipo == "C") lvi.ForeColor = Color.Purple;
                 else if (ent.Tipo == "D") lvi.ForeColor = Color.Blue;
+                else if (ent.Tipo == "R" && !string.IsNullOrEmpty(ent.Nome) && ent.Nome.IndexOf("HideoutEnter", StringComparison.OrdinalIgnoreCase) >= 0) lvi.ForeColor = Color.DeepPink;
                 else lvi.ForeColor = Color.DarkGreen;
 
                 listaVisual.Add(lvi);
