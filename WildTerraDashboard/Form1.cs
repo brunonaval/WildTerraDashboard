@@ -85,6 +85,13 @@ namespace WildTerraDashboard
         {
             InitializeComponent();
 
+            // UI responsiva para diferentes resoluções/escala do Windows:
+            // habilita barras de rolagem quando a tela/escala não comporta o layout completo.
+            this.AutoScroll = true;
+            // Define o "tamanho ideal" do conteúdo (baseado no tamanho inicial do Designer).
+            // Assim o WinForms sabe quando exibir scrollbars.
+            this.AutoScrollMinSize = this.Size;
+
             // 0. Carrega configurações ANTES de ligar eventos de TextChanged (evita disparar lógica)
             CarregarConfigBanco();           // (banco fica como está)
             CarregarListaLixo();             // compat (txtDropList)
@@ -328,8 +335,35 @@ namespace WildTerraDashboard
         private void TxtListaColeta_TextChanged(object sender, EventArgs e)
         {
             if (_isLoadingUiText) return;
-            if (botColeta != null) botColeta.DefinirLista(txtListaColeta.Text);
-        }
+            if (botColeta != null)
+            {
+                botColeta.DefinirLista(txtListaColeta.Text);
+                // Quando a pesca roda com o BOT principal desligado, o BotTimer não executa.
+                // Então a mensagem HARVEST_LIST não é enviada automaticamente para o jogo.
+                // Se estivermos pescando, sincronize imediatamente a lista de coleta.
+                try
+                {
+                    if (isFishingRunning)
+                    {
+                        string atual = txtListaColeta.Text ?? "";
+                        if (atual != _ultimaListaColetaEnviada)
+                        {
+                            string payload = BuildListPayload(atual);
+                            EnviarComandoJogo("HARVEST_LIST;" + payload);
+                            _ultimaListaColetaEnviada = atual;
+                            LogarMensagem($"[PESCA] Lista de Coleta sincronizada ({botColeta.ContarItensLista(atual)} itens).");
+
+
+                        }
+
+                    }
+
+                }
+                catch { }
+
+            }
+
+         }
 
         private void TxtListaMobs_TextChanged(object sender, EventArgs e)
         {
@@ -1052,6 +1086,29 @@ namespace WildTerraDashboard
 
                 string armaDef = (txtWeaponName != null) ? txtWeaponName.Text.Trim() : "";
                 EnviarComandoJogo($"FISHING;ON;{vara};{isca};{local};{armaDef}");
+                // Sincroniza imediatamente a lista de coleta no jogo (mesmo com BOT principal desligado).
+                // Sem isso, o UDPRunner pode ficar com itensColeta vazio durante a pesca.
+                try
+                {
+
+                    if (txtListaColeta != null)
+                    {
+                        string atual = txtListaColeta.Text ?? "";
+                        if (atual != _ultimaListaColetaEnviada)
+                        {
+                            string payload = BuildListPayload(atual);
+                            EnviarComandoJogo("HARVEST_LIST;" + payload);
+                            _ultimaListaColetaEnviada = atual;
+                            int n = (botColeta != null) ? botColeta.ContarItensLista(atual) : 0;
+                            LogarMensagem($"[PESCA] Lista de Coleta enviada (start) | {n} itens.");
+
+
+                        }
+
+                    }
+                }
+                
+                catch { }
 
                 isFishingRunning = true;
                 btnStartFishing.Text = "PARAR PESCA";

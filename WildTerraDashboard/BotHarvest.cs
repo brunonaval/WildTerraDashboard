@@ -29,6 +29,26 @@ namespace WildTerraDashboard
             OnLog?.Invoke($"Lista de Coleta atualizada: {ItensParaColetar.Count} itens.");
         }
 
+
+        // Utilitário para logs/diagnóstico: conta quantos itens válidos existem no texto da lista
+        // (mesma regra de parsing da AtualizarLista, porém sem alterar o estado interno).
+        public int ContarItensLista(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto)) return 0;
+            int count = 0;
+            foreach (var linha in texto.Split('\n'))
+            {
+                string item = linha.Trim();
+                if (!string.IsNullOrWhiteSpace(item)) count++;
+
+
+
+            }
+            return count;
+
+        }
+
+
         public void AdicionarBlacklist(string nomeItem)
         {
             // Se já está ignorado, não faz nada
@@ -44,7 +64,8 @@ namespace WildTerraDashboard
 
             foreach (var entity in radarEntities)
             {
-                if (entity.Tipo != "R" && entity.Tipo != "D") continue; // Não tratar mobs (M) como colheita; mobs são tratados pela caça.
+                //if (entity.Tipo != "R" && entity.Tipo != "D") continue; // Não tratar mobs (M) como colheita; mobs são tratados pela caça.
+                if (entity.Tipo != "R") continue;
 
                 foreach (string desejo in ItensParaColetar)
                 {
