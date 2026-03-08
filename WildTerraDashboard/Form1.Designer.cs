@@ -40,9 +40,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.listViewBag = new System.Windows.Forms.ListView();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnLoadRoute = new System.Windows.Forms.Button();
             this.btnStartBot = new System.Windows.Forms.Button();
             this.botTimer = new System.Windows.Forms.Timer(this.components);
@@ -89,7 +86,24 @@
             this.txtBaitName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtRodName = new System.Windows.Forms.TextBox();
+            this.tabHeal = new System.Windows.Forms.TabPage();
+            this.lblHealStatus = new System.Windows.Forms.Label();
+            this.btnHealTrain = new System.Windows.Forms.Button();
+            this.txtHealTargetNames = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtHealSkills = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.numHealRadius = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cmbHealTargetMode = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtHealWeaponName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.btnTestHome = new System.Windows.Forms.Button();
+            this.fontDialog1 = new System.Windows.Forms.FontDialog();
+            this.listViewBag = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.barSP = new WildTerraDashboard.ColoredProgressBar();
             this.barHP = new WildTerraDashboard.ColoredProgressBar();
             this.visualRadar1 = new WildTerraDashboard.VisualRadar();
@@ -99,6 +113,8 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEatThreshold)).BeginInit();
             this.tabPage4.SuspendLayout();
+            this.tabHeal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numHealRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualRadar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,26 +176,6 @@
             // columnHeader3
             // 
             resources.ApplyResources(this.columnHeader3, "columnHeader3");
-            // 
-            // listViewBag
-            // 
-            this.listViewBag.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader4,
-            this.columnHeader5});
-            resources.ApplyResources(this.listViewBag, "listViewBag");
-            this.listViewBag.GridLines = true;
-            this.listViewBag.HideSelection = false;
-            this.listViewBag.Name = "listViewBag";
-            this.listViewBag.UseCompatibleStateImageBehavior = false;
-            this.listViewBag.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader4
-            // 
-            resources.ApplyResources(this.columnHeader4, "columnHeader4");
-            // 
-            // columnHeader5
-            // 
-            resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
             // btnLoadRoute
             // 
@@ -323,6 +319,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabHeal);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -457,7 +454,8 @@
             resources.GetString("cmbFishingSpot.Items"),
             resources.GetString("cmbFishingSpot.Items1"),
             resources.GetString("cmbFishingSpot.Items2"),
-            resources.GetString("cmbFishingSpot.Items3")});
+            resources.GetString("cmbFishingSpot.Items3"),
+            resources.GetString("cmbFishingSpot.Items4")});
             resources.ApplyResources(this.cmbFishingSpot, "cmbFishingSpot");
             this.cmbFishingSpot.Name = "cmbFishingSpot";
             // 
@@ -489,12 +487,133 @@
             resources.ApplyResources(this.txtRodName, "txtRodName");
             this.txtRodName.Name = "txtRodName";
             // 
+            // tabHeal
+            // 
+            this.tabHeal.Controls.Add(this.lblHealStatus);
+            this.tabHeal.Controls.Add(this.btnHealTrain);
+            this.tabHeal.Controls.Add(this.txtHealTargetNames);
+            this.tabHeal.Controls.Add(this.label18);
+            this.tabHeal.Controls.Add(this.txtHealSkills);
+            this.tabHeal.Controls.Add(this.label17);
+            this.tabHeal.Controls.Add(this.numHealRadius);
+            this.tabHeal.Controls.Add(this.label16);
+            this.tabHeal.Controls.Add(this.cmbHealTargetMode);
+            this.tabHeal.Controls.Add(this.label15);
+            this.tabHeal.Controls.Add(this.txtHealWeaponName);
+            this.tabHeal.Controls.Add(this.label14);
+            resources.ApplyResources(this.tabHeal, "tabHeal");
+            this.tabHeal.Name = "tabHeal";
+            this.tabHeal.UseVisualStyleBackColor = true;
+            // 
+            // lblHealStatus
+            // 
+            resources.ApplyResources(this.lblHealStatus, "lblHealStatus");
+            this.lblHealStatus.Name = "lblHealStatus";
+            // 
+            // btnHealTrain
+            // 
+            resources.ApplyResources(this.btnHealTrain, "btnHealTrain");
+            this.btnHealTrain.Name = "btnHealTrain";
+            this.btnHealTrain.UseVisualStyleBackColor = true;
+            this.btnHealTrain.Click += new System.EventHandler(this.btnHealTrain_Click);
+            // 
+            // txtHealTargetNames
+            // 
+            resources.ApplyResources(this.txtHealTargetNames, "txtHealTargetNames");
+            this.txtHealTargetNames.Name = "txtHealTargetNames";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // txtHealSkills
+            // 
+            resources.ApplyResources(this.txtHealSkills, "txtHealSkills");
+            this.txtHealSkills.Name = "txtHealSkills";
+            // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // numHealRadius
+            // 
+            resources.ApplyResources(this.numHealRadius, "numHealRadius");
+            this.numHealRadius.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numHealRadius.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numHealRadius.Name = "numHealRadius";
+            this.numHealRadius.Value = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // cmbHealTargetMode
+            // 
+            this.cmbHealTargetMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbHealTargetMode.FormattingEnabled = true;
+            this.cmbHealTargetMode.Items.AddRange(new object[] {
+            resources.GetString("cmbHealTargetMode.Items"),
+            resources.GetString("cmbHealTargetMode.Items1"),
+            resources.GetString("cmbHealTargetMode.Items2")});
+            resources.ApplyResources(this.cmbHealTargetMode, "cmbHealTargetMode");
+            this.cmbHealTargetMode.Name = "cmbHealTargetMode";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // txtHealWeaponName
+            // 
+            resources.ApplyResources(this.txtHealWeaponName, "txtHealWeaponName");
+            this.txtHealWeaponName.Name = "txtHealWeaponName";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
             // btnTestHome
             // 
             resources.ApplyResources(this.btnTestHome, "btnTestHome");
             this.btnTestHome.Name = "btnTestHome";
             this.btnTestHome.UseVisualStyleBackColor = true;
             this.btnTestHome.Click += new System.EventHandler(this.btnTestHome_Click);
+            // 
+            // listViewBag
+            // 
+            this.listViewBag.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader4,
+            this.columnHeader5});
+            resources.ApplyResources(this.listViewBag, "listViewBag");
+            this.listViewBag.GridLines = true;
+            this.listViewBag.HideSelection = false;
+            this.listViewBag.Name = "listViewBag";
+            this.listViewBag.UseCompatibleStateImageBehavior = false;
+            this.listViewBag.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader4
+            // 
+            resources.ApplyResources(this.columnHeader4, "columnHeader4");
+            // 
+            // columnHeader5
+            // 
+            resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
             // barSP
             // 
@@ -526,6 +645,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.Controls.Add(this.listViewBag);
             this.Controls.Add(this.btnTestHome);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label5);
@@ -533,7 +653,6 @@
             this.Controls.Add(this.btnRecordRoute);
             this.Controls.Add(this.btnStartBot);
             this.Controls.Add(this.btnLoadRoute);
-            this.Controls.Add(this.listViewBag);
             this.Controls.Add(this.barSP);
             this.Controls.Add(this.barHP);
             this.Controls.Add(this.visualRadar1);
@@ -555,6 +674,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.numEatThreshold)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabHeal.ResumeLayout(false);
+            this.tabHeal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numHealRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visualRadar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -574,9 +696,6 @@
         private VisualRadar visualRadar1;
         private ColoredProgressBar barHP;
         private ColoredProgressBar barSP;
-        private System.Windows.Forms.ListView listViewBag;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button btnLoadRoute;
         private System.Windows.Forms.Button btnStartBot;
@@ -625,6 +744,23 @@
         private System.Windows.Forms.Button btnStartFishing;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbFishingSpot;
+        private System.Windows.Forms.TabPage tabHeal;
+        private System.Windows.Forms.TextBox txtHealWeaponName;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cmbHealTargetMode;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.NumericUpDown numHealRadius;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtHealTargetNames;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtHealSkills;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnHealTrain;
+        private System.Windows.Forms.Label lblHealStatus;
+        private System.Windows.Forms.FontDialog fontDialog1;
+        private System.Windows.Forms.ListView listViewBag;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }
 

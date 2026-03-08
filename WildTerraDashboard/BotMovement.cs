@@ -21,9 +21,26 @@ namespace WildTerraDashboard
         private const float DISTANCIA_TRAVADO = 1.0f;    // Se mover menos que isso...
         private const int LIMITE_TENTATIVAS = 20;        // ...por 20 ticks (aprox 3 segundos)...
 
+
+        // --- NOVO (anti-waypoint bloqueado / território) ---
+        // Detecta falta de PROGRESSO em direção ao destino (mesmo que o player esteja "andando em círculos").
+        private const float PROGRESSO_MIN_DELTA = 0.35f;  // precisa reduzir a distância ao destino pelo menos isso
+        private const int LIMITE_SEM_PROGRESSO = 60;      // 60 ticks ~ 9s (timer 150ms)
+        private const float DISTANCIA_MIN_PARA_CHECAR_PROGRESSO = 6.0f; // evita falso positivo perto do ponto
+
+
+
         // --- VARIÁVEIS DE CONTROLE ---
         private int contadorTravado = 0;
         private Waypoint ultimaPosicaoConhecida = null;
+
+
+        // --- NOVO: estado de progresso até o destino atual ---
+        private int indiceRefProgresso = -1;
+        private float melhorDistAoDestino = float.MaxValue;
+        private int contadorSemProgresso = 0;
+        private int pulosConsecutivos = 0;
+        private const int MAX_PULOS_CONSECUTIVOS = 10; // proteção: evita loop infinito se a rota inteira estiver bloqueada
 
         public void Iniciar()
         {
@@ -33,6 +50,15 @@ namespace WildTerraDashboard
                 contadorTravado = 0;
                 ultimaPosicaoConhecida = null;
                 IsEmCombate = false; // Reseta estado de combate ao iniciar
+
+                // progresso
+                indiceRefProgresso = -1;
+                melhorDistAoDestino = float.MaxValue;
+                contadorSemProgresso = 0;
+                pulosConsecutivos = 0;
+
+
+
                 OnLog?.Invoke("Bot Iniciado (Com Sistema Anti-Travamento).");
             }
             else
@@ -150,10 +176,79 @@ namespace WildTerraDashboard
             {
                 AvancarProximoPonto();
                 destino = rota[indiceAtual]; // Atualiza alvo imediatamente
+
+
+                // reset de progresso ao trocar
+                indiceRefProgresso = -1;
+                melhorDistAoDestino = float.MaxValue;
+                contadorSemProgresso = 0;
+                pulosConsecutivos = 0;
+
+            }
+            else
+            {
+
+                // Se ficou preso tentando entrar em território/área bloqueada, a distância NÃO diminui de verdade.
+                // Esse check pula o waypoint quando não há progresso por tempo suficiente.
+                if (VerificarSemProgresso(distancia))
+                {
+                    destino = rota[indiceAtual];
+                }
+
+
             }
 
             return $"MOVE;{destino.X.ToString(CultureInfo.InvariantCulture)};{destino.Z.ToString(CultureInfo.InvariantCulture)}";
         }
+
+        private bool VerificarSemProgresso(float distanciaAtual)
+        {
+            // reset quando troca de waypoint
+            if (indiceRefProgresso != indiceAtual)
+            {
+                indiceRefProgresso = indiceAtual;
+                melhorDistAoDestino = distanciaAtual;
+                contadorSemProgresso = 0;
+                pulosConsecutivos = 0;
+                return false;
+            }
+
+            // só checa se ainda estamos relativamente longe do ponto
+            if (distanciaAtual < DISTANCIA_MIN_PARA_CHECAR_PROGRESSO) return false;
+
+            // progrediu o suficiente?
+            if (distanciaAtual <= (melhorDistAoDestino - PROGRESSO_MIN_DELTA))
+            {
+                melhorDistAoDestino = distanciaAtual;
+                contadorSemProgresso = 0;
+                pulosConsecutivos = 0;
+                return false;
+            }
+
+            contadorSemProgresso++;
+            if (contadorSemProgresso > LIMITE_SEM_PROGRESSO)
+            {
+                OnLog?.Invoke($"[UNSTUCK-PROGRESSO] Sem progresso até o ponto {indiceAtual + 1} (dist={distanciaAtual:0.0}, best={melhorDistAoDestino:0.0}). Pulando waypoint (possível território bloqueado).");
+                AvancarProximoPonto();
+                indiceRefProgresso = -1;
+                melhorDistAoDestino = float.MaxValue;
+                contadorSemProgresso = 0;
+                pulosConsecutivos++;
+
+                if (pulosConsecutivos >= MAX_PULOS_CONSECUTIVOS)
+                {
+                    OnLog?.Invoke("[UNSTUCK] Muitos pulos consecutivos (rota possivelmente inválida). Parando bot por segurança.");
+                    Parar();
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+
+
 
         private void VerificarSeEstaTravado(float x, float z)
         {

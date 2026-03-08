@@ -12,6 +12,10 @@ namespace WildTerraDashboard
 {
     public partial class Form1 : Form
     {
+
+        private BotHealTrainer botCura = new BotHealTrainer();
+        
+
         // SERVIÇOS
         private NetworkService rede;
         private PlayerStats statsJogador;
@@ -84,6 +88,7 @@ namespace WildTerraDashboard
         public Form1()
         {
             InitializeComponent();
+
 
             // UI responsiva para diferentes resoluções/escala do Windows:
             // habilita barras de rolagem quando a tela/escala não comporta o layout completo.
@@ -159,6 +164,12 @@ namespace WildTerraDashboard
             if (btnSaveSafe != null) btnSaveSafe.Click += BtnSaveSafe_Click;
             if (btnLoadSafe != null) btnLoadSafe.Click += BtnLoadSafe_Click;
         }
+
+
+
+        
+
+
 
         // =========================
         // PERSISTÊNCIA: APENAS TXT SELECIONADAS
@@ -1120,6 +1131,105 @@ namespace WildTerraDashboard
 
         // Placeholders
         private void txtWeaponName_TextChanged(object sender, EventArgs e) { }
+
+
+
+
+        // ======================
+        // ===== MODO CURA ======
+        // ======================
+        // Requer que você crie os controles no Designer com estes nomes:
+        // txtHealWeaponName (TextBox)
+        // cmbHealTargetMode (ComboBox) itens: PET, SELF, PLAYER_BY_NAME
+        // numHealRadius (NumericUpDown)
+        // txtHealSkills (TextBox Multiline) -> 1 skill por linha (prioridade fixa)
+        // txtHealTargetNames (TextBox Multiline) -> 1 nome por linha (apenas para PLAYER_BY_NAME)
+        // btnHealTrain (Button)
+        // lblHealStatus (Label) opcional
+        private void btnHealTrain_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!botCura.IsAtivo)
+                {
+                    // Modo independente (não rodar junto com bot/pesca)
+                    EnviarComandoJogo("BOT_STATUS;OFF");
+                    EnviarComandoJogo("FISHING;OFF");
+
+                    // IMPORTANTe: com BOT_STATUS=OFF o BotTimer pode não rodar (dependendo do seu fluxo),
+                    // então a lista de AutoEat/threshold pode não ser enviada automaticamente.
+                    // Sincronize imediatamente para que o treino de cura possa se auto-alimentar.
+                    try
+                    {
+                        if (txtAutoEat != null)
+                        {
+                            string eatTxt = txtAutoEat.Text ?? "";
+                            if (!string.IsNullOrWhiteSpace(eatTxt))
+                            {
+                                EnviarComandoJogo("EAT_LIST;" + eatTxt.Replace("\r\n", "~").Replace("\n", "~"));
+                                _ultimaListaComerEnviada = eatTxt;
+                                LogarMensagem("[CURA] AutoEat sincronizado.");
+                            }
+                        }
+                        if (numEatThreshold != null)
+                        {
+                            int val = (int)numEatThreshold.Value;
+                            EnviarComandoJogo($"EAT_THRESHOLD;{val}");
+                            _ultimoThresholdEnviado = val;
+                        }
+                    }
+                    catch { }
+
+
+                    string weapon = (txtHealWeaponName?.Text ?? "").Trim();
+                    if (string.IsNullOrWhiteSpace(weapon))
+                    {
+                        if (lstLog != null) lstLog.Items.Add("[CURA] Informe o nome da arma de cura.");
+                        return;
+                    }
+
+                    string mode = (cmbHealTargetMode?.Text ?? "PET").Trim();
+                    int radius = 18;
+                    try { radius = (int)(numHealRadius?.Value ?? 18); } catch { }
+
+                    botCura.WeaponName = weapon;
+                    botCura.TargetMode = string.IsNullOrWhiteSpace(mode) ? "PET" : mode;
+                    botCura.TargetRadius = radius;
+                    botCura.SkillsText = (txtHealSkills?.Text ?? "");
+                    botCura.TargetNamesText = (txtHealTargetNames?.Text ?? "");
+
+                    string cmd = botCura.BuildOnCommand();
+                    EnviarComandoJogo(cmd);
+                    botCura.Start();
+
+                    if (btnHealTrain != null) btnHealTrain.Text = "Parar Cura";
+                    if (lblHealStatus != null) lblHealStatus.Text = "CURA: ON";
+                    if (lstLog != null) lstLog.Items.Add("[CURA] ATIVADO.");
+                }
+                else
+                {
+                    EnviarComandoJogo(botCura.BuildOffCommand());
+                    botCura.Stop();
+                    if (btnHealTrain != null) btnHealTrain.Text = "Iniciar Cura";
+                    if (lblHealStatus != null) lblHealStatus.Text = "CURA: OFF";
+                    if (lstLog != null) lstLog.Items.Add("[CURA] DESATIVADO.");
+                }
+            }
+            catch { }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpTameConfig_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
         private void label12_Click(object sender, EventArgs e) { }
     }
 }

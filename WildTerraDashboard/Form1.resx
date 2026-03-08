@@ -125,6 +125,9 @@
   <data name="btnConnect.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="btnConnect.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnConnect.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 86</value>
   </data>
@@ -153,6 +156,9 @@
   <data name="lblX.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblX.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblX.Location" type="System.Drawing.Point, System.Drawing">
     <value>792, 13</value>
   </data>
@@ -180,6 +186,9 @@
   <data name="lblY.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="lblY.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblY.Location" type="System.Drawing.Point, System.Drawing">
     <value>891, 13</value>
   </data>
@@ -206,6 +215,9 @@
   </data>
   <data name="lblZ.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="lblZ.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblZ.Location" type="System.Drawing.Point, System.Drawing">
     <value>1012, 13</value>
@@ -300,47 +312,14 @@
   <data name="&gt;&gt;listView1.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="columnHeader4.Text" xml:space="preserve">
-    <value>Name:</value>
-  </data>
-  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <data name="columnHeader5.Text" xml:space="preserve">
-    <value>Qty:</value>
-  </data>
-  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="listViewBag.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 8.25pt</value>
-  </data>
-  <data name="listViewBag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>490, 568</value>
-  </data>
-  <data name="listViewBag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 397</value>
-  </data>
-  <data name="listViewBag.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;listViewBag.Name" xml:space="preserve">
-    <value>listViewBag</value>
-  </data>
-  <data name="&gt;&gt;listViewBag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;listViewBag.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;listViewBag.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="btnLoadRoute.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
   <data name="btnLoadRoute.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnLoadRoute.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnLoadRoute.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 144</value>
@@ -367,13 +346,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnLoadRoute.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="btnStartBot.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
   <data name="btnStartBot.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnStartBot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStartBot.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 57</value>
@@ -397,7 +379,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnStartBot.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="botTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -407,6 +389,9 @@
   </data>
   <data name="btnRecordRoute.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnRecordRoute.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnRecordRoute.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 115</value>
@@ -430,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnRecordRoute.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="recordTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>120, 17</value>
@@ -471,6 +456,9 @@
   <data name="chkAtivarColeta.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="chkAtivarColeta.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="chkAtivarColeta.Location" type="System.Drawing.Point, System.Drawing">
     <value>621, 6</value>
   </data>
@@ -501,6 +489,9 @@
   <data name="btnSaveList.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="btnSaveList.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnSaveList.Location" type="System.Drawing.Point, System.Drawing">
     <value>381, 80</value>
   </data>
@@ -530,6 +521,9 @@
   </data>
   <data name="btnLoadList.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnLoadList.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnLoadList.Location" type="System.Drawing.Point, System.Drawing">
     <value>381, 113</value>
@@ -627,6 +621,9 @@
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 33</value>
   </data>
@@ -656,6 +653,9 @@
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 54</value>
@@ -708,6 +708,9 @@
   <data name="Estrutura.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="Estrutura.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="Estrutura.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 86</value>
   </data>
@@ -735,6 +738,9 @@
   <data name="btnSaveSafe.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="btnSaveSafe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnSaveSafe.Location" type="System.Drawing.Point, System.Drawing">
     <value>65, 389</value>
   </data>
@@ -761,6 +767,9 @@
   </data>
   <data name="btnLoadSafe.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnLoadSafe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnLoadSafe.Location" type="System.Drawing.Point, System.Drawing">
     <value>65, 418</value>
@@ -792,6 +801,9 @@
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>515, 33</value>
   </data>
@@ -822,6 +834,9 @@
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>1269, 26</value>
   </data>
@@ -844,13 +859,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>701, 13</value>
@@ -874,13 +892,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>218, 346</value>
@@ -939,6 +960,9 @@
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>559, 416</value>
   </data>
@@ -962,6 +986,9 @@
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="btnTestMount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnTestMount.Location" type="System.Drawing.Point, System.Drawing">
     <value>190, 5</value>
@@ -990,6 +1017,9 @@
   <data name="chkUseMount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="chkUseMount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="chkUseMount.Location" type="System.Drawing.Point, System.Drawing">
     <value>63, 164</value>
   </data>
@@ -1016,6 +1046,9 @@
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>26, 10</value>
@@ -1071,6 +1104,9 @@
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 50</value>
   </data>
@@ -1118,6 +1154,9 @@
   </data>
   <data name="chkAtivarHunt.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="chkAtivarHunt.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="chkAtivarHunt.Location" type="System.Drawing.Point, System.Drawing">
     <value>555, 55</value>
@@ -1218,6 +1257,9 @@
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>308, 64</value>
   </data>
@@ -1296,6 +1338,9 @@
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 91</value>
   </data>
@@ -1332,6 +1377,9 @@
   <data name="cmbFishingSpot.Items3" xml:space="preserve">
     <value>Withered Canyon</value>
   </data>
+  <data name="cmbFishingSpot.Items4" xml:space="preserve">
+    <value>Battle Field Island</value>
+  </data>
   <data name="cmbFishingSpot.Location" type="System.Drawing.Point, System.Drawing">
     <value>95, 88</value>
   </data>
@@ -1352,6 +1400,9 @@
   </data>
   <data name="&gt;&gt;cmbFishingSpot.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="btnStartFishing.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnStartFishing.Location" type="System.Drawing.Point, System.Drawing">
     <value>452, 20</value>
@@ -1379,6 +1430,9 @@
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 58</value>
@@ -1427,6 +1481,9 @@
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="label11.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 20</value>
@@ -1500,6 +1557,363 @@
   <data name="&gt;&gt;tabPage4.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="lblHealStatus.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblHealStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblHealStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 19</value>
+  </data>
+  <data name="lblHealStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="lblHealStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="lblHealStatus.Text" xml:space="preserve">
+    <value>CURA: OFF</value>
+  </data>
+  <data name="&gt;&gt;lblHealStatus.Name" xml:space="preserve">
+    <value>lblHealStatus</value>
+  </data>
+  <data name="&gt;&gt;lblHealStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHealStatus.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;lblHealStatus.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnHealTrain.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHealTrain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>488, 119</value>
+  </data>
+  <data name="btnHealTrain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="btnHealTrain.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="btnHealTrain.Text" xml:space="preserve">
+    <value>Iniciar Cura</value>
+  </data>
+  <data name="&gt;&gt;btnHealTrain.Name" xml:space="preserve">
+    <value>btnHealTrain</value>
+  </data>
+  <data name="&gt;&gt;btnHealTrain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHealTrain.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;btnHealTrain.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtHealTargetNames.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 363</value>
+  </data>
+  <data name="txtHealTargetNames.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtHealTargetNames.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="txtHealTargetNames.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 120</value>
+  </data>
+  <data name="txtHealTargetNames.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtHealTargetNames.Name" xml:space="preserve">
+    <value>txtHealTargetNames</value>
+  </data>
+  <data name="&gt;&gt;txtHealTargetNames.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHealTargetNames.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;txtHealTargetNames.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 311</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 13</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Alvos (PLAYER_BY_NAME)</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtHealSkills.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 363</value>
+  </data>
+  <data name="txtHealSkills.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtHealSkills.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="txtHealSkills.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 120</value>
+  </data>
+  <data name="txtHealSkills.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;txtHealSkills.Name" xml:space="preserve">
+    <value>txtHealSkills</value>
+  </data>
+  <data name="&gt;&gt;txtHealSkills.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHealSkills.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;txtHealSkills.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label17.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 312</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 13</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>1 skill por linha (prioridade de cima para baixo)</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="numHealRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 209</value>
+  </data>
+  <data name="numHealRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 22</value>
+  </data>
+  <data name="numHealRadius.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;numHealRadius.Name" xml:space="preserve">
+    <value>numHealRadius</value>
+  </data>
+  <data name="&gt;&gt;numHealRadius.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;numHealRadius.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;numHealRadius.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 209</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 13</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Raio (m)</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="cmbHealTargetMode.Items" xml:space="preserve">
+    <value>PET</value>
+  </data>
+  <data name="cmbHealTargetMode.Items1" xml:space="preserve">
+    <value>SELF</value>
+  </data>
+  <data name="cmbHealTargetMode.Items2" xml:space="preserve">
+    <value>PLAYER_BY_NAME</value>
+  </data>
+  <data name="cmbHealTargetMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 126</value>
+  </data>
+  <data name="cmbHealTargetMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="cmbHealTargetMode.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cmbHealTargetMode.Name" xml:space="preserve">
+    <value>cmbHealTargetMode</value>
+  </data>
+  <data name="&gt;&gt;cmbHealTargetMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmbHealTargetMode.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;cmbHealTargetMode.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 129</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 13</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Modo alvo:</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="txtHealWeaponName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>125, 46</value>
+  </data>
+  <data name="txtHealWeaponName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 22</value>
+  </data>
+  <data name="txtHealWeaponName.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtHealWeaponName.Name" xml:space="preserve">
+    <value>txtHealWeaponName</value>
+  </data>
+  <data name="&gt;&gt;txtHealWeaponName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtHealWeaponName.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;txtHealWeaponName.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label14.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 54</value>
+  </data>
+  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
+  </data>
+  <data name="label14.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Arma de cura:</value>
+  </data>
+  <data name="&gt;&gt;label14.Name" xml:space="preserve">
+    <value>label14</value>
+  </data>
+  <data name="&gt;&gt;label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label14.Parent" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="tabHeal.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="tabHeal.Size" type="System.Drawing.Size, System.Drawing">
+    <value>725, 649</value>
+  </data>
+  <data name="tabHeal.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tabHeal.Text" xml:space="preserve">
+    <value>Heal</value>
+  </data>
+  <data name="&gt;&gt;tabHeal.Name" xml:space="preserve">
+    <value>tabHeal</value>
+  </data>
+  <data name="&gt;&gt;tabHeal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabHeal.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabHeal.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
   </data>
@@ -1522,10 +1936,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnTestHome.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 8.25pt, style=Bold</value>
+  </data>
+  <data name="btnTestHome.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btnTestHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>605, 322</value>
@@ -1549,6 +1966,45 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnTestHome.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="fontDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>239, 17</value>
+  </metadata>
+  <data name="columnHeader4.Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="columnHeader4.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="columnHeader5.Text" xml:space="preserve">
+    <value>Qty:</value>
+  </data>
+  <data name="columnHeader5.Width" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="listViewBag.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="listViewBag.Location" type="System.Drawing.Point, System.Drawing">
+    <value>494, 568</value>
+  </data>
+  <data name="listViewBag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 397</value>
+  </data>
+  <data name="listViewBag.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;listViewBag.Name" xml:space="preserve">
+    <value>listViewBag</value>
+  </data>
+  <data name="&gt;&gt;listViewBag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;listViewBag.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;listViewBag.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="barSP.Font" type="System.Drawing.Font, System.Drawing">
@@ -1605,6 +2061,9 @@
   <data name="&gt;&gt;barHP.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="visualRadar1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="visualRadar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>1156, 42</value>
   </data>
@@ -1626,9 +2085,6 @@
   <data name="&gt;&gt;visualRadar1.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>pt-BR</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -1665,18 +2121,6 @@
   <data name="&gt;&gt;columnHeader3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
-    <value>columnHeader4</value>
-  </data>
-  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
-    <value>columnHeader5</value>
-  </data>
-  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;botTimer.Name" xml:space="preserve">
     <value>botTimer</value>
   </data>
@@ -1688,6 +2132,24 @@
   </data>
   <data name="&gt;&gt;recordTimer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fontDialog1.Name" xml:space="preserve">
+    <value>fontDialog1</value>
+  </data>
+  <data name="&gt;&gt;fontDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FontDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Name" xml:space="preserve">
+    <value>columnHeader4</value>
+  </data>
+  <data name="&gt;&gt;columnHeader4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Name" xml:space="preserve">
+    <value>columnHeader5</value>
+  </data>
+  <data name="&gt;&gt;columnHeader5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

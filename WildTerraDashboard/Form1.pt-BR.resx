@@ -199,6 +199,13 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Nome da Vara:</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tabHeal.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabHeal.Text" xml:space="preserve">
+    <value>Cura</value>
+  </data>
   <data name="btnTestHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>1062, 42</value>
   </data>

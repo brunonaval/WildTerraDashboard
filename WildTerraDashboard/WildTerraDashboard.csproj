@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BotHarvest.cs" />
+    <Compile Include="BotHealTrainer.cs" />
     <Compile Include="BotHunter.cs" />
     <Compile Include="BotMount.cs" />
     <Compile Include="BotMovement.cs" />
