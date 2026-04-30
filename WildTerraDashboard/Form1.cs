@@ -14,12 +14,15 @@ namespace WildTerraDashboard
     {
 
         private BotHealTrainer botCura = new BotHealTrainer();
-        
+
 
         // SERVIÇOS
         private NetworkService rede;
         private PlayerStats statsJogador;
         private UdpClient enviadorUDP;
+        private readonly int _portaEscutaDashboard;
+        private readonly int _portaEnvioBot;
+
 
         // BOTS (Lógica)
         private BotMovement botMovimento;
@@ -35,6 +38,7 @@ namespace WildTerraDashboard
 
         // CONTROLES DE ESTADO
         private string _ultimaListaComerEnviada = "";
+        private string _ultimaListaComerStatusEnviada = "";
         private string _ultimaListaLixoEnviada = "";
         private string _ultimaListaColetaEnviada = "";
         private int _ultimoThresholdEnviado = -1;
@@ -46,6 +50,12 @@ namespace WildTerraDashboard
         private DateTime _lastHarvestSentTime = DateTime.MinValue;
         private string _lastHarvestCmdSent = null;
         private const int HARVEST_SEND_COOLDOWN_MS = 700;
+        private const int HARVEST_LEASE_STALE_SECONDS = 35;
+        private bool _harvestLeaseActive = false;
+        private int _harvestLeaseWorldId = 0;
+        private string _harvestLeaseName = null;
+        private DateTime _harvestLeaseStartedAt = DateTime.MinValue;
+        private DateTime _harvestLeaseLastSignalAt = DateTime.MinValue;
 
 
         // =========================
@@ -85,8 +95,24 @@ namespace WildTerraDashboard
         private bool _isLoadingUiText = false;
         private readonly string _uiTextFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ui_textboxes.json");
 
-        public Form1()
+        private const int UDP_BASE_PORT = 8888;
+        private const int UDP_MAX_INSTANCES = 10;
+
+
+        public Form1() : this(0, 0)
         {
+
+        }
+
+        public Form1(int portaEscutaDashboard, int portaEnvioBot)
+        {
+            ResolverPortasDashboard(portaEscutaDashboard, portaEnvioBot, out _portaEscutaDashboard, out _portaEnvioBot);
+
+
+
+
+
+
             InitializeComponent();
 
 
@@ -101,12 +127,13 @@ namespace WildTerraDashboard
             CarregarConfigBanco();           // (banco fica como está)
             CarregarListaLixo();             // compat (txtDropList)
             CarregarListaComer();            // compat (txtAutoEat)
+            CarregarListaComerStatus();      // compat (txtAutoEatStatus)
             CarregarTextboxesSelecionadas(); // preferencial (sobrescreve se existir)
 
             // 1. INICIALIZAÇÃO DE DADOS E REDE (Primeiro)
             statsJogador = new PlayerStats();
             enviadorUDP = new UdpClient();
-            rede = new NetworkService(8888);
+            rede = new NetworkService(_portaEscutaDashboard);
 
             // 2. INICIALIZAÇÃO DAS CLASSES DE LÓGICA (Crítico: Antes de ligar eventos)
             botMovimento = new BotMovement();
@@ -161,13 +188,92 @@ namespace WildTerraDashboard
 
             if (chkUseMount != null) chkUseMount.CheckedChanged += ChkUseMount_CheckedChanged;
 
+
+            if (chkHealFollowTopTarget != null)
+            {
+                chkHealFollowTopTarget.CheckedChanged += chkHealFollowTopTarget_CheckedChanged;
+                UpdateHealFollowControlsState();
+            }
+
+
+
             if (btnSaveSafe != null) btnSaveSafe.Click += BtnSaveSafe_Click;
             if (btnLoadSafe != null) btnLoadSafe.Click += BtnLoadSafe_Click;
+
+
+            InitializeTamingModule();
+            InitializeTrainingModule();
+            InitializeInspectModule();
+
+
+        }
+
+
+        private static void ResolverPortasDashboard(int portaEscutaSolicitada, int portaEnvioSolicitada, out int portaEscutaResolvida, out int portaEnvioResolvida)
+        {
+            if (portaEscutaSolicitada > 0 && portaEnvioSolicitada > 0)
+            {
+                portaEscutaResolvida = portaEscutaSolicitada;
+                portaEnvioResolvida = portaEnvioSolicitada;
+                return;
+            }
+
+            foreach (var par in EnumerarParesPortaDashboard())
+
+
+            {
+                if (PortaUdpDisponivel(par[0]))
+                {
+                    portaEscutaResolvida = par[0];
+                    portaEnvioResolvida = par[1];
+                    return;
+                }
+            }
+
+            portaEscutaResolvida = UDP_BASE_PORT;
+            portaEnvioResolvida = UDP_BASE_PORT + 1;
+        }
+
+        private static IEnumerable<int[]> EnumerarParesPortaDashboard()
+        {
+            for (int indiceInstancia = 0; indiceInstancia < UDP_MAX_INSTANCES; indiceInstancia++)
+            {
+                int portaEscuta = UDP_BASE_PORT + (indiceInstancia * 2);
+                int portaEnvio = portaEscuta + 1;
+                yield return new[] { portaEscuta, portaEnvio };
+            }
+
+
+        }
+
+        private static bool PortaUdpDisponivel(int porta)
+        {
+            UdpClient teste = null;
+            try
+            {
+                teste = new UdpClient(porta);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                if (teste != null)
+                    teste.Close();
+            }
         }
 
 
 
-        
+
+
+
+
+
+
+
 
 
 
@@ -186,6 +292,8 @@ namespace WildTerraDashboard
                 if (txtWeaponName != null) dict["txtWeaponName"] = txtWeaponName.Text ?? "";
                 if (txtListaMobs != null) dict["txtListaMobs"] = txtListaMobs.Text ?? "";
                 if (txtAutoEat != null) dict["txtAutoEat"] = txtAutoEat.Text ?? "";
+                var txtAutoEatStatus = GetAutoEatStatusTextBox();
+                if (txtAutoEatStatus != null) dict["txtAutoEatStatus"] = txtAutoEatStatus.Text ?? "";
                 if (txtRodName != null) dict["txtRodName"] = txtRodName.Text ?? "";
                 if (txtBaitName != null) dict["txtBaitName"] = txtBaitName.Text ?? "";
 
@@ -215,6 +323,8 @@ namespace WildTerraDashboard
                 if (txtWeaponName != null && dict.TryGetValue("txtWeaponName", out var v4)) txtWeaponName.Text = v4 ?? "";
                 if (txtListaMobs != null && dict.TryGetValue("txtListaMobs", out var v5)) txtListaMobs.Text = v5 ?? "";
                 if (txtAutoEat != null && dict.TryGetValue("txtAutoEat", out var v6)) txtAutoEat.Text = v6 ?? "";
+                var txtAutoEatStatus = GetAutoEatStatusTextBox();
+                if (txtAutoEatStatus != null && dict.TryGetValue("txtAutoEatStatus", out var v6b)) txtAutoEatStatus.Text = v6b ?? "";
                 if (txtRodName != null && dict.TryGetValue("txtRodName", out var v7)) txtRodName.Text = v7 ?? "";
                 if (txtBaitName != null && dict.TryGetValue("txtBaitName", out var v8)) txtBaitName.Text = v8 ?? "";
             }
@@ -306,6 +416,27 @@ namespace WildTerraDashboard
             catch { }
         }
 
+        private void SalvarListaComerStatus()
+        {
+            try
+            {
+                var txt = GetAutoEatStatusTextBox();
+                if (txt != null) File.WriteAllText("lista_comer_status.txt", txt.Text ?? "");
+            }
+            catch { }
+        }
+
+        private void CarregarListaComerStatus()
+        {
+            try
+            {
+                var txt = GetAutoEatStatusTextBox();
+                if (txt != null && File.Exists("lista_comer_status.txt"))
+                    txt.Text = File.ReadAllText("lista_comer_status.txt");
+            }
+            catch { }
+        }
+
         // --- BOTÕES DE LISTAS ---
         private void BtnSaveSafe_Click(object sender, EventArgs e)
         {
@@ -374,7 +505,7 @@ namespace WildTerraDashboard
 
             }
 
-         }
+        }
 
         private void TxtListaMobs_TextChanged(object sender, EventArgs e)
         {
@@ -429,6 +560,9 @@ namespace WildTerraDashboard
                     _ultimaListaComerEnviada = atual;
                 }
             }
+
+            // 2b. Envia Lista de Comida de Status
+            SyncAutoEatStatusList();
 
             // 3. Envia Threshold
             if (numEatThreshold != null)
@@ -490,13 +624,16 @@ namespace WildTerraDashboard
             }
 
             // === PRIORIDADE 2: COLETA ===
-            string comandoColeta = botColeta.VerificarRadar(entidadesRadar);
-            if (comandoColeta != null)
+            if (HasActiveHarvestLease())
             {
-                string fullHarvestCmd = $"{comandoColeta};{nomeArma}";
+                return;
+            }
 
-                // Dedup/Throttle: se já enviamos o mesmo HARVEST há menos de X ms, não reenviar.
-                // Importante: retornar aqui impede o envio de MOVE no mesmo tick, evitando interferência na coleta em andamento.
+            HarvestDecision decisaoColeta = botColeta.VerificarRadar(entidadesRadar);
+            if (decisaoColeta != null)
+            {
+                string fullHarvestCmd = $"HARVEST;{decisaoColeta.DesiredName};{nomeArma};{decisaoColeta.Entity?.WorldId ?? 0}";
+
                 if (_lastHarvestCmdSent != null &&
                     string.Equals(_lastHarvestCmdSent, fullHarvestCmd, StringComparison.OrdinalIgnoreCase) &&
                     (DateTime.Now - _lastHarvestSentTime).TotalMilliseconds < HARVEST_SEND_COOLDOWN_MS)
@@ -506,6 +643,7 @@ namespace WildTerraDashboard
 
                 _lastHarvestCmdSent = fullHarvestCmd;
                 _lastHarvestSentTime = DateTime.Now;
+                BeginHarvestLease(decisaoColeta.Entity?.WorldId ?? 0, decisaoColeta.DesiredName);
 
                 EnviarComandoJogo(fullHarvestCmd);
                 return;
@@ -546,6 +684,7 @@ namespace WildTerraDashboard
             botTimer.Stop();
             if (watchdogTimer != null) watchdogTimer.Stop();
 
+            ClearHarvestLease();
             EnviarComandoJogo("BOT_STATUS;OFF");
             LogarMensagem("[SISTEMA] Bot Parado.");
 
@@ -566,6 +705,7 @@ namespace WildTerraDashboard
             botTimer.Start();
             if (watchdogTimer != null) watchdogTimer.Start();
 
+            ClearHarvestLease();
             _ultimoEstadoMountEnviado = !botMontaria.IsAtivo;
             EnviarComandoJogo("BOT_STATUS;ON");
             LogarMensagem("[SISTEMA] Bot Iniciado.");
@@ -581,6 +721,7 @@ namespace WildTerraDashboard
 
         private void btnStartBot_Click(object sender, EventArgs e)
         {
+            if (IsTrainingModeActive) { MessageBox.Show("Pare o modo Treinamento antes de iniciar o Bot Principal."); return; }
             if (isFishingRunning) { MessageBox.Show("Pare o Bot de Pesca antes!"); return; }
             if (gravadorRota.IsGravando) { MessageBox.Show("Pare a gravação antes!"); return; }
 
@@ -700,6 +841,29 @@ namespace WildTerraDashboard
             return string.Join("~", parts);
         }
 
+        private TextBox GetAutoEatStatusTextBox()
+        {
+            return FindControl<TextBox>("txtAutoEatStatus");
+        }
+
+        private void SyncAutoEatStatusList(bool force = false)
+        {
+            try
+            {
+                var txt = GetAutoEatStatusTextBox();
+                if (txt == null) return;
+
+                string atual = txt.Text ?? "";
+                if (!force && string.Equals(atual, _ultimaListaComerStatusEnviada, StringComparison.Ordinal))
+                    return;
+
+                string payload = BuildListPayload(atual);
+                EnviarComandoJogo("EAT_STATUS_LIST;" + payload);
+                _ultimaListaComerStatusEnviada = atual;
+            }
+            catch { }
+        }
+
         private void EnviarComandoJogo(string comando)
         {
             try
@@ -713,11 +877,13 @@ namespace WildTerraDashboard
                 else if (IsWorkCommand(comando))
                 {
                     _lastWorkCmdTime = DateTime.Now;
-                    _lastProgressCmdTime = DateTime.Now;
+                    if (!comando.StartsWith("HARVEST;", StringComparison.OrdinalIgnoreCase))
+                        _lastProgressCmdTime = DateTime.Now;
                 }
 
                 byte[] dados = Encoding.ASCII.GetBytes(comando);
-                enviadorUDP.Send(dados, dados.Length, "127.0.0.1", 8889);
+                enviadorUDP.Send(dados, dados.Length, "127.0.0.1", _portaEnvioBot);
+
             }
             catch { }
         }
@@ -739,12 +905,55 @@ namespace WildTerraDashboard
                 || cmd.StartsWith("RETURN_HOME", StringComparison.OrdinalIgnoreCase);
         }
 
+        private bool HasActiveHarvestLease()
+        {
+            if (!_harvestLeaseActive) return false;
+
+            double ageSeconds = (DateTime.Now - _harvestLeaseLastSignalAt).TotalSeconds;
+            if (ageSeconds <= HARVEST_LEASE_STALE_SECONDS) return true;
+
+            LogarMensagem($"[HARVEST] Lease expirado por silêncio ({(int)ageSeconds}s). Liberando nova tentativa.");
+            ClearHarvestLease();
+            return false;
+        }
+
+        private void BeginHarvestLease(int worldId, string desiredName)
+        {
+            _harvestLeaseActive = true;
+            _harvestLeaseWorldId = worldId;
+            _harvestLeaseName = desiredName;
+            _harvestLeaseStartedAt = DateTime.Now;
+            _harvestLeaseLastSignalAt = DateTime.Now;
+        }
+
+        private void RefreshHarvestLease(int worldId, string desiredName = null)
+        {
+            if (!_harvestLeaseActive)
+            {
+                BeginHarvestLease(worldId, desiredName);
+                return;
+            }
+
+            if (worldId > 0) _harvestLeaseWorldId = worldId;
+            if (!string.IsNullOrWhiteSpace(desiredName)) _harvestLeaseName = desiredName;
+            _harvestLeaseLastSignalAt = DateTime.Now;
+        }
+
+        private void ClearHarvestLease()
+        {
+            _harvestLeaseActive = false;
+            _harvestLeaseWorldId = 0;
+            _harvestLeaseName = null;
+            _harvestLeaseStartedAt = DateTime.MinValue;
+            _harvestLeaseLastSignalAt = DateTime.MinValue;
+        }
+
         private void Rede_OnIniciado()
         {
             this.BeginInvoke((MethodInvoker)delegate
             {
-                if (lstLog != null) lstLog.Items.Add("UDP Iniciado.");
-                if (btnConnect != null) btnConnect.Text = "Ouvindo...";
+                if (lstLog != null) lstLog.Items.Add($"UDP Iniciado. Escutando {_portaEscutaDashboard} -> Bot {_portaEnvioBot}");
+                this.Text = $"WildTerraDashboard [{_portaEscutaDashboard}/{_portaEnvioBot}]";
             });
         }
 
@@ -917,6 +1126,7 @@ namespace WildTerraDashboard
                     case "ERRO":
                         if (partes.Length >= 3 && partes[1] == "HARVEST")
                         {
+                            ClearHarvestLease();
                             botColeta.AdicionarBlacklist(partes[2]);
                             LogarMensagem($"[ALERTA] Falta ferramenta para {partes[2]}.");
                         }
@@ -930,9 +1140,42 @@ namespace WildTerraDashboard
                         }
                         break;
 
+                    case "HARVEST_STATE":
+                        {
+                            string state = partes.Length >= 2 ? partes[1] : "?";
+                            string nome = partes.Length >= 3 ? partes[2] : _harvestLeaseName;
+                            int worldId = 0;
+                            if (partes.Length >= 4) int.TryParse(partes[3], out worldId);
+                            RefreshHarvestLease(worldId, nome);
+                            _lastProgressCmdTime = DateTime.Now;
+                            LogarMensagem($"[HARVEST] Estado={state} alvo={nome} worldId={worldId}");
+                        }
+                        break;
+
+                    case "HARVEST_DONE":
+                        {
+                            string status = partes.Length >= 2 ? partes[1] : "?";
+                            string reason = partes.Length >= 3 ? partes[2] : "Unknown";
+                            string nome = partes.Length >= 4 ? partes[3] : _harvestLeaseName;
+                            int worldId = 0;
+                            if (partes.Length >= 5) int.TryParse(partes[4], out worldId);
+                            _lastProgressCmdTime = DateTime.Now;
+                            ClearHarvestLease();
+                            LogarMensagem($"[HARVEST] Fim status={status} motivo={reason} alvo={nome} worldId={worldId}");
+                            if (worldId > 0)
+                            {
+                                if (string.Equals(status, "Failed", StringComparison.OrdinalIgnoreCase))
+                                    botColeta.AdicionarBlacklistWorldId(worldId, null, reason);
+                                else if (string.Equals(status, "Success", StringComparison.OrdinalIgnoreCase))
+                                    botColeta.AdicionarBlacklistWorldId(worldId, TimeSpan.FromSeconds(4), "RecentSuccess");
+                            }
+                        }
+                        break;
+
                     case "BAG_FULL":
                         if (!indoParaBanco && !aguardandoDeposito && botMovimento.IsRodando)
                         {
+                            ClearHarvestLease();
                             indoParaBanco = true;
                             LogarMensagem("[SISTEMA] MOCHILA CHEIA! Indo para a Cabana...");
                             if (txtSafeList != null) EnviarComandoJogo("SAFE_LIST;" + txtSafeList.Text.Replace("\r\n", "~"));
@@ -944,6 +1187,7 @@ namespace WildTerraDashboard
                         break;
 
                     case "BANK_FINISH":
+                        ClearHarvestLease();
                         LogarMensagem("[SISTEMA] Depósito Finalizado.");
                         aguardandoDeposito = false;
                         indoParaBanco = false;
@@ -980,6 +1224,34 @@ namespace WildTerraDashboard
                             }
                         }
                         break;
+
+                    case "TAMING_LOG":
+                        if (partes.Length >= 2)
+                        {
+                            string msg = string.Join(";", partes.Skip(1));
+                            LogarMensagem(msg);
+                        }
+                        break;
+
+
+
+                    case "INSPECT_BEGIN":
+                        HandleInspectBegin(partes);
+                        break;
+
+                    case "INSPECT_CHUNK":
+                        HandleInspectChunk(partes);
+                        break;
+
+                    case "INSPECT_END":
+                        HandleInspectEnd(partes);
+                        break;
+
+                    case "INSPECT_ERROR":
+                        HandleInspectError(partes);
+                        break;
+
+
                 }
             }
             catch { }
@@ -1022,6 +1294,10 @@ namespace WildTerraDashboard
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+
+            TryStopTamingForShutdown();
+            TryStopTrainingForShutdown();
+
             try { if (watchdogTimer != null) watchdogTimer.Stop(); } catch { }
             try { if (restartTimer != null) restartTimer.Stop(); } catch { }
 
@@ -1035,6 +1311,7 @@ namespace WildTerraDashboard
             SalvarConfigBanco();
             SalvarListaLixo();
             SalvarListaComer();
+            SaveTrainingUi();
 
             base.OnFormClosing(e);
         }
@@ -1066,6 +1343,12 @@ namespace WildTerraDashboard
         // --- BOTÃO DE PESCA ---
         private void btnStartFishing_Click(object sender, EventArgs e)
         {
+            if (IsTrainingModeActive)
+            {
+                MessageBox.Show("Pare o modo Treinamento antes de iniciar a Pesca!");
+                return;
+            }
+
             if (botMovimento.IsRodando)
             {
                 MessageBox.Show("Pare o Bot Principal antes de iniciar a Pesca!");
@@ -1118,7 +1401,7 @@ namespace WildTerraDashboard
 
                     }
                 }
-                
+
                 catch { }
 
                 isFishingRunning = true;
@@ -1133,6 +1416,34 @@ namespace WildTerraDashboard
         private void txtWeaponName_TextChanged(object sender, EventArgs e) { }
 
 
+        private void chkHealFollowTopTarget_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateHealFollowControlsState();
+        }
+
+        private void UpdateHealFollowControlsState()
+        {
+            bool enabled = chkHealFollowTopTarget != null && chkHealFollowTopTarget.Checked;
+
+            if (lblHealFollowSkill != null) lblHealFollowSkill.Enabled = enabled;
+            if (txtHealFollowSkill != null) txtHealFollowSkill.Enabled = enabled;
+
+            if (lblHealFollowTargetHpPct != null) lblHealFollowTargetHpPct.Enabled = enabled;
+            if (numHealFollowTargetHpPct != null) numHealFollowTargetHpPct.Enabled = enabled;
+
+            if (lblHealFollowDistance != null) lblHealFollowDistance.Enabled = enabled;
+            if (numHealFollowDistance != null) numHealFollowDistance.Enabled = enabled;
+
+            if (lblHealSelfRecoveryItems != null) lblHealSelfRecoveryItems.Enabled = enabled;
+            if (txtHealSelfRecoveryItems != null) txtHealSelfRecoveryItems.Enabled = enabled;
+
+            if (lblHealSelfRecoveryHpPct != null) lblHealSelfRecoveryHpPct.Enabled = enabled;
+            if (numHealSelfRecoveryHpPct != null) numHealSelfRecoveryHpPct.Enabled = enabled;
+
+            if (lblHealSelfRecoveryResumeHpPct != null) lblHealSelfRecoveryResumeHpPct.Enabled = enabled;
+            if (numHealSelfRecoveryResumeHpPct != null) numHealSelfRecoveryResumeHpPct.Enabled = enabled;
+        }
+
 
 
         // ======================
@@ -1144,15 +1455,33 @@ namespace WildTerraDashboard
         // numHealRadius (NumericUpDown)
         // txtHealSkills (TextBox Multiline) -> 1 skill por linha (prioridade fixa)
         // txtHealTargetNames (TextBox Multiline) -> 1 nome por linha (apenas para PLAYER_BY_NAME)
+
+        // chkHealFollowTopTarget (CheckBox)
+        // txtHealFollowSkill (TextBox)
+        // numHealFollowTargetHpPct (NumericUpDown)
+        // numHealFollowDistance (NumericUpDown)
+        // txtHealSelfRecoveryItems (TextBox Multiline)
+        // numHealSelfRecoveryHpPct (NumericUpDown)
+        // numHealSelfRecoveryResumeHpPct (NumericUpDown)
+
+
+
         // btnHealTrain (Button)
         // lblHealStatus (Label) opcional
         private void btnHealTrain_Click(object sender, EventArgs e)
         {
             try
             {
+                if (IsTrainingModeActive)
+                {
+                    MessageBox.Show("Pare o modo Treinamento antes de iniciar a Cura.");
+                    return;
+                }
+
                 if (!botCura.IsAtivo)
                 {
                     // Modo independente (não rodar junto com bot/pesca)
+                    ClearHarvestLease();
                     EnviarComandoJogo("BOT_STATUS;OFF");
                     EnviarComandoJogo("FISHING;OFF");
 
@@ -1171,6 +1500,7 @@ namespace WildTerraDashboard
                                 LogarMensagem("[CURA] AutoEat sincronizado.");
                             }
                         }
+                        SyncAutoEatStatusList(force: true);
                         if (numEatThreshold != null)
                         {
                             int val = (int)numEatThreshold.Value;
@@ -1192,11 +1522,65 @@ namespace WildTerraDashboard
                     int radius = 18;
                     try { radius = (int)(numHealRadius?.Value ?? 18); } catch { }
 
+
+                    bool followHealEnabled = false;
+                    try { followHealEnabled = chkHealFollowTopTarget != null && chkHealFollowTopTarget.Checked; } catch { }
+
+                    string followSkill = (txtHealFollowSkill?.Text ?? "").Trim();
+                    decimal followTargetHpPct = 75;
+                    decimal followDistance = 4.5m;
+                    string selfRecoveryItems = (txtHealSelfRecoveryItems?.Text ?? "");
+                    decimal selfRecoveryHpPct = 40;
+                    decimal selfRecoveryResumeHpPct = 55;
+
+                    try { followTargetHpPct = numHealFollowTargetHpPct?.Value ?? 75; } catch { }
+                    try { followDistance = numHealFollowDistance?.Value ?? 4.5m; } catch { }
+                    try { selfRecoveryHpPct = numHealSelfRecoveryHpPct?.Value ?? 40; } catch { }
+                    try { selfRecoveryResumeHpPct = numHealSelfRecoveryResumeHpPct?.Value ?? 55; } catch { }
+
+                    if (followHealEnabled)
+                    {
+                        if (!string.Equals(mode, "PLAYER_BY_NAME", StringComparison.OrdinalIgnoreCase))
+                        {
+                            MessageBox.Show("O modo Follow Heal só pode ser usado quando o modo de alvo for PLAYER_BY_NAME.");
+                            return;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(txtHealTargetNames?.Text))
+                        {
+                            MessageBox.Show("Informe ao menos um nome em txtHealTargetNames para usar o Follow Heal.");
+                            return;
+                        }
+
+                        if (string.IsNullOrWhiteSpace(followSkill))
+                        {
+                            MessageBox.Show("Informe a skill principal do Follow Heal.");
+                            return;
+                        }
+
+                        if (selfRecoveryResumeHpPct <= selfRecoveryHpPct)
+                        {
+                            MessageBox.Show("O valor de 'Retomar cura acima de (%)' deve ser maior que o de 'Usar autocura abaixo de (%)'.");
+                            return;
+                        }
+                    }
+
+
+
+
                     botCura.WeaponName = weapon;
                     botCura.TargetMode = string.IsNullOrWhiteSpace(mode) ? "PET" : mode;
                     botCura.TargetRadius = radius;
                     botCura.SkillsText = (txtHealSkills?.Text ?? "");
                     botCura.TargetNamesText = (txtHealTargetNames?.Text ?? "");
+                    botCura.FollowTopTargetEnabled = followHealEnabled;
+                    botCura.FollowSkillName = followSkill;
+                    botCura.FollowTargetHpPct = (int)Math.Round(followTargetHpPct, MidpointRounding.AwayFromZero);
+                    botCura.FollowDistance = followDistance;
+                    botCura.SelfRecoveryItemsText = selfRecoveryItems;
+                    botCura.SelfRecoveryHpPct = (int)Math.Round(selfRecoveryHpPct, MidpointRounding.AwayFromZero);
+                    botCura.SelfRecoveryResumeHpPct = (int)Math.Round(selfRecoveryResumeHpPct, MidpointRounding.AwayFromZero);
+
 
                     string cmd = botCura.BuildOnCommand();
                     EnviarComandoJogo(cmd);
@@ -1228,7 +1612,10 @@ namespace WildTerraDashboard
 
         }
 
-        
+        private void btnInspectPlayer_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void label12_Click(object sender, EventArgs e) { }
     }

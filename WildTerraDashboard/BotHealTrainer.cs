@@ -17,6 +17,17 @@ namespace WildTerraDashboard
         public string SkillsText { get; set; } = "";
         public string TargetNamesText { get; set; } = "";
 
+
+        // Novo submodo: Follow Heal (ativo apenas com PLAYER_BY_NAME + checkbox)
+        public bool FollowTopTargetEnabled { get; set; } = false;
+        public string FollowSkillName { get; set; } = "";
+        public int FollowTargetHpPct { get; set; } = 75;
+        public decimal FollowDistance { get; set; } = 4.5m;
+        public string SelfRecoveryItemsText { get; set; } = "";
+        public int SelfRecoveryHpPct { get; set; } = 40;
+        public int SelfRecoveryResumeHpPct { get; set; } = 55;
+
+
         public void Start() => IsAtivo = true;
         public void Stop() => IsAtivo = false;
 
@@ -30,9 +41,22 @@ namespace WildTerraDashboard
             string skillsPayload = NormalizeMultiLineToPayload(SkillsText);
             string targetsPayload = NormalizeMultiLineToPayload(TargetNamesText);
 
+
+            int followEnabled = FollowTopTargetEnabled ? 1 : 0;
+            string followSkill = (FollowSkillName ?? "").Trim();
+            int followTargetHpPct = Math.Max(1, Math.Min(100, FollowTargetHpPct));
+            decimal followDistance = FollowDistance < 0 ? 0 : FollowDistance;
+            string followDistancePayload = followDistance.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            string selfRecoveryItemsPayload = NormalizeMultiLineToPayload(SelfRecoveryItemsText);
+            int selfRecoveryHpPct = Math.Max(1, Math.Min(100, SelfRecoveryHpPct));
+            int selfRecoveryResumeHpPct = Math.Max(1, Math.Min(100, SelfRecoveryResumeHpPct));
+
+
             // Formato:
-            // HEALTRAIN;ON;weapon;targetMode;radius;skills(~);targets(~)
-            return $"HEALTRAIN;ON;{weapon};{mode};{radius};{skillsPayload};{targetsPayload}";
+            // HEALTRAIN;ON;weapon;targetMode;radius;skills(~);targets(~);followEnabled;followSkill;followTargetHpPct;followDistance;selfRecoveryItems(~);selfRecoveryHpPct;selfRecoveryResumeHpPct
+            return $"HEALTRAIN;ON;{weapon};{mode};{radius};{skillsPayload};{targetsPayload};{followEnabled};{followSkill};{followTargetHpPct};{followDistancePayload};{selfRecoveryItemsPayload};{selfRecoveryHpPct};{selfRecoveryResumeHpPct}";
+        
+            
         }
 
         public string BuildOffCommand() => "HEALTRAIN;OFF";

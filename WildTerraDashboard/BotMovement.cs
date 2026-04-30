@@ -10,6 +10,10 @@ namespace WildTerraDashboard
         private List<Waypoint> rota = new List<Waypoint>();
         private int indiceAtual = 0;
         public bool IsRodando { get; private set; } = false;
+        public bool HasRoute => rota != null && rota.Count > 0;
+        public int RouteCount => rota?.Count ?? 0;
+
+
 
         // --- NOVA VARIÁVEL DE CONTROLE ---
         public bool IsEmCombate { get; set; } = false;

@@ -15,6 +15,7 @@ namespace WildTerraDashboard
         public float RelX { get; set; }
         public float RelY { get; set; }
         public bool IsAggressive { get; set; }
+        public int WorldId { get; set; }
         public Color Cor { get; set; }
     }
 
@@ -59,6 +60,13 @@ namespace WildTerraDashboard
                     {
                         int.TryParse(p[6], out int lvl);
                         ent.Nivel = lvl;
+                    }
+
+                    // Parse WorldId opcional (8º item)
+                    if (p.Length >= 8)
+                    {
+                        int.TryParse(p[7], out int worldId);
+                        ent.WorldId = worldId;
                     }
 
                     // --- CORES ---

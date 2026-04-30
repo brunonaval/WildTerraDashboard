@@ -52,6 +52,8 @@
     <Compile Include="BotHunter.cs" />
     <Compile Include="BotMount.cs" />
     <Compile Include="BotMovement.cs" />
+    <Compile Include="BotTaming.cs" />
+    <Compile Include="BotTrainingMode.cs" />
     <Compile Include="ColoredProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -61,12 +63,22 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1.Inspect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Taming.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Training.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NetworkService.cs" />
     <Compile Include="PlayerStats.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RadarSystem.cs" />
     <Compile Include="RouteRecorder.cs" />
+    <Compile Include="TamingSettings.cs" />
     <Compile Include="VisualRadar.cs">
       <SubType>Component</SubType>
     </Compile>

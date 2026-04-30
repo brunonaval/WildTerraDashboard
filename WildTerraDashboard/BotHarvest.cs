@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace WildTerraDashboard
 {
+    public class HarvestDecision
+    {
+        public string DesiredName { get; set; }
+        public RadarEntity Entity { get; set; }
+    }
+
     public class BotHarvest
     {
         public List<string> ItensParaColetar { get; private set; } = new List<string>();
@@ -11,6 +17,8 @@ namespace WildTerraDashboard
         // Lista Negra: Itens que tentamos pegar e falharam (ex: Sem Picareta)
         // Eles ficam aqui e o bot ignora.
         private HashSet<string> Blacklist = new HashSet<string>();
+        private readonly Dictionary<int, DateTime> _worldIdBlacklistUntil = new Dictionary<int, DateTime>();
+        private static readonly TimeSpan WorldIdBlacklistTtl = TimeSpan.FromSeconds(90);
 
         public event Action<string> OnLog;
 
@@ -25,6 +33,7 @@ namespace WildTerraDashboard
 
             // Quando muda a lista, limpamos a blacklist para dar uma nova chance
             Blacklist.Clear();
+            _worldIdBlacklistUntil.Clear();
 
             OnLog?.Invoke($"Lista de Coleta atualizada: {ItensParaColetar.Count} itens.");
         }
@@ -51,33 +60,53 @@ namespace WildTerraDashboard
 
         public void AdicionarBlacklist(string nomeItem)
         {
-            // Se já está ignorado, não faz nada
             if (Blacklist.Contains(nomeItem)) return;
 
             Blacklist.Add(nomeItem);
             OnLog?.Invoke($"[ALERTA] '{nomeItem}' adicionado à Lista Negra (Sem ferramenta). Ignorando...");
         }
 
-        public string VerificarRadar(List<RadarEntity> radarEntities)
+        public void AdicionarBlacklistWorldId(int worldId, TimeSpan? ttl = null, string reason = null)
+        {
+            if (worldId <= 0) return;
+            _worldIdBlacklistUntil[worldId] = DateTime.Now + (ttl ?? WorldIdBlacklistTtl);
+            string suffix = string.IsNullOrWhiteSpace(reason) ? "" : $" Motivo={reason}.";
+            OnLog?.Invoke($"[HARVEST] worldId {worldId} entrou em cooldown temporário.{suffix}");
+        }
+
+        private bool IsWorldIdBlacklisted(int worldId)
+        {
+            if (worldId <= 0) return false;
+            if (_worldIdBlacklistUntil.TryGetValue(worldId, out DateTime until))
+            {
+                if (until > DateTime.Now) return true;
+                _worldIdBlacklistUntil.Remove(worldId);
+            }
+            return false;
+        }
+
+        public HarvestDecision VerificarRadar(List<RadarEntity> radarEntities)
         {
             if (!IsAtivo || ItensParaColetar.Count == 0) return null;
 
             foreach (var entity in radarEntities)
             {
-                //if (entity.Tipo != "R" && entity.Tipo != "D") continue; // Não tratar mobs (M) como colheita; mobs são tratados pela caça.
                 if (entity.Tipo != "R") continue;
+                if (IsWorldIdBlacklisted(entity.WorldId)) continue;
 
                 foreach (string desejo in ItensParaColetar)
                 {
-                    // SE ESTIVER NA BLACKLIST, PULA!
                     if (Blacklist.Contains(desejo)) continue;
 
                     if (entity.Nome.IndexOf(desejo, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         if (entity.Distancia <= 40)
                         {
-                            // Encontrou um válido que não está na blacklist
-                            return $"HARVEST;{desejo}";
+                            return new HarvestDecision
+                            {
+                                DesiredName = desejo,
+                                Entity = entity
+                            };
                         }
                     }
                 }
@@ -89,9 +118,10 @@ namespace WildTerraDashboard
         // Adicione este método na classe BotHarvest
         public void LimparBlacklist()
         {
-            if (Blacklist.Count > 0)
+            if (Blacklist.Count > 0 || _worldIdBlacklistUntil.Count > 0)
             {
                 Blacklist.Clear();
+                _worldIdBlacklistUntil.Clear();
                 OnLog?.Invoke("[SISTEMA] Novos itens detectados! Lista Negra limpa. Tentando coletar novamente...");
             }
         }
