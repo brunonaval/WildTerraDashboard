@@ -404,6 +404,132 @@ namespace WildTerraDashboard.Properties {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);
             }
         }
+
+        internal static string Form1LogBagFull {
+            get {
+                return ResourceManager.GetString("Form1LogBagFull", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogBotStarted {
+            get {
+                return ResourceManager.GetString("Form1LogBotStarted", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogBotStopped {
+            get {
+                return ResourceManager.GetString("Form1LogBotStopped", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogDepositFinished {
+            get {
+                return ResourceManager.GetString("Form1LogDepositFinished", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogErrorFormat {
+            get {
+                return ResourceManager.GetString("Form1LogErrorFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogFillXAndZ {
+            get {
+                return ResourceManager.GetString("Form1LogFillXAndZ", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogFishingDisabled {
+            get {
+                return ResourceManager.GetString("Form1LogFishingDisabled", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogFishingHarvestListSentFormat {
+            get {
+                return ResourceManager.GetString("Form1LogFishingHarvestListSentFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogFishingHarvestListSyncedFormat {
+            get {
+                return ResourceManager.GetString("Form1LogFishingHarvestListSyncedFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogFishingStartingFormat {
+            get {
+                return ResourceManager.GetString("Form1LogFishingStartingFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogHarvestStatusFormat {
+            get {
+                return ResourceManager.GetString("Form1LogHarvestStatusFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogHealAutoEatSynced {
+            get {
+                return ResourceManager.GetString("Form1LogHealAutoEatSynced", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogHealDisabled {
+            get {
+                return ResourceManager.GetString("Form1LogHealDisabled", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogHealEnabled {
+            get {
+                return ResourceManager.GetString("Form1LogHealEnabled", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogHunterStatusFormat {
+            get {
+                return ResourceManager.GetString("Form1LogHunterStatusFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogMissingToolFormat {
+            get {
+                return ResourceManager.GetString("Form1LogMissingToolFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogNavigationMovingAway {
+            get {
+                return ResourceManager.GetString("Form1LogNavigationMovingAway", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogReachedCabinStartingDeposit {
+            get {
+                return ResourceManager.GetString("Form1LogReachedCabinStartingDeposit", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogRequirementMetFormat {
+            get {
+                return ResourceManager.GetString("Form1LogRequirementMetFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogReturningHomeFormat {
+            get {
+                return ResourceManager.GetString("Form1LogReturningHomeFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogUdpStartedFormat {
+            get {
+                return ResourceManager.GetString("Form1LogUdpStartedFormat", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a [ALERT] Missing tool for {0}..

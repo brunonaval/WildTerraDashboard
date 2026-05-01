@@ -183,7 +183,9 @@ namespace WildTerraDashboard
             if (chkAtivarHunt != null) chkAtivarHunt.CheckedChanged += (s, e) =>
             {
                 botCaçador.IsAtivo = chkAtivarHunt.Checked;
-                LogarMensagem($"Caçador: {(botCaçador.IsAtivo ? "ON" : "OFF")}");
+                LogarMensagem(string.Format(
+                    Properties.Resources.Form1LogHunterStatusFormat,
+                    botCaçador.IsAtivo ? "ON" : "OFF"));
             };
 
             if (chkUseMount != null) chkUseMount.CheckedChanged += ChkUseMount_CheckedChanged;
@@ -493,7 +495,9 @@ namespace WildTerraDashboard
                             string payload = BuildListPayload(atual);
                             EnviarComandoJogo("HARVEST_LIST;" + payload);
                             _ultimaListaColetaEnviada = atual;
-                            LogarMensagem($"[PESCA] Lista de Coleta sincronizada ({botColeta.ContarItensLista(atual)} itens).");
+                            LogarMensagem(string.Format(
+                                Properties.Resources.Form1LogFishingHarvestListSyncedFormat,
+                                botColeta.ContarItensLista(atual)));
 
 
                         }
@@ -518,7 +522,9 @@ namespace WildTerraDashboard
             if (botColeta != null)
             {
                 botColeta.IsAtivo = chkAtivarColeta.Checked;
-                LogarMensagem($"Coleta: {(botColeta.IsAtivo ? "ON" : "OFF")}");
+                LogarMensagem(string.Format(
+                    Properties.Resources.Form1LogHarvestStatusFormat,
+                    botColeta.IsAtivo ? "ON" : "OFF"));
             }
         }
 
@@ -595,7 +601,7 @@ namespace WildTerraDashboard
 
                     if (dist < 3.0f)
                     {
-                        LogarMensagem("[SISTEMA] Cheguei na Cabana. Iniciando depósito...");
+                        LogarMensagem(Properties.Resources.Form1LogReachedCabinStartingDeposit);
                         string nomeBau = txtBankName.Text.Trim();
                         if (string.IsNullOrEmpty(nomeBau)) EnviarComandoJogo("DEPOSIT_ALL");
                         else EnviarComandoJogo($"DEPOSIT_ALL;{nomeBau}");
@@ -686,7 +692,7 @@ namespace WildTerraDashboard
 
             ClearHarvestLease();
             EnviarComandoJogo("BOT_STATUS;OFF");
-            LogarMensagem("[SISTEMA] Bot Parado.");
+            LogarMensagem(Properties.Resources.Form1LogBotStopped);
 
             if (btnStartFishing != null) btnStartFishing.Enabled = true;
         }
@@ -708,7 +714,7 @@ namespace WildTerraDashboard
             ClearHarvestLease();
             _ultimoEstadoMountEnviado = !botMontaria.IsAtivo;
             EnviarComandoJogo("BOT_STATUS;ON");
-            LogarMensagem("[SISTEMA] Bot Iniciado.");
+            LogarMensagem(Properties.Resources.Form1LogBotStarted);
 
             if (btnStartFishing != null) btnStartFishing.Enabled = false;
 
@@ -952,7 +958,7 @@ namespace WildTerraDashboard
         {
             this.BeginInvoke((MethodInvoker)delegate
             {
-                if (lstLog != null) lstLog.Items.Add($"UDP Iniciado. Escutando {_portaEscutaDashboard} -> Bot {_portaEnvioBot}");
+                if (lstLog != null) lstLog.Items.Add(string.Format(Properties.Resources.Form1LogUdpStartedFormat, _portaEscutaDashboard, _portaEnvioBot));
                 this.Text = string.Format(Properties.Resources.Form1WindowTitleWithPortsFormat, _portaEscutaDashboard, _portaEnvioBot);
             });
         }
@@ -961,7 +967,7 @@ namespace WildTerraDashboard
         {
             this.BeginInvoke((MethodInvoker)delegate
             {
-                if (lstLog != null) lstLog.Items.Add("Erro: " + msg);
+                if (lstLog != null) lstLog.Items.Add(string.Format(Properties.Resources.Form1LogErrorFormat, msg));
                 if (btnConnect != null) btnConnect.Enabled = true;
             });
         }
@@ -1128,14 +1134,14 @@ namespace WildTerraDashboard
                         {
                             ClearHarvestLease();
                             botColeta.AdicionarBlacklist(partes[2]);
-                            LogarMensagem($"[ALERTA] Falta ferramenta para {partes[2]}.");
+                            LogarMensagem(string.Format(Properties.Resources.Form1LogMissingToolFormat, partes[2]));
                         }
                         break;
 
                     case "REQ_OK":
                         if (partes.Length >= 2)
                         {
-                            LogarMensagem($"[SISTEMA] Requisito atendido: {partes[1]}");
+                            LogarMensagem(string.Format(Properties.Resources.Form1LogRequirementMetFormat, partes[1]));
                             botColeta.LimparBlacklist();
                         }
                         break;
@@ -1177,7 +1183,7 @@ namespace WildTerraDashboard
                         {
                             ClearHarvestLease();
                             indoParaBanco = true;
-                            LogarMensagem("[SISTEMA] MOCHILA CHEIA! Indo para a Cabana...");
+                            LogarMensagem(Properties.Resources.Form1LogBagFull);
                             if (txtSafeList != null) EnviarComandoJogo("SAFE_LIST;" + txtSafeList.Text.Replace("\r\n", "~"));
                             botColeta.IsAtivo = false;
                             EnviarComandoJogo("RESET_MODES"); // libera montaria (reseta _modoColeta/_modoHunter no client)
@@ -1188,7 +1194,7 @@ namespace WildTerraDashboard
 
                     case "BANK_FINISH":
                         ClearHarvestLease();
-                        LogarMensagem("[SISTEMA] Depósito Finalizado.");
+                        LogarMensagem(Properties.Resources.Form1LogDepositFinished);
                         aguardandoDeposito = false;
                         indoParaBanco = false;
                         botColeta.IsAtivo = true;
@@ -1197,7 +1203,7 @@ namespace WildTerraDashboard
                             string ret = botMovimento.ObterPontoRetomada(statsJogador.X, statsJogador.Z, 20.0f);
                             if (ret != null)
                             {
-                                LogarMensagem("[NAVEGAÇÃO] Afastando-se...");
+                                LogarMensagem(Properties.Resources.Form1LogNavigationMovingAway);
                                 EnviarComandoJogo(ret);
                                 ResetWatchdogMovement();
                             }
@@ -1332,11 +1338,11 @@ namespace WildTerraDashboard
             string z = txtBankZ.Text.Trim();
             if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(z))
             {
-                LogarMensagem("[ERRO] Preencha as Coordenadas X e Z!");
+                LogarMensagem(Properties.Resources.Form1LogFillXAndZ);
                 MessageBox.Show(Properties.Resources.Form1MessageFillXAndZ);
                 return;
             }
-            LogarMensagem($"[TESTE] Voltando para Casa ({x}, {z})...");
+            LogarMensagem(string.Format(Properties.Resources.Form1LogReturningHomeFormat, x, z));
             EnviarComandoJogo($"RETURN_HOME;{x};{z}");
         }
 
@@ -1362,7 +1368,7 @@ namespace WildTerraDashboard
                 btnStartFishing.Text = Properties.Resources.Form1ButtonStartFishing;
                 btnStartFishing.BackColor = Color.Navy;
                 btnStartBot.Enabled = true;
-                LogarMensagem("[PESCA] Sistema Desativado.");
+                LogarMensagem(Properties.Resources.Form1LogFishingDisabled);
             }
             else
             {
@@ -1394,7 +1400,7 @@ namespace WildTerraDashboard
                             EnviarComandoJogo("HARVEST_LIST;" + payload);
                             _ultimaListaColetaEnviada = atual;
                             int n = (botColeta != null) ? botColeta.ContarItensLista(atual) : 0;
-                            LogarMensagem($"[PESCA] Lista de Coleta enviada (start) | {n} itens.");
+                            LogarMensagem(string.Format(Properties.Resources.Form1LogFishingHarvestListSentFormat, n));
 
 
                         }
@@ -1408,7 +1414,7 @@ namespace WildTerraDashboard
                 btnStartFishing.Text = Properties.Resources.Form1ButtonStopFishing;
                 btnStartFishing.BackColor = Color.Red;
                 btnStartBot.Enabled = false;
-                LogarMensagem($"[PESCA] Iniciando... Local: {local}, Isca: {isca}");
+                LogarMensagem(string.Format(Properties.Resources.Form1LogFishingStartingFormat, local, isca));
             }
         }
 
@@ -1497,7 +1503,7 @@ namespace WildTerraDashboard
                             {
                                 EnviarComandoJogo("EAT_LIST;" + eatTxt.Replace("\r\n", "~").Replace("\n", "~"));
                                 _ultimaListaComerEnviada = eatTxt;
-                                LogarMensagem("[CURA] AutoEat sincronizado.");
+                                LogarMensagem(Properties.Resources.Form1LogHealAutoEatSynced);
                             }
                         }
                         SyncAutoEatStatusList(force: true);
@@ -1588,7 +1594,7 @@ namespace WildTerraDashboard
 
                     if (btnHealTrain != null) btnHealTrain.Text = Properties.Resources.Form1ButtonStopHeal;
                     if (lblHealStatus != null) lblHealStatus.Text = Properties.Resources.Form1HealStatusOn;
-                    if (lstLog != null) lstLog.Items.Add("[CURA] ATIVADO.");
+                    if (lstLog != null) lstLog.Items.Add(Properties.Resources.Form1LogHealEnabled);
                 }
                 else
                 {
@@ -1596,7 +1602,7 @@ namespace WildTerraDashboard
                     botCura.Stop();
                     if (btnHealTrain != null) btnHealTrain.Text = Properties.Resources.Form1ButtonStartHeal;
                     if (lblHealStatus != null) lblHealStatus.Text = Properties.Resources.Form1HealStatusOff;
-                    if (lstLog != null) lstLog.Items.Add("[CURA] DESATIVADO.");
+                    if (lstLog != null) lstLog.Items.Add(Properties.Resources.Form1LogHealDisabled);
                 }
             }
             catch { }

@@ -160,4 +160,67 @@
   <data name="Form1WindowTitleWithPortsFormat" xml:space="preserve">
     <value>WildTerraDashboard [{0} -&gt; {1}]</value>
   </data>
+  <data name="Form1LogBagFull" xml:space="preserve">
+    <value>[SISTEMA] MOCHILA CHEIA! Indo para a Cabana...</value>
+  </data>
+  <data name="Form1LogBotStarted" xml:space="preserve">
+    <value>[SISTEMA] Bot Iniciado.</value>
+  </data>
+  <data name="Form1LogBotStopped" xml:space="preserve">
+    <value>[SISTEMA] Bot Parado.</value>
+  </data>
+  <data name="Form1LogDepositFinished" xml:space="preserve">
+    <value>[SISTEMA] Depósito Finalizado.</value>
+  </data>
+  <data name="Form1LogErrorFormat" xml:space="preserve">
+    <value>Erro: {0}</value>
+  </data>
+  <data name="Form1LogFillXAndZ" xml:space="preserve">
+    <value>[ERRO] Preencha as Coordenadas X e Z!</value>
+  </data>
+  <data name="Form1LogFishingDisabled" xml:space="preserve">
+    <value>[PESCA] Sistema Desativado.</value>
+  </data>
+  <data name="Form1LogFishingHarvestListSentFormat" xml:space="preserve">
+    <value>[PESCA] Lista de Coleta enviada para o jogo ({0} itens).</value>
+  </data>
+  <data name="Form1LogFishingHarvestListSyncedFormat" xml:space="preserve">
+    <value>[PESCA] Lista de Coleta sincronizada ({0} itens).</value>
+  </data>
+  <data name="Form1LogFishingStartingFormat" xml:space="preserve">
+    <value>[PESCA] Iniciando... Local: {0}, Isca: {1}</value>
+  </data>
+  <data name="Form1LogHarvestStatusFormat" xml:space="preserve">
+    <value>Coleta: {0}</value>
+  </data>
+  <data name="Form1LogHealAutoEatSynced" xml:space="preserve">
+    <value>[CURA] AutoEat sincronizado.</value>
+  </data>
+  <data name="Form1LogHealDisabled" xml:space="preserve">
+    <value>[CURA] DESATIVADO.</value>
+  </data>
+  <data name="Form1LogHealEnabled" xml:space="preserve">
+    <value>[CURA] ATIVADO.</value>
+  </data>
+  <data name="Form1LogHunterStatusFormat" xml:space="preserve">
+    <value>Caçador: {0}</value>
+  </data>
+  <data name="Form1LogMissingToolFormat" xml:space="preserve">
+    <value>[ALERTA] Falta ferramenta para {0}.</value>
+  </data>
+  <data name="Form1LogNavigationMovingAway" xml:space="preserve">
+    <value>[NAVEGAÇÃO] Afastando-se...</value>
+  </data>
+  <data name="Form1LogReachedCabinStartingDeposit" xml:space="preserve">
+    <value>[SISTEMA] Cheguei na Cabana. Iniciando depósito...</value>
+  </data>
+  <data name="Form1LogRequirementMetFormat" xml:space="preserve">
+    <value>[SISTEMA] Requisito atendido: {0}</value>
+  </data>
+  <data name="Form1LogReturningHomeFormat" xml:space="preserve">
+    <value>[TESTE] Voltando para Casa ({0}, {1})...</value>
+  </data>
+  <data name="Form1LogUdpStartedFormat" xml:space="preserve">
+    <value>UDP Iniciado. Escutando {0} -&gt; Bot {1}</value>
+  </data>
 </root>
