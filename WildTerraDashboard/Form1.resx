@@ -1249,7 +1249,7 @@
     <value>37</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
-    <value>Comidas com Status</value>
+    <value>Status Foods</value>
   </data>
   <data name="&gt;&gt;label19.Name" xml:space="preserve">
     <value>label19</value>
@@ -1330,7 +1330,7 @@
     <value>1</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
-    <value>Auto Eat (Lista)</value>
+    <value>Auto Eat (List)</value>
   </data>
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
@@ -1633,7 +1633,7 @@
     <value>13</value>
   </data>
   <data name="chkHealFollowTopTarget.Text" xml:space="preserve">
-    <value>Ativar Follow Heal (topo da lista)</value>
+    <value>Enable Follow Heal (top of list)</value>
   </data>
   <data name="&gt;&gt;chkHealFollowTopTarget.Name" xml:space="preserve">
     <value>chkHealFollowTopTarget</value>
@@ -1705,7 +1705,7 @@
     <value>24</value>
   </data>
   <data name="lblHealSelfRecoveryResumeHpPct.Text" xml:space="preserve">
-    <value>Retomar cura acima de (%)</value>
+    <value>Resume healing above (%)</value>
   </data>
   <data name="&gt;&gt;lblHealSelfRecoveryResumeHpPct.Name" xml:space="preserve">
     <value>lblHealSelfRecoveryResumeHpPct</value>
@@ -1735,7 +1735,7 @@
     <value>22</value>
   </data>
   <data name="lblHealSelfRecoveryHpPct.Text" xml:space="preserve">
-    <value>Usar autocura abaixo de (%)</value>
+    <value>Use self-heal below (%)</value>
   </data>
   <data name="&gt;&gt;lblHealSelfRecoveryHpPct.Name" xml:space="preserve">
     <value>lblHealSelfRecoveryHpPct</value>
@@ -1795,7 +1795,7 @@
     <value>20</value>
   </data>
   <data name="lblHealSelfRecoveryItems.Text" xml:space="preserve">
-    <value>Itens de autocura</value>
+    <value>Self-heal items</value>
   </data>
   <data name="&gt;&gt;lblHealSelfRecoveryItems.Name" xml:space="preserve">
     <value>lblHealSelfRecoveryItems</value>
@@ -1846,7 +1846,7 @@
     <value>18</value>
   </data>
   <data name="lblHealFollowDistance.Text" xml:space="preserve">
-    <value>Distância do alvo</value>
+    <value>Target distance</value>
   </data>
   <data name="&gt;&gt;lblHealFollowDistance.Name" xml:space="preserve">
     <value>lblHealFollowDistance</value>
@@ -1897,7 +1897,7 @@
     <value>16</value>
   </data>
   <data name="lblHealFollowTargetHpPct.Text" xml:space="preserve">
-    <value>Curar alvo abaixo de (%)</value>
+    <value>Heal target below (%)</value>
   </data>
   <data name="&gt;&gt;lblHealFollowTargetHpPct.Name" xml:space="preserve">
     <value>lblHealFollowTargetHpPct</value>
@@ -1951,7 +1951,7 @@
     <value>14</value>
   </data>
   <data name="lblHealFollowSkill.Text" xml:space="preserve">
-    <value>Skill de cura</value>
+    <value>Heal skill</value>
   </data>
   <data name="&gt;&gt;lblHealFollowSkill.Name" xml:space="preserve">
     <value>lblHealFollowSkill</value>
@@ -2005,7 +2005,7 @@
     <value>11</value>
   </data>
   <data name="lblHealStatus.Text" xml:space="preserve">
-    <value>CURA: OFF</value>
+    <value>HEAL: OFF</value>
   </data>
   <data name="&gt;&gt;lblHealStatus.Name" xml:space="preserve">
     <value>lblHealStatus</value>
@@ -2032,7 +2032,7 @@
     <value>10</value>
   </data>
   <data name="btnHealTrain.Text" xml:space="preserve">
-    <value>Iniciar Cura</value>
+    <value>Start Heal</value>
   </data>
   <data name="&gt;&gt;btnHealTrain.Name" xml:space="preserve">
     <value>btnHealTrain</value>
@@ -2089,7 +2089,7 @@
     <value>8</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
-    <value>Alvos (PLAYER_BY_NAME)</value>
+    <value>Targets (PLAYER_BY_NAME)</value>
   </data>
   <data name="&gt;&gt;label18.Name" xml:space="preserve">
     <value>label18</value>
@@ -2197,7 +2197,7 @@
     <value>4</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Raio (m)</value>
+    <value>Radius (m)</value>
   </data>
   <data name="&gt;&gt;label16.Name" xml:space="preserve">
     <value>label16</value>
@@ -2257,7 +2257,7 @@
     <value>2</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>Modo alvo:</value>
+    <value>Target mode:</value>
   </data>
   <data name="&gt;&gt;label15.Name" xml:space="preserve">
     <value>label15</value>
@@ -2308,7 +2308,7 @@
     <value>0</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Arma de cura:</value>
+    <value>Heal weapon:</value>
   </data>
   <data name="&gt;&gt;label14.Name" xml:space="preserve">
     <value>label14</value>
@@ -2362,7 +2362,7 @@
     <value>37</value>
   </data>
   <data name="lblTamingMode.Text" xml:space="preserve">
-    <value>Tipo de doma</value>
+    <value>Taming type</value>
   </data>
   <data name="&gt;&gt;lblTamingMode.Name" xml:space="preserve">
     <value>lblTamingMode</value>
@@ -2392,7 +2392,7 @@
     <value>36</value>
   </data>
   <data name="lblTamingTrapName.Text" xml:space="preserve">
-    <value>Nome da armadilha</value>
+    <value>Trap name</value>
   </data>
   <data name="&gt;&gt;lblTamingTrapName.Name" xml:space="preserve">
     <value>lblTamingTrapName</value>
@@ -2422,7 +2422,7 @@
     <value>4</value>
   </data>
   <data name="lblTamingTargets.Text" xml:space="preserve">
-    <value>Nomes dos alvos</value>
+    <value>Target names</value>
   </data>
   <data name="&gt;&gt;lblTamingTargets.Name" xml:space="preserve">
     <value>lblTamingTargets</value>
@@ -2524,7 +2524,7 @@
     <value>0</value>
   </data>
   <data name="btnStartTaming.Text" xml:space="preserve">
-    <value>INICIAR DOMA</value>
+    <value>START TAMING</value>
   </data>
   <data name="&gt;&gt;btnStartTaming.Name" xml:space="preserve">
     <value>btnStartTaming</value>
@@ -2605,7 +2605,7 @@
     <value>5</value>
   </data>
   <data name="lblTrainingAutoAttackTarget.Text" xml:space="preserve">
-    <value>Nome do alvo:</value>
+    <value>Target name:</value>
   </data>
   <data name="&gt;&gt;lblTrainingAutoAttackTarget.Name" xml:space="preserve">
     <value>lblTrainingAutoAttackTarget</value>
@@ -2635,7 +2635,7 @@
     <value>4</value>
   </data>
   <data name="chkTrainingAutoAttack.Text" xml:space="preserve">
-    <value>Atacar sem parar no alvo configurado</value>
+    <value>Continuously attack configured target</value>
   </data>
   <data name="&gt;&gt;chkTrainingAutoAttack.Name" xml:space="preserve">
     <value>chkTrainingAutoAttack</value>
@@ -2659,7 +2659,7 @@
     <value>6</value>
   </data>
   <data name="grpTrainingAutoAttack.Text" xml:space="preserve">
-    <value>Auto Ataque (somente desmontado)</value>
+    <value>Auto Attack (dismounted only)</value>
   </data>
   <data name="&gt;&gt;grpTrainingAutoAttack.Name" xml:space="preserve">
     <value>grpTrainingAutoAttack</value>
@@ -2689,7 +2689,7 @@
     <value>41</value>
   </data>
   <data name="lblTrainingSpThreshold.Text" xml:space="preserve">
-    <value>Usar item de SP abaixo de (%):</value>
+    <value>Use SP item below (%):</value>
   </data>
   <data name="&gt;&gt;lblTrainingSpThreshold.Name" xml:space="preserve">
     <value>lblTrainingSpThreshold</value>
@@ -2740,7 +2740,7 @@
     <value>39</value>
   </data>
   <data name="lblTrainingHpThreshold.Text" xml:space="preserve">
-    <value>Usar item de HP abaixo de (%):</value>
+    <value>Use HP item below (%):</value>
   </data>
   <data name="&gt;&gt;lblTrainingHpThreshold.Name" xml:space="preserve">
     <value>lblTrainingHpThreshold</value>
@@ -2791,7 +2791,7 @@
     <value>4</value>
   </data>
   <data name="lblTrainingRecoveryHint.Text" xml:space="preserve">
-    <value>Use uma linha por item no formato HP:NomeDoItem ou SP:NomeDoItem.</value>
+    <value>Use one line per item in HP:ItemName or SP:ItemName format.</value>
   </data>
   <data name="&gt;&gt;lblTrainingRecoveryHint.Name" xml:space="preserve">
     <value>lblTrainingRecoveryHint</value>
@@ -2848,7 +2848,7 @@
     <value>36</value>
   </data>
   <data name="chkTrainingRecovery.Text" xml:space="preserve">
-    <value>Ativar recuperação automática</value>
+    <value>Enable automatic recovery</value>
   </data>
   <data name="&gt;&gt;chkTrainingRecovery.Name" xml:space="preserve">
     <value>chkTrainingRecovery</value>
@@ -2872,7 +2872,7 @@
     <value>5</value>
   </data>
   <data name="grpTrainingRecovery.Text" xml:space="preserve">
-    <value>Recuperação HP / SP (somente desmontado)</value>
+    <value>HP / SP Recovery (dismounted only)</value>
   </data>
   <data name="&gt;&gt;grpTrainingRecovery.Name" xml:space="preserve">
     <value>grpTrainingRecovery</value>
@@ -2902,7 +2902,7 @@
     <value>4</value>
   </data>
   <data name="lblTrainingBuffRefreshSeconds.Text" xml:space="preserve">
-    <value>Reaplicar quando faltar (seg):</value>
+    <value>Reapply when remaining is (sec):</value>
   </data>
   <data name="&gt;&gt;lblTrainingBuffRefreshSeconds.Name" xml:space="preserve">
     <value>lblTrainingBuffRefreshSeconds</value>
@@ -2953,7 +2953,7 @@
     <value>2</value>
   </data>
   <data name="lblTrainingBuffItemsHint.Text" xml:space="preserve">
-    <value>Um item por linha. O bot tenta reutilizar quando o buff do item expirar.</value>
+    <value>One item per line. The bot tries to reuse it when the item buff expires.</value>
   </data>
   <data name="&gt;&gt;lblTrainingBuffItemsHint.Name" xml:space="preserve">
     <value>lblTrainingBuffItemsHint</value>
@@ -3010,7 +3010,7 @@
     <value>0</value>
   </data>
   <data name="chkTrainingBuffItems.Text" xml:space="preserve">
-    <value>Ativar uso automático de consumíveis com buff</value>
+    <value>Enable automatic buff consumable usage</value>
   </data>
   <data name="&gt;&gt;chkTrainingBuffItems.Name" xml:space="preserve">
     <value>chkTrainingBuffItems</value>
@@ -3034,7 +3034,7 @@
     <value>4</value>
   </data>
   <data name="grpTrainingBuffItems.Text" xml:space="preserve">
-    <value>Consumíveis com Buff (somente desmontado)</value>
+    <value>Buff Consumables (dismounted only)</value>
   </data>
   <data name="&gt;&gt;grpTrainingBuffItems.Name" xml:space="preserve">
     <value>grpTrainingBuffItems</value>
@@ -3091,7 +3091,7 @@
     <value>2</value>
   </data>
   <data name="lblTrainingSkillsHint.Text" xml:space="preserve">
-    <value>Uma skill por linha. Use o nome interno da skill.</value>
+    <value>One skill per line. Use the internal skill name.</value>
   </data>
   <data name="&gt;&gt;lblTrainingSkillsHint.Name" xml:space="preserve">
     <value>lblTrainingSkillsHint</value>
@@ -3121,7 +3121,7 @@
     <value>0</value>
   </data>
   <data name="chkTrainingSkills.Text" xml:space="preserve">
-    <value>Ativar uso automático de skills</value>
+    <value>Enable automatic skill usage</value>
   </data>
   <data name="&gt;&gt;chkTrainingSkills.Name" xml:space="preserve">
     <value>chkTrainingSkills</value>
@@ -3175,7 +3175,7 @@
     <value>2</value>
   </data>
   <data name="lblTrainingInfo.Text" xml:space="preserve">
-    <value>Modo exclusivo. Skills, consumíveis com buff e recuperação só funcionam desmontado.</value>
+    <value>Exclusive mode. Skills, buff consumables, recovery, and auto attack only work while dismounted.</value>
   </data>
   <data name="&gt;&gt;lblTrainingInfo.Name" xml:space="preserve">
     <value>lblTrainingInfo</value>
@@ -3232,7 +3232,7 @@
     <value>0</value>
   </data>
   <data name="btnTrainingToggle.Text" xml:space="preserve">
-    <value>Start Treinamento</value>
+    <value>Start Training</value>
   </data>
   <data name="&gt;&gt;btnTrainingToggle.Name" xml:space="preserve">
     <value>btnTrainingToggle</value>
@@ -3259,7 +3259,7 @@
     <value>6</value>
   </data>
   <data name="tabTraining.Text" xml:space="preserve">
-    <value>Treinamento</value>
+    <value>Training</value>
   </data>
   <data name="&gt;&gt;tabTraining.Name" xml:space="preserve">
     <value>tabTraining</value>
@@ -3412,7 +3412,7 @@
     <value>37</value>
   </data>
   <data name="btnInspectPlayer.Text" xml:space="preserve">
-    <value>Extrair Inspect</value>
+    <value>Extract Inspect</value>
   </data>
   <data name="&gt;&gt;btnInspectPlayer.Name" xml:space="preserve">
     <value>btnInspectPlayer</value>

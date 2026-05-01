@@ -390,7 +390,7 @@
     <value>Skills (somente desmontado)</value>
   </data>
   <data name="lblTrainingInfo.Text" xml:space="preserve">
-    <value>Modo exclusivo. Skills, consumíveis com buff e recuperação só funcionam desmontado.</value>
+    <value>Modo exclusivo. Skills, consumíveis com buff, recuperação e auto ataque só funcionam desmontado.</value>
   </data>
   <data name="lblTrainingStatus.Text" xml:space="preserve">
     <value>Status: OFF</value>
