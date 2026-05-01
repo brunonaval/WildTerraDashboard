@@ -229,4 +229,34 @@
   <data name="Form1LogHealWeaponNameRequired" xml:space="preserve">
     <value>[CURA] Informe o nome da arma de cura.</value>
   </data>
+  <data name="Form1TrainingInfoExclusiveMode" xml:space="preserve">
+    <value>Modo exclusivo. Skills, consumíveis com buff, recuperação e auto ataque só funcionam desmontado.</value>
+  </data>
+  <data name="Form1TrainingMessageStopRouteRecordingBeforeTraining" xml:space="preserve">
+    <value>Pare a gravação da rota antes de iniciar o modo Treinamento.</value>
+  </data>
+  <data name="Form1TrainingLogActivatedPrefix" xml:space="preserve">
+    <value>[TRAINING] Modo Treinamento ativado. </value>
+  </data>
+  <data name="Form1TrainingLogDeactivated" xml:space="preserve">
+    <value>[TRAINING] Modo Treinamento desativado.</value>
+  </data>
+  <data name="Form1TrainingButtonStop" xml:space="preserve">
+    <value>Parar Treinamento</value>
+  </data>
+  <data name="Form1TrainingButtonStart" xml:space="preserve">
+    <value>Iniciar Treinamento</value>
+  </data>
+  <data name="Form1TrainingLogAutoEatSynced" xml:space="preserve">
+    <value>[TRAINING] AutoEat sincronizado.</value>
+  </data>
+  <data name="Form1TrainingLogFishingDisabledForTraining" xml:space="preserve">
+    <value>[TRAINING] Pesca desativada para ativar o modo Treinamento.</value>
+  </data>
+  <data name="Form1TrainingLogHealDisabledForTraining" xml:space="preserve">
+    <value>[TRAINING] Cura desativada para ativar o modo Treinamento.</value>
+  </data>
+  <data name="Form1TrainingLogTamingDisabledForTraining" xml:space="preserve">
+    <value>[TRAINING] Doma desativada para ativar o modo Treinamento.</value>
+  </data>
 </root>

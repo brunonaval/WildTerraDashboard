@@ -399,6 +399,66 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1TrainingInfoExclusiveMode {
+            get {
+                return ResourceManager.GetString("Form1TrainingInfoExclusiveMode", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingMessageStopRouteRecordingBeforeTraining {
+            get {
+                return ResourceManager.GetString("Form1TrainingMessageStopRouteRecordingBeforeTraining", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingLogActivatedPrefix {
+            get {
+                return ResourceManager.GetString("Form1TrainingLogActivatedPrefix", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingLogDeactivated {
+            get {
+                return ResourceManager.GetString("Form1TrainingLogDeactivated", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingButtonStop {
+            get {
+                return ResourceManager.GetString("Form1TrainingButtonStop", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingButtonStart {
+            get {
+                return ResourceManager.GetString("Form1TrainingButtonStart", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingLogAutoEatSynced {
+            get {
+                return ResourceManager.GetString("Form1TrainingLogAutoEatSynced", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingLogFishingDisabledForTraining {
+            get {
+                return ResourceManager.GetString("Form1TrainingLogFishingDisabledForTraining", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingLogHealDisabledForTraining {
+            get {
+                return ResourceManager.GetString("Form1TrainingLogHealDisabledForTraining", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingLogTamingDisabledForTraining {
+            get {
+                return ResourceManager.GetString("Form1TrainingLogTamingDisabledForTraining", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

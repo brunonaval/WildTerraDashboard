@@ -432,4 +432,34 @@
   <data name="Form1LogHealWeaponNameRequired" xml:space="preserve">
     <value>[HEAL] Enter the heal weapon name.</value>
   </data>
+  <data name="Form1TrainingInfoExclusiveMode" xml:space="preserve">
+    <value>Exclusive mode. Skills, buff consumables, recovery and auto attack only work while dismounted.</value>
+  </data>
+  <data name="Form1TrainingMessageStopRouteRecordingBeforeTraining" xml:space="preserve">
+    <value>Stop route recording before starting Training mode.</value>
+  </data>
+  <data name="Form1TrainingLogActivatedPrefix" xml:space="preserve">
+    <value>[TRAINING] Training mode enabled. </value>
+  </data>
+  <data name="Form1TrainingLogDeactivated" xml:space="preserve">
+    <value>[TRAINING] Training mode disabled.</value>
+  </data>
+  <data name="Form1TrainingButtonStop" xml:space="preserve">
+    <value>Stop Training</value>
+  </data>
+  <data name="Form1TrainingButtonStart" xml:space="preserve">
+    <value>Start Training</value>
+  </data>
+  <data name="Form1TrainingLogAutoEatSynced" xml:space="preserve">
+    <value>[TRAINING] AutoEat synced.</value>
+  </data>
+  <data name="Form1TrainingLogFishingDisabledForTraining" xml:space="preserve">
+    <value>[TRAINING] Fishing disabled to enable Training mode.</value>
+  </data>
+  <data name="Form1TrainingLogHealDisabledForTraining" xml:space="preserve">
+    <value>[TRAINING] Heal disabled to enable Training mode.</value>
+  </data>
+  <data name="Form1TrainingLogTamingDisabledForTraining" xml:space="preserve">
+    <value>[TRAINING] Taming disabled to enable Training mode.</value>
+  </data>
 </root>

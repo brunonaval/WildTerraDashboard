@@ -36,7 +36,7 @@ namespace WildTerraDashboard
             }
 
             if (lblTrainingInfoRef != null)
-                lblTrainingInfoRef.Text = "Modo exclusivo. Skills, consumíveis com buff, recuperação e auto ataque só funcionam desmontado.";
+                lblTrainingInfoRef.Text = Properties.Resources.Form1TrainingInfoExclusiveMode;
 
             LoadTrainingUi();
             AtualizarEstadoTreinamento(false);
@@ -57,7 +57,7 @@ namespace WildTerraDashboard
         {
             if (gravadorRota != null && gravadorRota.IsGravando)
             {
-                MessageBox.Show("Pare a gravação da rota antes de iniciar o modo Treinamento.");
+                MessageBox.Show(Properties.Resources.Form1TrainingMessageStopRouteRecordingBeforeTraining);
                 return;
             }
 
@@ -74,7 +74,7 @@ namespace WildTerraDashboard
             botTraining.Start(cfg);
             EnviarComandoJogo(botTraining.BuildOnCommand());
             AtualizarEstadoTreinamento(true);
-            LogarMensagem("[TRAINING] Modo Treinamento ativado. " + cfg.BuildSummary());
+            LogarMensagem(Properties.Resources.Form1TrainingLogActivatedPrefix + cfg.BuildSummary());
         }
 
         private void PararTreinamentoUI()
@@ -90,7 +90,7 @@ namespace WildTerraDashboard
 
 
             AtualizarEstadoTreinamento(false);
-            LogarMensagem("[TRAINING] Modo Treinamento desativado.");
+            LogarMensagem(Properties.Resources.Form1TrainingLogDeactivated);
         }
 
         private void TryStopTrainingForShutdown()
@@ -144,13 +144,17 @@ namespace WildTerraDashboard
 
             if (btnTrainingToggleRef != null)
             {
-                btnTrainingToggleRef.Text = ativo ? "Stop Treinamento" : "Start Treinamento";
+                btnTrainingToggleRef.Text = ativo
+                    ? Properties.Resources.Form1TrainingButtonStop
+                    : Properties.Resources.Form1TrainingButtonStart;
                 btnTrainingToggleRef.BackColor = ativo ? Color.Red : Color.Green;
                 btnTrainingToggleRef.ForeColor = Color.White;
             }
 
             if (lblTrainingStatusRef != null)
-                lblTrainingStatusRef.Text = ativo ? "Status: ON" : "Status: OFF";
+                lblTrainingStatusRef.Text = ativo
+                    ? Properties.Resources.Form1TrainingStatusOn
+                    : Properties.Resources.Form1TrainingStatusOff;
 
             ApplyTrainingExclusiveUiState(ativo);
         }
@@ -180,7 +184,7 @@ namespace WildTerraDashboard
                         EnviarComandoJogo("EAT_LIST;" + eatTxt.Replace("\r\n", "~").Replace("\n", "~"));
 
                         _ultimaListaComerEnviada = eatTxt;
-                        LogarMensagem("[TRAINING] AutoEat sincronizado.");
+                        LogarMensagem(Properties.Resources.Form1TrainingLogAutoEatSynced);
                     }
                 }
 
@@ -215,12 +219,12 @@ namespace WildTerraDashboard
                 var btnFishing = FindControl<Button>("btnStartFishing");
                 if (btnFishing != null)
                 {
-                    btnFishing.Text = "INICIAR PESCA";
+                    btnFishing.Text = Properties.Resources.Form1ButtonStartFishing;
                     btnFishing.BackColor = Color.Navy;
                     btnFishing.ForeColor = Color.White;
                 }
 
-                LogarMensagem("[TRAINING] Pesca desativada para ativar o modo Treinamento.");
+                LogarMensagem(Properties.Resources.Form1TrainingLogFishingDisabledForTraining);
             }
 
             if (botCura != null && botCura.IsAtivo)
@@ -230,19 +234,19 @@ namespace WildTerraDashboard
 
                 var btnHeal = FindControl<Button>("btnHealTrain");
                 if (btnHeal != null)
-                    btnHeal.Text = "Iniciar Cura";
+                    btnHeal.Text = Properties.Resources.Form1ButtonStartHeal;
 
                 var lblHeal = FindControl<Label>("lblHealStatus");
                 if (lblHeal != null)
-                    lblHeal.Text = "CURA: OFF";
+                    lblHeal.Text = Properties.Resources.Form1HealStatusOff;
 
-                LogarMensagem("[TRAINING] Cura desativada para ativar o modo Treinamento.");
+                LogarMensagem(Properties.Resources.Form1TrainingLogHealDisabledForTraining);
             }
 
             if (botTaming != null && botTaming.IsAtivo)
             {
                 PararTamingUI();
-                LogarMensagem("[TRAINING] Doma desativada para ativar o modo Treinamento.");
+                LogarMensagem(Properties.Resources.Form1TrainingLogTamingDisabledForTraining);
             }
         }
 
