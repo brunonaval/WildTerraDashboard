@@ -561,4 +561,19 @@
   <data name="BotTamingLogStopped" xml:space="preserve">
     <value>[TAMING] Stopped.</value>
   </data>
+  <data name="TrainingModeValidateEnableAtLeastOneBlock" xml:space="preserve">
+    <value>Enable at least one Training mode block.</value>
+  </data>
+  <data name="TrainingModeValidateSkillsBlockEmpty" xml:space="preserve">
+    <value>Skills block is enabled, but the skills list is empty.</value>
+  </data>
+  <data name="TrainingModeValidateBuffItemsBlockEmpty" xml:space="preserve">
+    <value>Buff consumables block is enabled, but the buff items list is empty.</value>
+  </data>
+  <data name="TrainingModeValidateRecoveryItemsInvalidFormat" xml:space="preserve">
+    <value>Recovery block is enabled, but it has no valid lines in HP:Item or SP:Item format.</value>
+  </data>
+  <data name="TrainingModeValidateAutoAttackTargetEmpty" xml:space="preserve">
+    <value>Auto Attack block is enabled, but the target name is empty.</value>
+  </data>
 </root>

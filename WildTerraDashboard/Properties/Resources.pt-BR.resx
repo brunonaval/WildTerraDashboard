@@ -358,4 +358,19 @@
   <data name="BotTamingLogStopped" xml:space="preserve">
     <value>[TAMING] Parado.</value>
   </data>
+  <data name="TrainingModeValidateEnableAtLeastOneBlock" xml:space="preserve">
+    <value>Ative ao menos um bloco do modo Treinamento.</value>
+  </data>
+  <data name="TrainingModeValidateSkillsBlockEmpty" xml:space="preserve">
+    <value>O bloco de Skills está ativo, mas a lista de skills está vazia.</value>
+  </data>
+  <data name="TrainingModeValidateBuffItemsBlockEmpty" xml:space="preserve">
+    <value>O bloco de Consumíveis com Buff está ativo, mas a lista de consumíveis está vazia.</value>
+  </data>
+  <data name="TrainingModeValidateRecoveryItemsInvalidFormat" xml:space="preserve">
+    <value>O bloco de Recuperação está ativo, mas não possui linhas válidas no formato HP:Item ou SP:Item.</value>
+  </data>
+  <data name="TrainingModeValidateAutoAttackTargetEmpty" xml:space="preserve">
+    <value>O bloco de Auto Ataque está ativo, mas o nome do alvo está vazio.</value>
+  </data>
 </root>

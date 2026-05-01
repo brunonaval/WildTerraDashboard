@@ -657,6 +657,36 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string TrainingModeValidateEnableAtLeastOneBlock {
+            get {
+                return ResourceManager.GetString("TrainingModeValidateEnableAtLeastOneBlock", resourceCulture);
+            }
+        }
+
+        internal static string TrainingModeValidateSkillsBlockEmpty {
+            get {
+                return ResourceManager.GetString("TrainingModeValidateSkillsBlockEmpty", resourceCulture);
+            }
+        }
+
+        internal static string TrainingModeValidateBuffItemsBlockEmpty {
+            get {
+                return ResourceManager.GetString("TrainingModeValidateBuffItemsBlockEmpty", resourceCulture);
+            }
+        }
+
+        internal static string TrainingModeValidateRecoveryItemsInvalidFormat {
+            get {
+                return ResourceManager.GetString("TrainingModeValidateRecoveryItemsInvalidFormat", resourceCulture);
+            }
+        }
+
+        internal static string TrainingModeValidateAutoAttackTargetEmpty {
+            get {
+                return ResourceManager.GetString("TrainingModeValidateAutoAttackTargetEmpty", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

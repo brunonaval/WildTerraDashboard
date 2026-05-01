@@ -136,31 +136,31 @@ namespace WildTerraDashboard
 
             if (!EnableSkills && !EnableBuffItems && !EnableRecovery && !EnableAutoAttack)
             {
-                error = "Ative ao menos um bloco do modo Treinamento.";
+                error = Properties.Resources.TrainingModeValidateEnableAtLeastOneBlock;
                 return false;
             }
 
             if (EnableSkills && GetSkillNames().Count == 0)
             {
-                error = "O bloco de Skills está ativo, mas txtTrainingSkills está vazio.";
+                error = Properties.Resources.TrainingModeValidateSkillsBlockEmpty;
                 return false;
             }
 
             if (EnableBuffItems && GetBuffItemNames().Count == 0)
             {
-                error = "O bloco de Consumíveis com Buff está ativo, mas txtTrainingBuffItems está vazio.";
+                error = Properties.Resources.TrainingModeValidateBuffItemsBlockEmpty;
                 return false;
             }
 
             if (EnableRecovery && GetRecoveryItems().Count == 0)
             {
-                error = "O bloco de Recuperação está ativo, mas txtTrainingRecoveryItems não possui linhas válidas no formato HP:Item ou SP:Item.";
+                error = Properties.Resources.TrainingModeValidateRecoveryItemsInvalidFormat;
                 return false;
             }
 
             if (EnableAutoAttack && string.IsNullOrWhiteSpace((AutoAttackTargetName ?? "").Trim()))
             {
-                error = "O bloco de Auto Ataque está ativo, mas txtTrainingAutoAttackTarget está vazio.";
+                error = Properties.Resources.TrainingModeValidateAutoAttackTargetEmpty;
                 return false;
             }
 
