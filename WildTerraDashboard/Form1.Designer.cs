@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnConnect = new System.Windows.Forms.Button();
             this.lblX = new System.Windows.Forms.Label();
             this.lblY = new System.Windows.Forms.Label();
@@ -75,6 +74,8 @@
             this.chkAtivarHunt = new System.Windows.Forms.CheckBox();
             this.txtListaMobs = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtAutoEatStatus = new System.Windows.Forms.TextBox();
             this.numEatThreshold = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.txtAutoEat = new System.Windows.Forms.TextBox();
@@ -161,8 +162,6 @@
             this.barSP = new WildTerraDashboard.ColoredProgressBar();
             this.barHP = new WildTerraDashboard.ColoredProgressBar();
             this.visualRadar1 = new WildTerraDashboard.VisualRadar();
-            this.txtAutoEatStatus = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -191,31 +190,54 @@
             // btnConnect
             // 
             this.btnConnect.BackColor = System.Drawing.Color.Fuchsia;
-            resources.ApplyResources(this.btnConnect, "btnConnect");
+            this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnConnect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnConnect.Location = new System.Drawing.Point(12, 86);
             this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(130, 23);
+            this.btnConnect.TabIndex = 2;
+            this.btnConnect.Text = "🔌 Connect";
             this.btnConnect.UseVisualStyleBackColor = false;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // lblX
             // 
-            resources.ApplyResources(this.lblX, "lblX");
+            this.lblX.AutoSize = true;
+            this.lblX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblX.Location = new System.Drawing.Point(792, 13);
             this.lblX.Name = "lblX";
+            this.lblX.Size = new System.Drawing.Size(14, 13);
+            this.lblX.TabIndex = 3;
+            this.lblX.Text = "X";
             // 
             // lblY
             // 
-            resources.ApplyResources(this.lblY, "lblY");
+            this.lblY.AutoSize = true;
+            this.lblY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblY.Location = new System.Drawing.Point(891, 13);
             this.lblY.Name = "lblY";
+            this.lblY.Size = new System.Drawing.Size(14, 13);
+            this.lblY.TabIndex = 4;
+            this.lblY.Text = "Y";
             // 
             // lblZ
             // 
-            resources.ApplyResources(this.lblZ, "lblZ");
+            this.lblZ.AutoSize = true;
+            this.lblZ.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblZ.Location = new System.Drawing.Point(1012, 13);
             this.lblZ.Name = "lblZ";
+            this.lblZ.Size = new System.Drawing.Size(14, 13);
+            this.lblZ.TabIndex = 5;
+            this.lblZ.Text = "Z";
             // 
             // lstLog
             // 
             this.lstLog.FormattingEnabled = true;
-            resources.ApplyResources(this.lstLog, "lstLog");
+            this.lstLog.Location = new System.Drawing.Point(12, 805);
             this.lstLog.Name = "lstLog";
+            this.lstLog.Size = new System.Drawing.Size(476, 160);
+            this.lstLog.TabIndex = 6;
             // 
             // listView1
             // 
@@ -224,42 +246,62 @@
             this.columnHeader6,
             this.columnHeader2,
             this.columnHeader3});
-            resources.ApplyResources(this.listView1, "listView1");
+            this.listView1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(12, 568);
             this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(476, 231);
+            this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            resources.ApplyResources(this.columnHeader1, "columnHeader1");
+            this.columnHeader1.Text = "Type";
+            this.columnHeader1.Width = 79;
             // 
             // columnHeader6
             // 
-            resources.ApplyResources(this.columnHeader6, "columnHeader6");
+            this.columnHeader6.Text = "Level";
+            this.columnHeader6.Width = 64;
             // 
             // columnHeader2
             // 
-            resources.ApplyResources(this.columnHeader2, "columnHeader2");
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 201;
             // 
             // columnHeader3
             // 
-            resources.ApplyResources(this.columnHeader3, "columnHeader3");
+            this.columnHeader3.Text = "Distance";
+            this.columnHeader3.Width = 82;
             // 
             // btnLoadRoute
             // 
             this.btnLoadRoute.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            resources.ApplyResources(this.btnLoadRoute, "btnLoadRoute");
+            this.btnLoadRoute.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnLoadRoute.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnLoadRoute.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLoadRoute.Location = new System.Drawing.Point(12, 144);
             this.btnLoadRoute.Name = "btnLoadRoute";
+            this.btnLoadRoute.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnLoadRoute.Size = new System.Drawing.Size(130, 23);
+            this.btnLoadRoute.TabIndex = 12;
+            this.btnLoadRoute.Text = "📂 Load Route";
             this.btnLoadRoute.UseVisualStyleBackColor = false;
             this.btnLoadRoute.Click += new System.EventHandler(this.btnLoadRoute_Click);
             // 
             // btnStartBot
             // 
             this.btnStartBot.BackColor = System.Drawing.SystemColors.ControlDark;
-            resources.ApplyResources(this.btnStartBot, "btnStartBot");
+            this.btnStartBot.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnStartBot.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnStartBot.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnStartBot.Location = new System.Drawing.Point(12, 57);
             this.btnStartBot.Name = "btnStartBot";
+            this.btnStartBot.Size = new System.Drawing.Size(130, 23);
+            this.btnStartBot.TabIndex = 13;
+            this.btnStartBot.Text = "▶ Start";
             this.btnStartBot.UseVisualStyleBackColor = false;
             this.btnStartBot.Click += new System.EventHandler(this.btnStartBot_Click);
             // 
@@ -270,8 +312,14 @@
             // btnRecordRoute
             // 
             this.btnRecordRoute.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            resources.ApplyResources(this.btnRecordRoute, "btnRecordRoute");
+            this.btnRecordRoute.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRecordRoute.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnRecordRoute.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRecordRoute.Location = new System.Drawing.Point(12, 115);
             this.btnRecordRoute.Name = "btnRecordRoute";
+            this.btnRecordRoute.Size = new System.Drawing.Size(130, 23);
+            this.btnRecordRoute.TabIndex = 14;
+            this.btnRecordRoute.Text = "⏺ Record Route";
             this.btnRecordRoute.UseVisualStyleBackColor = false;
             this.btnRecordRoute.Click += new System.EventHandler(this.btnRecordRoute_Click);
             // 
@@ -282,106 +330,200 @@
             // txtListaColeta
             // 
             this.txtListaColeta.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.txtListaColeta, "txtListaColeta");
+            this.txtListaColeta.Location = new System.Drawing.Point(439, 54);
+            this.txtListaColeta.Multiline = true;
             this.txtListaColeta.Name = "txtListaColeta";
+            this.txtListaColeta.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.txtListaColeta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtListaColeta.Size = new System.Drawing.Size(275, 305);
+            this.txtListaColeta.TabIndex = 15;
             // 
             // chkAtivarColeta
             // 
-            resources.ApplyResources(this.chkAtivarColeta, "chkAtivarColeta");
+            this.chkAtivarColeta.AutoSize = true;
+            this.chkAtivarColeta.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.chkAtivarColeta.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkAtivarColeta.Location = new System.Drawing.Point(621, 6);
             this.chkAtivarColeta.Name = "chkAtivarColeta";
+            this.chkAtivarColeta.Size = new System.Drawing.Size(103, 17);
+            this.chkAtivarColeta.TabIndex = 16;
+            this.chkAtivarColeta.Text = "Enable Harvest";
             this.chkAtivarColeta.UseVisualStyleBackColor = true;
             // 
             // btnSaveList
             // 
-            resources.ApplyResources(this.btnSaveList, "btnSaveList");
+            this.btnSaveList.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnSaveList.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnSaveList.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSaveList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSaveList.Location = new System.Drawing.Point(381, 80);
             this.btnSaveList.Name = "btnSaveList";
+            this.btnSaveList.Size = new System.Drawing.Size(52, 23);
+            this.btnSaveList.TabIndex = 17;
+            this.btnSaveList.Text = "SAVE";
             this.btnSaveList.UseVisualStyleBackColor = true;
             this.btnSaveList.Click += new System.EventHandler(this.btnSaveList_Click);
             // 
             // btnLoadList
             // 
-            resources.ApplyResources(this.btnLoadList, "btnLoadList");
+            this.btnLoadList.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnLoadList.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnLoadList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLoadList.Location = new System.Drawing.Point(381, 113);
             this.btnLoadList.Name = "btnLoadList";
+            this.btnLoadList.Size = new System.Drawing.Size(52, 23);
+            this.btnLoadList.TabIndex = 18;
+            this.btnLoadList.Text = "OPEN";
             this.btnLoadList.UseVisualStyleBackColor = true;
             this.btnLoadList.Click += new System.EventHandler(this.btnLoadList_Click);
             // 
             // txtSafeList
             // 
-            resources.ApplyResources(this.txtSafeList, "txtSafeList");
+            this.txtSafeList.Location = new System.Drawing.Point(146, 374);
+            this.txtSafeList.Multiline = true;
             this.txtSafeList.Name = "txtSafeList";
+            this.txtSafeList.Size = new System.Drawing.Size(275, 264);
+            this.txtSafeList.TabIndex = 19;
             // 
             // txtBankX
             // 
-            resources.ApplyResources(this.txtBankX, "txtBankX");
+            this.txtBankX.Location = new System.Drawing.Point(63, 26);
             this.txtBankX.Name = "txtBankX";
+            this.txtBankX.Size = new System.Drawing.Size(53, 22);
+            this.txtBankX.TabIndex = 20;
             // 
             // txtBankZ
             // 
-            resources.ApplyResources(this.txtBankZ, "txtBankZ");
+            this.txtBankZ.Location = new System.Drawing.Point(63, 51);
             this.txtBankZ.Name = "txtBankZ";
+            this.txtBankZ.Size = new System.Drawing.Size(53, 22);
+            this.txtBankZ.TabIndex = 21;
             // 
             // label1
             // 
-            resources.ApplyResources(this.label1, "label1");
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(6, 33);
             this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Coord X";
             // 
             // label2
             // 
-            resources.ApplyResources(this.label2, "label2");
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(6, 54);
             this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "Coord Z";
             // 
             // txtBankName
             // 
-            resources.ApplyResources(this.txtBankName, "txtBankName");
+            this.txtBankName.Location = new System.Drawing.Point(63, 81);
             this.txtBankName.Name = "txtBankName";
+            this.txtBankName.Size = new System.Drawing.Size(100, 22);
+            this.txtBankName.TabIndex = 24;
             // 
             // Estrutura
             // 
-            resources.ApplyResources(this.Estrutura, "Estrutura");
+            this.Estrutura.AutoSize = true;
+            this.Estrutura.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.Estrutura.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Estrutura.Location = new System.Drawing.Point(3, 86);
             this.Estrutura.Name = "Estrutura";
+            this.Estrutura.Size = new System.Drawing.Size(54, 13);
+            this.Estrutura.TabIndex = 25;
+            this.Estrutura.Text = "Structure";
             // 
             // btnSaveSafe
             // 
-            resources.ApplyResources(this.btnSaveSafe, "btnSaveSafe");
+            this.btnSaveSafe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnSaveSafe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSaveSafe.Location = new System.Drawing.Point(65, 389);
             this.btnSaveSafe.Name = "btnSaveSafe";
+            this.btnSaveSafe.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveSafe.TabIndex = 26;
+            this.btnSaveSafe.Text = "Save List";
             this.btnSaveSafe.UseVisualStyleBackColor = true;
             // 
             // btnLoadSafe
             // 
-            resources.ApplyResources(this.btnLoadSafe, "btnLoadSafe");
+            this.btnLoadSafe.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnLoadSafe.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLoadSafe.Location = new System.Drawing.Point(65, 418);
             this.btnLoadSafe.Name = "btnLoadSafe";
+            this.btnLoadSafe.Size = new System.Drawing.Size(75, 23);
+            this.btnLoadSafe.TabIndex = 27;
+            this.btnLoadSafe.Text = "Open List";
             this.btnLoadSafe.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
-            resources.ApplyResources(this.label3, "label3");
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(515, 33);
             this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "HARVEST LIST";
             // 
             // label4
             // 
-            resources.ApplyResources(this.label4, "label4");
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(1269, 26);
             this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "RADAR";
             // 
             // label5
             // 
-            resources.ApplyResources(this.label5, "label5");
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(701, 13);
             this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "Coordinates:";
             // 
             // label6
             // 
-            resources.ApplyResources(this.label6, "label6");
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label6.Location = new System.Drawing.Point(218, 346);
             this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 13);
+            this.label6.TabIndex = 31;
+            this.label6.Text = "DO NOT DEPOSIT";
             // 
             // txtDropList
             // 
-            resources.ApplyResources(this.txtDropList, "txtDropList");
+            this.txtDropList.Location = new System.Drawing.Point(444, 432);
+            this.txtDropList.Multiline = true;
             this.txtDropList.Name = "txtDropList";
+            this.txtDropList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDropList.Size = new System.Drawing.Size(270, 206);
+            this.txtDropList.TabIndex = 32;
             // 
             // label7
             // 
-            resources.ApplyResources(this.label7, "label7");
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label7.Location = new System.Drawing.Point(559, 416);
             this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 13);
+            this.label7.TabIndex = 33;
+            this.label7.Text = "DROP";
             // 
             // tabControl1
             // 
@@ -392,9 +534,12 @@
             this.tabControl1.Controls.Add(this.tabHeal);
             this.tabControl1.Controls.Add(this.tabTaming);
             this.tabControl1.Controls.Add(this.tabTraining);
-            resources.ApplyResources(this.tabControl1, "tabControl1");
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.tabControl1.Location = new System.Drawing.Point(700, 290);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(733, 675);
+            this.tabControl1.TabIndex = 34;
             // 
             // tabPage1
             // 
@@ -418,27 +563,45 @@
             this.tabPage1.Controls.Add(this.btnLoadList);
             this.tabPage1.Controls.Add(this.chkAtivarColeta);
             this.tabPage1.Controls.Add(this.txtSafeList);
-            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(725, 649);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Harvest";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnTestMount
             // 
-            resources.ApplyResources(this.btnTestMount, "btnTestMount");
+            this.btnTestMount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTestMount.Location = new System.Drawing.Point(190, 5);
             this.btnTestMount.Name = "btnTestMount";
+            this.btnTestMount.Size = new System.Drawing.Size(75, 23);
+            this.btnTestMount.TabIndex = 35;
+            this.btnTestMount.Text = "Mount";
             this.btnTestMount.UseVisualStyleBackColor = true;
             this.btnTestMount.Click += new System.EventHandler(this.btnTestMount_Click);
             // 
             // chkUseMount
             // 
-            resources.ApplyResources(this.chkUseMount, "chkUseMount");
+            this.chkUseMount.AutoSize = true;
+            this.chkUseMount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkUseMount.Location = new System.Drawing.Point(63, 164);
             this.chkUseMount.Name = "chkUseMount";
+            this.chkUseMount.Size = new System.Drawing.Size(125, 17);
+            this.chkUseMount.TabIndex = 35;
+            this.chkUseMount.Text = "Use Mount (>15m)";
             this.chkUseMount.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
-            resources.ApplyResources(this.label8, "label8");
+            this.label8.AutoSize = true;
+            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label8.Location = new System.Drawing.Point(26, 10);
             this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(113, 13);
+            this.label8.TabIndex = 34;
+            this.label8.Text = "Your Home Location";
             // 
             // tabPage2
             // 
@@ -446,31 +609,50 @@
             this.tabPage2.Controls.Add(this.txtWeaponName);
             this.tabPage2.Controls.Add(this.chkAtivarHunt);
             this.tabPage2.Controls.Add(this.txtListaMobs);
-            resources.ApplyResources(this.tabPage2, "tabPage2");
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(725, 649);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Combat";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
-            resources.ApplyResources(this.label10, "label10");
+            this.label10.AutoSize = true;
+            this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label10.Location = new System.Drawing.Point(18, 50);
             this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Equip weapon:";
             // 
             // txtWeaponName
             // 
-            resources.ApplyResources(this.txtWeaponName, "txtWeaponName");
+            this.txtWeaponName.Location = new System.Drawing.Point(112, 41);
             this.txtWeaponName.Name = "txtWeaponName";
+            this.txtWeaponName.Size = new System.Drawing.Size(100, 22);
+            this.txtWeaponName.TabIndex = 2;
             this.txtWeaponName.TextChanged += new System.EventHandler(this.txtWeaponName_TextChanged);
             // 
             // chkAtivarHunt
             // 
-            resources.ApplyResources(this.chkAtivarHunt, "chkAtivarHunt");
+            this.chkAtivarHunt.AutoSize = true;
+            this.chkAtivarHunt.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkAtivarHunt.Location = new System.Drawing.Point(555, 55);
             this.chkAtivarHunt.Name = "chkAtivarHunt";
+            this.chkAtivarHunt.Size = new System.Drawing.Size(90, 17);
+            this.chkAtivarHunt.TabIndex = 1;
+            this.chkAtivarHunt.Text = "Enable Hunt";
             this.chkAtivarHunt.UseVisualStyleBackColor = true;
             // 
             // txtListaMobs
             // 
-            resources.ApplyResources(this.txtListaMobs, "txtListaMobs");
+            this.txtListaMobs.Location = new System.Drawing.Point(215, 91);
+            this.txtListaMobs.Multiline = true;
             this.txtListaMobs.Name = "txtListaMobs";
+            this.txtListaMobs.Size = new System.Drawing.Size(317, 396);
+            this.txtListaMobs.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -479,14 +661,41 @@
             this.tabPage3.Controls.Add(this.numEatThreshold);
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Controls.Add(this.txtAutoEat);
-            resources.ApplyResources(this.tabPage3, "tabPage3");
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(725, 649);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Food";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label19.Location = new System.Drawing.Point(488, 241);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(112, 13);
+            this.label19.TabIndex = 37;
+            this.label19.Text = "Comidas com Status";
+            // 
+            // txtAutoEatStatus
+            // 
+            this.txtAutoEatStatus.AcceptsReturn = true;
+            this.txtAutoEatStatus.Location = new System.Drawing.Point(421, 273);
+            this.txtAutoEatStatus.Multiline = true;
+            this.txtAutoEatStatus.Name = "txtAutoEatStatus";
+            this.txtAutoEatStatus.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtAutoEatStatus.Size = new System.Drawing.Size(253, 187);
+            this.txtAutoEatStatus.TabIndex = 36;
+            this.txtAutoEatStatus.WordWrap = false;
             // 
             // numEatThreshold
             // 
-            resources.ApplyResources(this.numEatThreshold, "numEatThreshold");
+            this.numEatThreshold.Location = new System.Drawing.Point(554, 20);
             this.numEatThreshold.Name = "numEatThreshold";
+            this.numEatThreshold.Size = new System.Drawing.Size(120, 22);
+            this.numEatThreshold.TabIndex = 35;
             this.numEatThreshold.Value = new decimal(new int[] {
             12,
             0,
@@ -495,13 +704,21 @@
             // 
             // label9
             // 
-            resources.ApplyResources(this.label9, "label9");
+            this.label9.AutoSize = true;
+            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label9.Location = new System.Drawing.Point(147, 49);
             this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(87, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Auto Eat (Lista)";
             // 
             // txtAutoEat
             // 
-            resources.ApplyResources(this.txtAutoEat, "txtAutoEat");
+            this.txtAutoEat.Location = new System.Drawing.Point(30, 80);
+            this.txtAutoEat.Multiline = true;
             this.txtAutoEat.Name = "txtAutoEat";
+            this.txtAutoEat.Size = new System.Drawing.Size(341, 380);
+            this.txtAutoEat.TabIndex = 0;
             // 
             // tabPage4
             // 
@@ -512,54 +729,83 @@
             this.tabPage4.Controls.Add(this.txtBaitName);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.txtRodName);
-            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(725, 649);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Fishing";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
-            resources.ApplyResources(this.label13, "label13");
+            this.label13.AutoSize = true;
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(6, 91);
             this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(74, 13);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Fishing spot:";
             // 
             // cmbFishingSpot
             // 
             this.cmbFishingSpot.FormattingEnabled = true;
             this.cmbFishingSpot.Items.AddRange(new object[] {
-            resources.GetString("cmbFishingSpot.Items"),
-            resources.GetString("cmbFishingSpot.Items1"),
-            resources.GetString("cmbFishingSpot.Items2"),
-            resources.GetString("cmbFishingSpot.Items3"),
-            resources.GetString("cmbFishingSpot.Items4")});
-            resources.ApplyResources(this.cmbFishingSpot, "cmbFishingSpot");
+            "River",
+            "Ocean",
+            "Desert",
+            "Withered Canyon",
+            "Battle Field Island"});
+            this.cmbFishingSpot.Location = new System.Drawing.Point(95, 88);
             this.cmbFishingSpot.Name = "cmbFishingSpot";
+            this.cmbFishingSpot.Size = new System.Drawing.Size(248, 21);
+            this.cmbFishingSpot.TabIndex = 5;
             // 
             // btnStartFishing
             // 
-            resources.ApplyResources(this.btnStartFishing, "btnStartFishing");
+            this.btnStartFishing.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnStartFishing.Location = new System.Drawing.Point(452, 20);
             this.btnStartFishing.Name = "btnStartFishing";
+            this.btnStartFishing.Size = new System.Drawing.Size(107, 23);
+            this.btnStartFishing.TabIndex = 4;
+            this.btnStartFishing.Text = "START FISHING";
             this.btnStartFishing.UseVisualStyleBackColor = true;
             this.btnStartFishing.Click += new System.EventHandler(this.btnStartFishing_Click);
             // 
             // label12
             // 
-            resources.ApplyResources(this.label12, "label12");
+            this.label12.AutoSize = true;
+            this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label12.Location = new System.Drawing.Point(6, 58);
             this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Bait name:";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // txtBaitName
             // 
-            resources.ApplyResources(this.txtBaitName, "txtBaitName");
+            this.txtBaitName.Location = new System.Drawing.Point(95, 49);
             this.txtBaitName.Name = "txtBaitName";
+            this.txtBaitName.Size = new System.Drawing.Size(248, 22);
+            this.txtBaitName.TabIndex = 2;
             // 
             // label11
             // 
-            resources.ApplyResources(this.label11, "label11");
+            this.label11.AutoSize = true;
+            this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label11.Location = new System.Drawing.Point(6, 20);
             this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(63, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Rod name:";
             // 
             // txtRodName
             // 
-            resources.ApplyResources(this.txtRodName, "txtRodName");
+            this.txtRodName.Location = new System.Drawing.Point(95, 11);
             this.txtRodName.Name = "txtRodName";
+            this.txtRodName.Size = new System.Drawing.Size(248, 22);
+            this.txtRodName.TabIndex = 0;
             // 
             // tabHeal
             // 
@@ -577,14 +823,22 @@
             this.tabHeal.Controls.Add(this.label15);
             this.tabHeal.Controls.Add(this.txtHealWeaponName);
             this.tabHeal.Controls.Add(this.label14);
-            resources.ApplyResources(this.tabHeal, "tabHeal");
+            this.tabHeal.Location = new System.Drawing.Point(4, 22);
             this.tabHeal.Name = "tabHeal";
+            this.tabHeal.Size = new System.Drawing.Size(725, 649);
+            this.tabHeal.TabIndex = 4;
+            this.tabHeal.Text = "Heal";
             this.tabHeal.UseVisualStyleBackColor = true;
             // 
             // chkHealFollowTopTarget
             // 
-            resources.ApplyResources(this.chkHealFollowTopTarget, "chkHealFollowTopTarget");
+            this.chkHealFollowTopTarget.AutoSize = true;
+            this.chkHealFollowTopTarget.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkHealFollowTopTarget.Location = new System.Drawing.Point(34, 190);
             this.chkHealFollowTopTarget.Name = "chkHealFollowTopTarget";
+            this.chkHealFollowTopTarget.Size = new System.Drawing.Size(197, 17);
+            this.chkHealFollowTopTarget.TabIndex = 13;
+            this.chkHealFollowTopTarget.Text = "Ativar Follow Heal (topo da lista)";
             this.chkHealFollowTopTarget.UseVisualStyleBackColor = true;
             // 
             // grpHealFollowMode
@@ -601,19 +855,24 @@
             this.grpHealFollowMode.Controls.Add(this.lblHealFollowTargetHpPct);
             this.grpHealFollowMode.Controls.Add(this.txtHealFollowSkill);
             this.grpHealFollowMode.Controls.Add(this.lblHealFollowSkill);
-            resources.ApplyResources(this.grpHealFollowMode, "grpHealFollowMode");
+            this.grpHealFollowMode.Location = new System.Drawing.Point(25, 213);
             this.grpHealFollowMode.Name = "grpHealFollowMode";
+            this.grpHealFollowMode.Size = new System.Drawing.Size(678, 409);
+            this.grpHealFollowMode.TabIndex = 12;
             this.grpHealFollowMode.TabStop = false;
+            this.grpHealFollowMode.Text = "Follow Heal";
             // 
             // numHealSelfRecoveryResumeHpPct
             // 
-            resources.ApplyResources(this.numHealSelfRecoveryResumeHpPct, "numHealSelfRecoveryResumeHpPct");
+            this.numHealSelfRecoveryResumeHpPct.Location = new System.Drawing.Point(331, 150);
             this.numHealSelfRecoveryResumeHpPct.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numHealSelfRecoveryResumeHpPct.Name = "numHealSelfRecoveryResumeHpPct";
+            this.numHealSelfRecoveryResumeHpPct.Size = new System.Drawing.Size(50, 22);
+            this.numHealSelfRecoveryResumeHpPct.TabIndex = 26;
             this.numHealSelfRecoveryResumeHpPct.Value = new decimal(new int[] {
             55,
             0,
@@ -622,13 +881,15 @@
             // 
             // numHealSelfRecoveryHpPct
             // 
-            resources.ApplyResources(this.numHealSelfRecoveryHpPct, "numHealSelfRecoveryHpPct");
+            this.numHealSelfRecoveryHpPct.Location = new System.Drawing.Point(331, 87);
             this.numHealSelfRecoveryHpPct.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numHealSelfRecoveryHpPct.Name = "numHealSelfRecoveryHpPct";
+            this.numHealSelfRecoveryHpPct.Size = new System.Drawing.Size(50, 22);
+            this.numHealSelfRecoveryHpPct.TabIndex = 25;
             this.numHealSelfRecoveryHpPct.Value = new decimal(new int[] {
             40,
             0,
@@ -637,23 +898,43 @@
             // 
             // lblHealSelfRecoveryResumeHpPct
             // 
-            resources.ApplyResources(this.lblHealSelfRecoveryResumeHpPct, "lblHealSelfRecoveryResumeHpPct");
+            this.lblHealSelfRecoveryResumeHpPct.AutoSize = true;
+            this.lblHealSelfRecoveryResumeHpPct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealSelfRecoveryResumeHpPct.Location = new System.Drawing.Point(328, 122);
             this.lblHealSelfRecoveryResumeHpPct.Name = "lblHealSelfRecoveryResumeHpPct";
+            this.lblHealSelfRecoveryResumeHpPct.Size = new System.Drawing.Size(146, 13);
+            this.lblHealSelfRecoveryResumeHpPct.TabIndex = 24;
+            this.lblHealSelfRecoveryResumeHpPct.Text = "Retomar cura acima de (%)";
             // 
             // lblHealSelfRecoveryHpPct
             // 
-            resources.ApplyResources(this.lblHealSelfRecoveryHpPct, "lblHealSelfRecoveryHpPct");
+            this.lblHealSelfRecoveryHpPct.AutoSize = true;
+            this.lblHealSelfRecoveryHpPct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealSelfRecoveryHpPct.Location = new System.Drawing.Point(325, 60);
             this.lblHealSelfRecoveryHpPct.Name = "lblHealSelfRecoveryHpPct";
+            this.lblHealSelfRecoveryHpPct.Size = new System.Drawing.Size(154, 13);
+            this.lblHealSelfRecoveryHpPct.TabIndex = 22;
+            this.lblHealSelfRecoveryHpPct.Text = "Usar autocura abaixo de (%)";
             // 
             // txtHealSelfRecoveryItems
             // 
-            resources.ApplyResources(this.txtHealSelfRecoveryItems, "txtHealSelfRecoveryItems");
+            this.txtHealSelfRecoveryItems.Location = new System.Drawing.Point(109, 51);
+            this.txtHealSelfRecoveryItems.Multiline = true;
             this.txtHealSelfRecoveryItems.Name = "txtHealSelfRecoveryItems";
+            this.txtHealSelfRecoveryItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtHealSelfRecoveryItems.Size = new System.Drawing.Size(213, 154);
+            this.txtHealSelfRecoveryItems.TabIndex = 21;
+            this.txtHealSelfRecoveryItems.WordWrap = false;
             // 
             // lblHealSelfRecoveryItems
             // 
-            resources.ApplyResources(this.lblHealSelfRecoveryItems, "lblHealSelfRecoveryItems");
+            this.lblHealSelfRecoveryItems.AutoSize = true;
+            this.lblHealSelfRecoveryItems.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealSelfRecoveryItems.Location = new System.Drawing.Point(6, 60);
             this.lblHealSelfRecoveryItems.Name = "lblHealSelfRecoveryItems";
+            this.lblHealSelfRecoveryItems.Size = new System.Drawing.Size(97, 13);
+            this.lblHealSelfRecoveryItems.TabIndex = 20;
+            this.lblHealSelfRecoveryItems.Text = "Itens de autocura";
             // 
             // numHealFollowDistance
             // 
@@ -663,7 +944,7 @@
             0,
             0,
             65536});
-            resources.ApplyResources(this.numHealFollowDistance, "numHealFollowDistance");
+            this.numHealFollowDistance.Location = new System.Drawing.Point(482, 21);
             this.numHealFollowDistance.Maximum = new decimal(new int[] {
             15,
             0,
@@ -675,6 +956,8 @@
             0,
             0});
             this.numHealFollowDistance.Name = "numHealFollowDistance";
+            this.numHealFollowDistance.Size = new System.Drawing.Size(50, 22);
+            this.numHealFollowDistance.TabIndex = 19;
             this.numHealFollowDistance.Value = new decimal(new int[] {
             45,
             0,
@@ -683,18 +966,25 @@
             // 
             // lblHealFollowDistance
             // 
-            resources.ApplyResources(this.lblHealFollowDistance, "lblHealFollowDistance");
+            this.lblHealFollowDistance.AutoSize = true;
+            this.lblHealFollowDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealFollowDistance.Location = new System.Drawing.Point(384, 30);
             this.lblHealFollowDistance.Name = "lblHealFollowDistance";
+            this.lblHealFollowDistance.Size = new System.Drawing.Size(96, 13);
+            this.lblHealFollowDistance.TabIndex = 18;
+            this.lblHealFollowDistance.Text = "Distância do alvo";
             // 
             // numHealFollowTargetHpPct
             // 
-            resources.ApplyResources(this.numHealFollowTargetHpPct, "numHealFollowTargetHpPct");
+            this.numHealFollowTargetHpPct.Location = new System.Drawing.Point(328, 21);
             this.numHealFollowTargetHpPct.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numHealFollowTargetHpPct.Name = "numHealFollowTargetHpPct";
+            this.numHealFollowTargetHpPct.Size = new System.Drawing.Size(50, 22);
+            this.numHealFollowTargetHpPct.TabIndex = 17;
             this.numHealFollowTargetHpPct.Value = new decimal(new int[] {
             75,
             0,
@@ -703,54 +993,94 @@
             // 
             // lblHealFollowTargetHpPct
             // 
-            resources.ApplyResources(this.lblHealFollowTargetHpPct, "lblHealFollowTargetHpPct");
+            this.lblHealFollowTargetHpPct.AutoSize = true;
+            this.lblHealFollowTargetHpPct.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealFollowTargetHpPct.Location = new System.Drawing.Point(187, 30);
             this.lblHealFollowTargetHpPct.Name = "lblHealFollowTargetHpPct";
+            this.lblHealFollowTargetHpPct.Size = new System.Drawing.Size(135, 13);
+            this.lblHealFollowTargetHpPct.TabIndex = 16;
+            this.lblHealFollowTargetHpPct.Text = "Curar alvo abaixo de (%)";
             // 
             // txtHealFollowSkill
             // 
-            resources.ApplyResources(this.txtHealFollowSkill, "txtHealFollowSkill");
+            this.txtHealFollowSkill.Location = new System.Drawing.Point(81, 21);
             this.txtHealFollowSkill.Name = "txtHealFollowSkill";
+            this.txtHealFollowSkill.Size = new System.Drawing.Size(100, 22);
+            this.txtHealFollowSkill.TabIndex = 15;
+            this.txtHealFollowSkill.Text = "SacrificeHealth";
             // 
             // lblHealFollowSkill
             // 
-            resources.ApplyResources(this.lblHealFollowSkill, "lblHealFollowSkill");
+            this.lblHealFollowSkill.AutoSize = true;
+            this.lblHealFollowSkill.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealFollowSkill.Location = new System.Drawing.Point(4, 30);
             this.lblHealFollowSkill.Name = "lblHealFollowSkill";
+            this.lblHealFollowSkill.Size = new System.Drawing.Size(69, 13);
+            this.lblHealFollowSkill.TabIndex = 14;
+            this.lblHealFollowSkill.Text = "Skill de cura";
             // 
             // lblHealStatus
             // 
-            resources.ApplyResources(this.lblHealStatus, "lblHealStatus");
+            this.lblHealStatus.AutoSize = true;
+            this.lblHealStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHealStatus.Location = new System.Drawing.Point(640, 10);
             this.lblHealStatus.Name = "lblHealStatus";
+            this.lblHealStatus.Size = new System.Drawing.Size(63, 13);
+            this.lblHealStatus.TabIndex = 11;
+            this.lblHealStatus.Text = "CURA: OFF";
             // 
             // btnHealTrain
             // 
-            resources.ApplyResources(this.btnHealTrain, "btnHealTrain");
+            this.btnHealTrain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnHealTrain.Location = new System.Drawing.Point(517, 10);
             this.btnHealTrain.Name = "btnHealTrain";
+            this.btnHealTrain.Size = new System.Drawing.Size(75, 23);
+            this.btnHealTrain.TabIndex = 10;
+            this.btnHealTrain.Text = "Iniciar Cura";
             this.btnHealTrain.UseVisualStyleBackColor = true;
             this.btnHealTrain.Click += new System.EventHandler(this.btnHealTrain_Click);
             // 
             // txtHealTargetNames
             // 
-            resources.ApplyResources(this.txtHealTargetNames, "txtHealTargetNames");
+            this.txtHealTargetNames.Location = new System.Drawing.Point(308, 68);
+            this.txtHealTargetNames.Multiline = true;
             this.txtHealTargetNames.Name = "txtHealTargetNames";
+            this.txtHealTargetNames.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtHealTargetNames.Size = new System.Drawing.Size(249, 120);
+            this.txtHealTargetNames.TabIndex = 9;
             // 
             // label18
             // 
-            resources.ApplyResources(this.label18, "label18");
+            this.label18.AutoSize = true;
+            this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label18.Location = new System.Drawing.Point(305, 52);
             this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(145, 13);
+            this.label18.TabIndex = 8;
+            this.label18.Text = "Alvos (PLAYER_BY_NAME)";
             // 
             // txtHealSkills
             // 
-            resources.ApplyResources(this.txtHealSkills, "txtHealSkills");
+            this.txtHealSkills.Location = new System.Drawing.Point(25, 67);
+            this.txtHealSkills.Multiline = true;
             this.txtHealSkills.Name = "txtHealSkills";
+            this.txtHealSkills.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtHealSkills.Size = new System.Drawing.Size(249, 120);
+            this.txtHealSkills.TabIndex = 7;
             // 
             // label17
             // 
-            resources.ApplyResources(this.label17, "label17");
+            this.label17.AutoSize = true;
+            this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label17.Location = new System.Drawing.Point(22, 51);
             this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(252, 13);
+            this.label17.TabIndex = 6;
+            this.label17.Text = "1 skill por linha (prioridade de cima para baixo)";
             // 
             // numHealRadius
             // 
-            resources.ApplyResources(this.numHealRadius, "numHealRadius");
+            this.numHealRadius.Location = new System.Drawing.Point(308, 27);
             this.numHealRadius.Maximum = new decimal(new int[] {
             60,
             0,
@@ -762,6 +1092,8 @@
             0,
             0});
             this.numHealRadius.Name = "numHealRadius";
+            this.numHealRadius.Size = new System.Drawing.Size(120, 22);
+            this.numHealRadius.TabIndex = 5;
             this.numHealRadius.Value = new decimal(new int[] {
             18,
             0,
@@ -770,34 +1102,53 @@
             // 
             // label16
             // 
-            resources.ApplyResources(this.label16, "label16");
+            this.label16.AutoSize = true;
+            this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label16.Location = new System.Drawing.Point(251, 30);
             this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 13);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Raio (m)";
             // 
             // cmbHealTargetMode
             // 
             this.cmbHealTargetMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHealTargetMode.FormattingEnabled = true;
             this.cmbHealTargetMode.Items.AddRange(new object[] {
-            resources.GetString("cmbHealTargetMode.Items"),
-            resources.GetString("cmbHealTargetMode.Items1"),
-            resources.GetString("cmbHealTargetMode.Items2")});
-            resources.ApplyResources(this.cmbHealTargetMode, "cmbHealTargetMode");
+            "PET",
+            "SELF",
+            "PLAYER_BY_NAME"});
+            this.cmbHealTargetMode.Location = new System.Drawing.Point(124, 27);
             this.cmbHealTargetMode.Name = "cmbHealTargetMode";
+            this.cmbHealTargetMode.Size = new System.Drawing.Size(121, 21);
+            this.cmbHealTargetMode.TabIndex = 3;
             // 
             // label15
             // 
-            resources.ApplyResources(this.label15, "label15");
+            this.label15.AutoSize = true;
+            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label15.Location = new System.Drawing.Point(22, 35);
             this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(67, 13);
+            this.label15.TabIndex = 2;
+            this.label15.Text = "Modo alvo:";
             // 
             // txtHealWeaponName
             // 
-            resources.ApplyResources(this.txtHealWeaponName, "txtHealWeaponName");
+            this.txtHealWeaponName.Location = new System.Drawing.Point(125, 3);
             this.txtHealWeaponName.Name = "txtHealWeaponName";
+            this.txtHealWeaponName.Size = new System.Drawing.Size(250, 22);
+            this.txtHealWeaponName.TabIndex = 1;
             // 
             // label14
             // 
-            resources.ApplyResources(this.label14, "label14");
+            this.label14.AutoSize = true;
+            this.label14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label14.Location = new System.Drawing.Point(19, 10);
             this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(79, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Arma de cura:";
             // 
             // tabTaming
             // 
@@ -808,49 +1159,80 @@
             this.tabTaming.Controls.Add(this.txtTamingTrapName);
             this.tabTaming.Controls.Add(this.txtTamingTargets);
             this.tabTaming.Controls.Add(this.btnStartTaming);
-            resources.ApplyResources(this.tabTaming, "tabTaming");
+            this.tabTaming.Location = new System.Drawing.Point(4, 22);
             this.tabTaming.Name = "tabTaming";
+            this.tabTaming.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTaming.Size = new System.Drawing.Size(725, 649);
+            this.tabTaming.TabIndex = 5;
+            this.tabTaming.Text = "Taming";
             this.tabTaming.UseVisualStyleBackColor = true;
             // 
             // lblTamingMode
             // 
-            resources.ApplyResources(this.lblTamingMode, "lblTamingMode");
+            this.lblTamingMode.AutoSize = true;
+            this.lblTamingMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTamingMode.Location = new System.Drawing.Point(97, 38);
             this.lblTamingMode.Name = "lblTamingMode";
+            this.lblTamingMode.Size = new System.Drawing.Size(79, 13);
+            this.lblTamingMode.TabIndex = 37;
+            this.lblTamingMode.Text = "Tipo de doma";
             // 
             // lblTamingTrapName
             // 
-            resources.ApplyResources(this.lblTamingTrapName, "lblTamingTrapName");
+            this.lblTamingTrapName.AutoSize = true;
+            this.lblTamingTrapName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTamingTrapName.Location = new System.Drawing.Point(271, 126);
             this.lblTamingTrapName.Name = "lblTamingTrapName";
+            this.lblTamingTrapName.Size = new System.Drawing.Size(110, 13);
+            this.lblTamingTrapName.TabIndex = 36;
+            this.lblTamingTrapName.Text = "Nome da armadilha";
             // 
             // lblTamingTargets
             // 
-            resources.ApplyResources(this.lblTamingTargets, "lblTamingTargets");
+            this.lblTamingTargets.AutoSize = true;
+            this.lblTamingTargets.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTamingTargets.Location = new System.Drawing.Point(80, 126);
             this.lblTamingTargets.Name = "lblTamingTargets";
+            this.lblTamingTargets.Size = new System.Drawing.Size(96, 13);
+            this.lblTamingTargets.TabIndex = 4;
+            this.lblTamingTargets.Text = "Nomes dos alvos";
             // 
             // cmbTamingMode
             // 
             this.cmbTamingMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTamingMode.FormattingEnabled = true;
             this.cmbTamingMode.Items.AddRange(new object[] {
-            resources.GetString("cmbTamingMode.Items"),
-            resources.GetString("cmbTamingMode.Items1")});
-            resources.ApplyResources(this.cmbTamingMode, "cmbTamingMode");
+            "Pacifico",
+            "Agressivo"});
+            this.cmbTamingMode.Location = new System.Drawing.Point(80, 54);
             this.cmbTamingMode.Name = "cmbTamingMode";
+            this.cmbTamingMode.Size = new System.Drawing.Size(121, 21);
+            this.cmbTamingMode.TabIndex = 3;
             // 
             // txtTamingTrapName
             // 
-            resources.ApplyResources(this.txtTamingTrapName, "txtTamingTrapName");
+            this.txtTamingTrapName.Location = new System.Drawing.Point(274, 155);
             this.txtTamingTrapName.Name = "txtTamingTrapName";
+            this.txtTamingTrapName.Size = new System.Drawing.Size(123, 22);
+            this.txtTamingTrapName.TabIndex = 2;
             // 
             // txtTamingTargets
             // 
-            resources.ApplyResources(this.txtTamingTargets, "txtTamingTargets");
+            this.txtTamingTargets.Location = new System.Drawing.Point(16, 145);
+            this.txtTamingTargets.Multiline = true;
             this.txtTamingTargets.Name = "txtTamingTargets";
+            this.txtTamingTargets.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTamingTargets.Size = new System.Drawing.Size(224, 244);
+            this.txtTamingTargets.TabIndex = 1;
             // 
             // btnStartTaming
             // 
-            resources.ApplyResources(this.btnStartTaming, "btnStartTaming");
+            this.btnStartTaming.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnStartTaming.Location = new System.Drawing.Point(535, 101);
             this.btnStartTaming.Name = "btnStartTaming";
+            this.btnStartTaming.Size = new System.Drawing.Size(95, 23);
+            this.btnStartTaming.TabIndex = 0;
+            this.btnStartTaming.Text = "INICIAR DOMA";
             this.btnStartTaming.UseVisualStyleBackColor = true;
             // 
             // tabTraining
@@ -862,8 +1244,12 @@
             this.tabTraining.Controls.Add(this.lblTrainingInfo);
             this.tabTraining.Controls.Add(this.lblTrainingStatus);
             this.tabTraining.Controls.Add(this.btnTrainingToggle);
-            resources.ApplyResources(this.tabTraining, "tabTraining");
+            this.tabTraining.Location = new System.Drawing.Point(4, 22);
             this.tabTraining.Name = "tabTraining";
+            this.tabTraining.Padding = new System.Windows.Forms.Padding(3);
+            this.tabTraining.Size = new System.Drawing.Size(725, 649);
+            this.tabTraining.TabIndex = 6;
+            this.tabTraining.Text = "Treinamento";
             this.tabTraining.UseVisualStyleBackColor = true;
             // 
             // grpTrainingAutoAttack
@@ -871,24 +1257,40 @@
             this.grpTrainingAutoAttack.Controls.Add(this.txtTrainingAutoAttackTarget);
             this.grpTrainingAutoAttack.Controls.Add(this.lblTrainingAutoAttackTarget);
             this.grpTrainingAutoAttack.Controls.Add(this.chkTrainingAutoAttack);
-            resources.ApplyResources(this.grpTrainingAutoAttack, "grpTrainingAutoAttack");
+            this.grpTrainingAutoAttack.Location = new System.Drawing.Point(475, 427);
             this.grpTrainingAutoAttack.Name = "grpTrainingAutoAttack";
+            this.grpTrainingAutoAttack.Size = new System.Drawing.Size(229, 215);
+            this.grpTrainingAutoAttack.TabIndex = 6;
             this.grpTrainingAutoAttack.TabStop = false;
+            this.grpTrainingAutoAttack.Text = "Auto Ataque (somente desmontado)";
             // 
             // txtTrainingAutoAttackTarget
             // 
-            resources.ApplyResources(this.txtTrainingAutoAttackTarget, "txtTrainingAutoAttackTarget");
+            this.txtTrainingAutoAttackTarget.Location = new System.Drawing.Point(93, 63);
             this.txtTrainingAutoAttackTarget.Name = "txtTrainingAutoAttackTarget";
+            this.txtTrainingAutoAttackTarget.Size = new System.Drawing.Size(130, 22);
+            this.txtTrainingAutoAttackTarget.TabIndex = 6;
+            this.txtTrainingAutoAttackTarget.Text = "Cavecrawler";
             // 
             // lblTrainingAutoAttackTarget
             // 
-            resources.ApplyResources(this.lblTrainingAutoAttackTarget, "lblTrainingAutoAttackTarget");
+            this.lblTrainingAutoAttackTarget.AutoSize = true;
+            this.lblTrainingAutoAttackTarget.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingAutoAttackTarget.Location = new System.Drawing.Point(3, 72);
             this.lblTrainingAutoAttackTarget.Name = "lblTrainingAutoAttackTarget";
+            this.lblTrainingAutoAttackTarget.Size = new System.Drawing.Size(84, 13);
+            this.lblTrainingAutoAttackTarget.TabIndex = 5;
+            this.lblTrainingAutoAttackTarget.Text = "Nome do alvo:";
             // 
             // chkTrainingAutoAttack
             // 
-            resources.ApplyResources(this.chkTrainingAutoAttack, "chkTrainingAutoAttack");
+            this.chkTrainingAutoAttack.AutoSize = true;
+            this.chkTrainingAutoAttack.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkTrainingAutoAttack.Location = new System.Drawing.Point(6, 43);
             this.chkTrainingAutoAttack.Name = "chkTrainingAutoAttack";
+            this.chkTrainingAutoAttack.Size = new System.Drawing.Size(222, 17);
+            this.chkTrainingAutoAttack.TabIndex = 4;
+            this.chkTrainingAutoAttack.Text = "Atacar sem parar no alvo configurado";
             this.chkTrainingAutoAttack.UseVisualStyleBackColor = true;
             // 
             // grpTrainingRecovery
@@ -900,24 +1302,34 @@
             this.grpTrainingRecovery.Controls.Add(this.lblTrainingRecoveryHint);
             this.grpTrainingRecovery.Controls.Add(this.txtTrainingRecoveryItems);
             this.grpTrainingRecovery.Controls.Add(this.chkTrainingRecovery);
-            resources.ApplyResources(this.grpTrainingRecovery, "grpTrainingRecovery");
+            this.grpTrainingRecovery.Location = new System.Drawing.Point(9, 415);
             this.grpTrainingRecovery.Name = "grpTrainingRecovery";
+            this.grpTrainingRecovery.Size = new System.Drawing.Size(460, 227);
+            this.grpTrainingRecovery.TabIndex = 5;
             this.grpTrainingRecovery.TabStop = false;
+            this.grpTrainingRecovery.Text = "Recuperação HP / SP (somente desmontado)";
             // 
             // lblTrainingSpThreshold
             // 
-            resources.ApplyResources(this.lblTrainingSpThreshold, "lblTrainingSpThreshold");
+            this.lblTrainingSpThreshold.AutoSize = true;
+            this.lblTrainingSpThreshold.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingSpThreshold.Location = new System.Drawing.Point(260, 119);
             this.lblTrainingSpThreshold.Name = "lblTrainingSpThreshold";
+            this.lblTrainingSpThreshold.Size = new System.Drawing.Size(166, 13);
+            this.lblTrainingSpThreshold.TabIndex = 41;
+            this.lblTrainingSpThreshold.Text = "Usar item de SP abaixo de (%):";
             // 
             // numTrainingSpThreshold
             // 
-            resources.ApplyResources(this.numTrainingSpThreshold, "numTrainingSpThreshold");
+            this.numTrainingSpThreshold.Location = new System.Drawing.Point(261, 138);
             this.numTrainingSpThreshold.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numTrainingSpThreshold.Name = "numTrainingSpThreshold";
+            this.numTrainingSpThreshold.Size = new System.Drawing.Size(120, 22);
+            this.numTrainingSpThreshold.TabIndex = 40;
             this.numTrainingSpThreshold.Value = new decimal(new int[] {
             50,
             0,
@@ -926,18 +1338,25 @@
             // 
             // lblTrainingHpThreshold
             // 
-            resources.ApplyResources(this.lblTrainingHpThreshold, "lblTrainingHpThreshold");
+            this.lblTrainingHpThreshold.AutoSize = true;
+            this.lblTrainingHpThreshold.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingHpThreshold.Location = new System.Drawing.Point(260, 59);
             this.lblTrainingHpThreshold.Name = "lblTrainingHpThreshold";
+            this.lblTrainingHpThreshold.Size = new System.Drawing.Size(168, 13);
+            this.lblTrainingHpThreshold.TabIndex = 39;
+            this.lblTrainingHpThreshold.Text = "Usar item de HP abaixo de (%):";
             // 
             // numTrainingHpThreshold
             // 
-            resources.ApplyResources(this.numTrainingHpThreshold, "numTrainingHpThreshold");
+            this.numTrainingHpThreshold.Location = new System.Drawing.Point(260, 78);
             this.numTrainingHpThreshold.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numTrainingHpThreshold.Name = "numTrainingHpThreshold";
+            this.numTrainingHpThreshold.Size = new System.Drawing.Size(120, 22);
+            this.numTrainingHpThreshold.TabIndex = 38;
             this.numTrainingHpThreshold.Value = new decimal(new int[] {
             50,
             0,
@@ -946,19 +1365,33 @@
             // 
             // lblTrainingRecoveryHint
             // 
-            resources.ApplyResources(this.lblTrainingRecoveryHint, "lblTrainingRecoveryHint");
+            this.lblTrainingRecoveryHint.AutoSize = true;
+            this.lblTrainingRecoveryHint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingRecoveryHint.Location = new System.Drawing.Point(7, 32);
             this.lblTrainingRecoveryHint.Name = "lblTrainingRecoveryHint";
+            this.lblTrainingRecoveryHint.Size = new System.Drawing.Size(390, 13);
+            this.lblTrainingRecoveryHint.TabIndex = 4;
+            this.lblTrainingRecoveryHint.Text = "Use uma linha por item no formato HP:NomeDoItem ou SP:NomeDoItem.";
             // 
             // txtTrainingRecoveryItems
             // 
             this.txtTrainingRecoveryItems.AcceptsReturn = true;
-            resources.ApplyResources(this.txtTrainingRecoveryItems, "txtTrainingRecoveryItems");
+            this.txtTrainingRecoveryItems.Location = new System.Drawing.Point(10, 65);
+            this.txtTrainingRecoveryItems.Multiline = true;
             this.txtTrainingRecoveryItems.Name = "txtTrainingRecoveryItems";
+            this.txtTrainingRecoveryItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTrainingRecoveryItems.Size = new System.Drawing.Size(244, 143);
+            this.txtTrainingRecoveryItems.TabIndex = 37;
             // 
             // chkTrainingRecovery
             // 
-            resources.ApplyResources(this.chkTrainingRecovery, "chkTrainingRecovery");
+            this.chkTrainingRecovery.AutoSize = true;
+            this.chkTrainingRecovery.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkTrainingRecovery.Location = new System.Drawing.Point(263, 12);
             this.chkTrainingRecovery.Name = "chkTrainingRecovery";
+            this.chkTrainingRecovery.Size = new System.Drawing.Size(184, 17);
+            this.chkTrainingRecovery.TabIndex = 36;
+            this.chkTrainingRecovery.Text = "Ativar recuperação automática";
             this.chkTrainingRecovery.UseVisualStyleBackColor = true;
             // 
             // grpTrainingBuffItems
@@ -968,24 +1401,34 @@
             this.grpTrainingBuffItems.Controls.Add(this.lblTrainingBuffItemsHint);
             this.grpTrainingBuffItems.Controls.Add(this.txtTrainingBuffItems);
             this.grpTrainingBuffItems.Controls.Add(this.chkTrainingBuffItems);
-            resources.ApplyResources(this.grpTrainingBuffItems, "grpTrainingBuffItems");
+            this.grpTrainingBuffItems.Location = new System.Drawing.Point(288, 51);
             this.grpTrainingBuffItems.Name = "grpTrainingBuffItems";
+            this.grpTrainingBuffItems.Size = new System.Drawing.Size(416, 358);
+            this.grpTrainingBuffItems.TabIndex = 4;
             this.grpTrainingBuffItems.TabStop = false;
+            this.grpTrainingBuffItems.Text = "Consumíveis com Buff (somente desmontado)";
             // 
             // lblTrainingBuffRefreshSeconds
             // 
-            resources.ApplyResources(this.lblTrainingBuffRefreshSeconds, "lblTrainingBuffRefreshSeconds");
+            this.lblTrainingBuffRefreshSeconds.AutoSize = true;
+            this.lblTrainingBuffRefreshSeconds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingBuffRefreshSeconds.Location = new System.Drawing.Point(237, 63);
             this.lblTrainingBuffRefreshSeconds.Name = "lblTrainingBuffRefreshSeconds";
+            this.lblTrainingBuffRefreshSeconds.Size = new System.Drawing.Size(160, 13);
+            this.lblTrainingBuffRefreshSeconds.TabIndex = 4;
+            this.lblTrainingBuffRefreshSeconds.Text = "Reaplicar quando faltar (seg):";
             // 
             // numTrainingBuffRefreshSeconds
             // 
-            resources.ApplyResources(this.numTrainingBuffRefreshSeconds, "numTrainingBuffRefreshSeconds");
+            this.numTrainingBuffRefreshSeconds.Location = new System.Drawing.Point(290, 83);
             this.numTrainingBuffRefreshSeconds.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
             this.numTrainingBuffRefreshSeconds.Name = "numTrainingBuffRefreshSeconds";
+            this.numTrainingBuffRefreshSeconds.Size = new System.Drawing.Size(120, 22);
+            this.numTrainingBuffRefreshSeconds.TabIndex = 3;
             this.numTrainingBuffRefreshSeconds.Value = new decimal(new int[] {
             1,
             0,
@@ -995,19 +1438,33 @@
             // 
             // lblTrainingBuffItemsHint
             // 
-            resources.ApplyResources(this.lblTrainingBuffItemsHint, "lblTrainingBuffItemsHint");
+            this.lblTrainingBuffItemsHint.AutoSize = true;
+            this.lblTrainingBuffItemsHint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingBuffItemsHint.Location = new System.Drawing.Point(6, 42);
             this.lblTrainingBuffItemsHint.Name = "lblTrainingBuffItemsHint";
+            this.lblTrainingBuffItemsHint.Size = new System.Drawing.Size(377, 13);
+            this.lblTrainingBuffItemsHint.TabIndex = 2;
+            this.lblTrainingBuffItemsHint.Text = "Um item por linha. O bot tenta reutilizar quando o buff do item expirar.";
             // 
             // txtTrainingBuffItems
             // 
             this.txtTrainingBuffItems.AcceptsReturn = true;
-            resources.ApplyResources(this.txtTrainingBuffItems, "txtTrainingBuffItems");
+            this.txtTrainingBuffItems.Location = new System.Drawing.Point(7, 83);
+            this.txtTrainingBuffItems.Multiline = true;
             this.txtTrainingBuffItems.Name = "txtTrainingBuffItems";
+            this.txtTrainingBuffItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTrainingBuffItems.Size = new System.Drawing.Size(268, 269);
+            this.txtTrainingBuffItems.TabIndex = 1;
             // 
             // chkTrainingBuffItems
             // 
-            resources.ApplyResources(this.chkTrainingBuffItems, "chkTrainingBuffItems");
+            this.chkTrainingBuffItems.AutoSize = true;
+            this.chkTrainingBuffItems.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkTrainingBuffItems.Location = new System.Drawing.Point(7, 22);
             this.chkTrainingBuffItems.Name = "chkTrainingBuffItems";
+            this.chkTrainingBuffItems.Size = new System.Drawing.Size(274, 17);
+            this.chkTrainingBuffItems.TabIndex = 0;
+            this.chkTrainingBuffItems.Text = "Ativar uso automático de consumíveis com buff";
             this.chkTrainingBuffItems.UseVisualStyleBackColor = true;
             // 
             // grpTrainingSkills
@@ -1015,48 +1472,85 @@
             this.grpTrainingSkills.Controls.Add(this.txtTrainingSkills);
             this.grpTrainingSkills.Controls.Add(this.lblTrainingSkillsHint);
             this.grpTrainingSkills.Controls.Add(this.chkTrainingSkills);
-            resources.ApplyResources(this.grpTrainingSkills, "grpTrainingSkills");
+            this.grpTrainingSkills.Location = new System.Drawing.Point(9, 51);
             this.grpTrainingSkills.Name = "grpTrainingSkills";
+            this.grpTrainingSkills.Size = new System.Drawing.Size(260, 358);
+            this.grpTrainingSkills.TabIndex = 3;
             this.grpTrainingSkills.TabStop = false;
+            this.grpTrainingSkills.Text = "Skills (somente desmontado)";
             this.grpTrainingSkills.Enter += new System.EventHandler(this.grpTrainingSkills_Enter);
             // 
             // txtTrainingSkills
             // 
             this.txtTrainingSkills.AcceptsReturn = true;
-            resources.ApplyResources(this.txtTrainingSkills, "txtTrainingSkills");
+            this.txtTrainingSkills.Location = new System.Drawing.Point(10, 83);
+            this.txtTrainingSkills.Multiline = true;
             this.txtTrainingSkills.Name = "txtTrainingSkills";
+            this.txtTrainingSkills.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTrainingSkills.Size = new System.Drawing.Size(244, 269);
+            this.txtTrainingSkills.TabIndex = 3;
             // 
             // lblTrainingSkillsHint
             // 
-            resources.ApplyResources(this.lblTrainingSkillsHint, "lblTrainingSkillsHint");
+            this.lblTrainingSkillsHint.AutoSize = true;
+            this.lblTrainingSkillsHint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingSkillsHint.Location = new System.Drawing.Point(7, 50);
             this.lblTrainingSkillsHint.Name = "lblTrainingSkillsHint";
+            this.lblTrainingSkillsHint.Size = new System.Drawing.Size(255, 13);
+            this.lblTrainingSkillsHint.TabIndex = 2;
+            this.lblTrainingSkillsHint.Text = "Uma skill por linha. Use o nome interno da skill.";
             // 
             // chkTrainingSkills
             // 
-            resources.ApplyResources(this.chkTrainingSkills, "chkTrainingSkills");
+            this.chkTrainingSkills.AutoSize = true;
+            this.chkTrainingSkills.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.chkTrainingSkills.Location = new System.Drawing.Point(69, 21);
             this.chkTrainingSkills.Name = "chkTrainingSkills";
+            this.chkTrainingSkills.Size = new System.Drawing.Size(185, 17);
+            this.chkTrainingSkills.TabIndex = 0;
+            this.chkTrainingSkills.Text = "Ativar uso automático de skills";
             this.chkTrainingSkills.UseVisualStyleBackColor = true;
             // 
             // lblTrainingInfo
             // 
-            resources.ApplyResources(this.lblTrainingInfo, "lblTrainingInfo");
+            this.lblTrainingInfo.AutoSize = true;
+            this.lblTrainingInfo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingInfo.Location = new System.Drawing.Point(6, 10);
             this.lblTrainingInfo.Name = "lblTrainingInfo";
+            this.lblTrainingInfo.Size = new System.Drawing.Size(463, 13);
+            this.lblTrainingInfo.TabIndex = 2;
+            this.lblTrainingInfo.Text = "Modo exclusivo. Skills, consumíveis com buff e recuperação só funcionam desmontad" +
+    "o.";
             // 
             // lblTrainingStatus
             // 
-            resources.ApplyResources(this.lblTrainingStatus, "lblTrainingStatus");
+            this.lblTrainingStatus.AutoSize = true;
+            this.lblTrainingStatus.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTrainingStatus.Location = new System.Drawing.Point(639, 6);
             this.lblTrainingStatus.Name = "lblTrainingStatus";
+            this.lblTrainingStatus.Size = new System.Drawing.Size(65, 13);
+            this.lblTrainingStatus.TabIndex = 1;
+            this.lblTrainingStatus.Text = "Status: OFF";
             // 
             // btnTrainingToggle
             // 
-            resources.ApplyResources(this.btnTrainingToggle, "btnTrainingToggle");
+            this.btnTrainingToggle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTrainingToggle.Location = new System.Drawing.Point(598, 22);
             this.btnTrainingToggle.Name = "btnTrainingToggle";
+            this.btnTrainingToggle.Size = new System.Drawing.Size(121, 23);
+            this.btnTrainingToggle.TabIndex = 0;
+            this.btnTrainingToggle.Text = "Start Treinamento";
             this.btnTrainingToggle.UseVisualStyleBackColor = true;
             // 
             // btnTestHome
             // 
-            resources.ApplyResources(this.btnTestHome, "btnTestHome");
+            this.btnTestHome.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnTestHome.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTestHome.Location = new System.Drawing.Point(605, 322);
             this.btnTestHome.Name = "btnTestHome";
+            this.btnTestHome.Size = new System.Drawing.Size(75, 23);
+            this.btnTestHome.TabIndex = 35;
+            this.btnTestHome.Text = "HOME";
             this.btnTestHome.UseVisualStyleBackColor = true;
             this.btnTestHome.Click += new System.EventHandler(this.btnTestHome_Click);
             // 
@@ -1065,20 +1559,25 @@
             this.listViewBag.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4,
             this.columnHeader5});
-            resources.ApplyResources(this.listViewBag, "listViewBag");
+            this.listViewBag.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.listViewBag.GridLines = true;
             this.listViewBag.HideSelection = false;
+            this.listViewBag.Location = new System.Drawing.Point(494, 568);
             this.listViewBag.Name = "listViewBag";
+            this.listViewBag.Size = new System.Drawing.Size(204, 397);
+            this.listViewBag.TabIndex = 11;
             this.listViewBag.UseCompatibleStateImageBehavior = false;
             this.listViewBag.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader4
             // 
-            resources.ApplyResources(this.columnHeader4, "columnHeader4");
+            this.columnHeader4.Text = "Name:";
+            this.columnHeader4.Width = 150;
             // 
             // columnHeader5
             // 
-            resources.ApplyResources(this.columnHeader5, "columnHeader5");
+            this.columnHeader5.Text = "Qty:";
+            this.columnHeader5.Width = 50;
             // 
             // openFileDialog1
             // 
@@ -1086,13 +1585,19 @@
             // 
             // txtInspectPlayerName
             // 
-            resources.ApplyResources(this.txtInspectPlayerName, "txtInspectPlayerName");
+            this.txtInspectPlayerName.Location = new System.Drawing.Point(882, 117);
             this.txtInspectPlayerName.Name = "txtInspectPlayerName";
+            this.txtInspectPlayerName.Size = new System.Drawing.Size(118, 20);
+            this.txtInspectPlayerName.TabIndex = 36;
             // 
             // btnInspectPlayer
             // 
-            resources.ApplyResources(this.btnInspectPlayer, "btnInspectPlayer");
+            this.btnInspectPlayer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnInspectPlayer.Location = new System.Drawing.Point(755, 115);
             this.btnInspectPlayer.Name = "btnInspectPlayer";
+            this.btnInspectPlayer.Size = new System.Drawing.Size(112, 23);
+            this.btnInspectPlayer.TabIndex = 37;
+            this.btnInspectPlayer.Text = "Extrair Inspect";
             this.btnInspectPlayer.UseVisualStyleBackColor = true;
             this.btnInspectPlayer.Click += new System.EventHandler(this.btnInspectPlayer_Click);
             // 
@@ -1100,43 +1605,44 @@
             // 
             this.barSP.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.barSP.BarColor = System.Drawing.Color.Goldenrod;
-            resources.ApplyResources(this.barSP, "barSP");
+            this.barSP.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.barSP.Location = new System.Drawing.Point(356, 9);
             this.barSP.Maximum = 100;
             this.barSP.Name = "barSP";
+            this.barSP.Size = new System.Drawing.Size(338, 30);
+            this.barSP.TabIndex = 10;
+            this.barSP.Text = "coloredProgressBar1";
             this.barSP.Value = 100;
             // 
             // barHP
             // 
             this.barHP.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.barHP.BarColor = System.Drawing.Color.DarkRed;
-            resources.ApplyResources(this.barHP, "barHP");
+            this.barHP.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.barHP.Location = new System.Drawing.Point(12, 9);
             this.barHP.Maximum = 100;
             this.barHP.Name = "barHP";
+            this.barHP.Size = new System.Drawing.Size(338, 30);
+            this.barHP.TabIndex = 9;
+            this.barHP.Text = "coloredProgressBar1";
             this.barHP.Value = 100;
             // 
             // visualRadar1
             // 
             this.visualRadar1.BackColor = System.Drawing.SystemColors.WindowText;
-            resources.ApplyResources(this.visualRadar1, "visualRadar1");
+            this.visualRadar1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.visualRadar1.Location = new System.Drawing.Point(1156, 42);
             this.visualRadar1.Name = "visualRadar1";
+            this.visualRadar1.Size = new System.Drawing.Size(271, 259);
+            this.visualRadar1.TabIndex = 8;
             this.visualRadar1.TabStop = false;
-            // 
-            // txtAutoEatStatus
-            // 
-            this.txtAutoEatStatus.AcceptsReturn = true;
-            resources.ApplyResources(this.txtAutoEatStatus, "txtAutoEatStatus");
-            this.txtAutoEatStatus.Name = "txtAutoEatStatus";
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
             // 
             // Form1
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.ClientSize = new System.Drawing.Size(1439, 966);
             this.Controls.Add(this.btnInspectPlayer);
             this.Controls.Add(this.txtInspectPlayerName);
             this.Controls.Add(this.listViewBag);
@@ -1156,7 +1662,9 @@
             this.Controls.Add(this.lblY);
             this.Controls.Add(this.lblX);
             this.Controls.Add(this.btnConnect);
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "Form1";
+            this.Text = "Wild Terra Bot - M4rMil";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
