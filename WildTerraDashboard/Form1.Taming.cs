@@ -148,7 +148,11 @@ namespace WildTerraDashboard
                 tamingTimer.Start();
 
             AtualizarEstadoBotaoTaming(true);
-            LogarMensagem($"[TAMING] Modo independente ativo. Config enviada. mode={mode} trap='{trapName}' weapon='{combatWeaponName}'");
+            LogarMensagem(string.Format(
+                Properties.Resources.Form1TamingLogStandaloneModeConfigSentFormat,
+                mode,
+                trapName,
+                combatWeaponName));
         }
 
         private void PararTamingUI()

@@ -519,6 +519,12 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1TamingLogStandaloneModeConfigSentFormat {
+            get {
+                return ResourceManager.GetString("Form1TamingLogStandaloneModeConfigSentFormat", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

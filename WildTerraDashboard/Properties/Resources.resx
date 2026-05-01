@@ -492,4 +492,7 @@
   <data name="Form1TamingButtonStart" xml:space="preserve">
     <value>START TAMING</value>
   </data>
+  <data name="Form1TamingLogStandaloneModeConfigSentFormat" xml:space="preserve">
+    <value>[TAMING] Standalone mode active. Config sent. mode={0} trap='{1}' weapon='{2}'</value>
+  </data>
 </root>
