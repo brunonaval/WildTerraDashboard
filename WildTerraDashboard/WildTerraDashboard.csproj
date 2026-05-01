@@ -63,9 +63,15 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.Inspect.cs" />
-    <Compile Include="Form1.Taming.cs" />
-    <Compile Include="Form1.Training.cs" />
+    <Compile Include="Form1.Inspect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Taming.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Training.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NetworkService.cs" />
     <Compile Include="PlayerStats.cs" />
     <Compile Include="Program.cs" />
