@@ -765,6 +765,42 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string RadarTypeMonsterAggressive {
+            get {
+                return ResourceManager.GetString("RadarTypeMonsterAggressive", resourceCulture);
+            }
+        }
+
+        internal static string RadarTypeMonster {
+            get {
+                return ResourceManager.GetString("RadarTypeMonster", resourceCulture);
+            }
+        }
+
+        internal static string RadarTypeResource {
+            get {
+                return ResourceManager.GetString("RadarTypeResource", resourceCulture);
+            }
+        }
+
+        internal static string RadarTypeDrop {
+            get {
+                return ResourceManager.GetString("RadarTypeDrop", resourceCulture);
+            }
+        }
+
+        internal static string RadarTypeLoot {
+            get {
+                return ResourceManager.GetString("RadarTypeLoot", resourceCulture);
+            }
+        }
+
+        internal static string RadarTypePlayer {
+            get {
+                return ResourceManager.GetString("RadarTypePlayer", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

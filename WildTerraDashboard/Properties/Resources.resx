@@ -615,4 +615,22 @@
   <data name="BotHarvestLogBlacklistClearedNewItemsDetected" xml:space="preserve">
     <value>[SYSTEM] New items detected! Blacklist cleared. Trying to collect again...</value>
   </data>
+  <data name="RadarTypeMonsterAggressive" xml:space="preserve">
+    <value>Monster *</value>
+  </data>
+  <data name="RadarTypeMonster" xml:space="preserve">
+    <value>Monster</value>
+  </data>
+  <data name="RadarTypeResource" xml:space="preserve">
+    <value>Resource</value>
+  </data>
+  <data name="RadarTypeDrop" xml:space="preserve">
+    <value>Drop</value>
+  </data>
+  <data name="RadarTypeLoot" xml:space="preserve">
+    <value>Loot</value>
+  </data>
+  <data name="RadarTypePlayer" xml:space="preserve">
+    <value>Player</value>
+  </data>
 </root>

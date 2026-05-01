@@ -99,11 +99,14 @@ namespace WildTerraDashboard
             {
                 // 1. COLUNA TIPO
                 string tipoTexto = ent.Tipo;
-                if (ent.Tipo == "M") tipoTexto = ent.IsAggressive ? "Monstro *" : "Monstro";
-                if (ent.Tipo == "R") tipoTexto = "Recurso";
-                if (ent.Tipo == "D") tipoTexto = "Drop";
-                if (ent.Tipo == "C") tipoTexto = "Loot";
-                if (ent.Tipo == "P") tipoTexto = "Player";
+                if (ent.Tipo == "M")
+                    tipoTexto = ent.IsAggressive
+                        ? Properties.Resources.RadarTypeMonsterAggressive
+                        : Properties.Resources.RadarTypeMonster;
+                if (ent.Tipo == "R") tipoTexto = Properties.Resources.RadarTypeResource;
+                if (ent.Tipo == "D") tipoTexto = Properties.Resources.RadarTypeDrop;
+                if (ent.Tipo == "C") tipoTexto = Properties.Resources.RadarTypeLoot;
+                if (ent.Tipo == "P") tipoTexto = Properties.Resources.RadarTypePlayer;
 
                 ListViewItem lvi = new ListViewItem(tipoTexto);
 
