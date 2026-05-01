@@ -530,6 +530,18 @@ namespace WildTerraDashboard.Properties {
                 return ResourceManager.GetString("Form1LogUdpStartedFormat", resourceCulture);
             }
         }
+
+        internal static string Form1LogSendingManualMountCommand {
+            get {
+                return ResourceManager.GetString("Form1LogSendingManualMountCommand", resourceCulture);
+            }
+        }
+
+        internal static string Form1LogHealWeaponNameRequired {
+            get {
+                return ResourceManager.GetString("Form1LogHealWeaponNameRequired", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a [ALERT] Missing tool for {0}..

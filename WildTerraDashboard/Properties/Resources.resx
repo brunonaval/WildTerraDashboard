@@ -426,4 +426,10 @@
   <data name="Form1LogUdpStartedFormat" xml:space="preserve">
     <value>UDP started. Listening {0} -&gt; Bot {1}</value>
   </data>
+  <data name="Form1LogSendingManualMountCommand" xml:space="preserve">
+    <value>[TEST] Sending manual mount command...</value>
+  </data>
+  <data name="Form1LogHealWeaponNameRequired" xml:space="preserve">
+    <value>[HEAL] Enter the heal weapon name.</value>
+  </data>
 </root>

@@ -1327,7 +1327,7 @@ namespace WildTerraDashboard
         // --- BOTÃO DE TESTE DE MONTARIA ---
         private void btnTestMount_Click(object sender, EventArgs e)
         {
-            LogarMensagem("[TESTE] Enviando comando de Montar manual...");
+            LogarMensagem(Properties.Resources.Form1LogSendingManualMountCommand);
             EnviarComandoJogo("TEST_MOUNT");
         }
 
@@ -1520,7 +1520,7 @@ namespace WildTerraDashboard
                     string weapon = (txtHealWeaponName?.Text ?? "").Trim();
                     if (string.IsNullOrWhiteSpace(weapon))
                     {
-                        if (lstLog != null) lstLog.Items.Add("[CURA] Informe o nome da arma de cura.");
+                        if (lstLog != null) lstLog.Items.Add(Properties.Resources.Form1LogHealWeaponNameRequired);
                         return;
                     }
 
