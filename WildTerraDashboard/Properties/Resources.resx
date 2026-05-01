@@ -576,4 +576,28 @@
   <data name="TrainingModeValidateAutoAttackTargetEmpty" xml:space="preserve">
     <value>Auto Attack block is enabled, but the target name is empty.</value>
   </data>
+  <data name="BotMovementLogStartedWithUnstuck" xml:space="preserve">
+    <value>Bot started (with anti-stuck system).</value>
+  </data>
+  <data name="BotMovementLogEmptyRouteError" xml:space="preserve">
+    <value>Error: Empty route.</value>
+  </data>
+  <data name="BotMovementLogStopped" xml:space="preserve">
+    <value>Bot stopped.</value>
+  </data>
+  <data name="BotMovementLogRouteLoadedFormat" xml:space="preserve">
+    <value>Route: {0} points loaded.</value>
+  </data>
+  <data name="BotMovementLogErrorFormat" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="BotMovementLogUnstuckNoProgressFormat" xml:space="preserve">
+    <value>[UNSTUCK-PROGRESSO] No progress to point {0} (dist={1:0.0}, best={2:0.0}). Skipping waypoint (possible blocked territory).</value>
+  </data>
+  <data name="BotMovementLogUnstuckTooManySkips" xml:space="preserve">
+    <value>[UNSTUCK] Too many consecutive skips (route may be invalid). Stopping bot for safety.</value>
+  </data>
+  <data name="BotMovementLogUnstuckStuckSkippingPointFormat" xml:space="preserve">
+    <value>[UNSTUCK] Stuck! Skipping point {0}.</value>
+  </data>
 </root>

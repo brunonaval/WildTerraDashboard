@@ -687,6 +687,54 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string BotMovementLogStartedWithUnstuck {
+            get {
+                return ResourceManager.GetString("BotMovementLogStartedWithUnstuck", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogEmptyRouteError {
+            get {
+                return ResourceManager.GetString("BotMovementLogEmptyRouteError", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogStopped {
+            get {
+                return ResourceManager.GetString("BotMovementLogStopped", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogRouteLoadedFormat {
+            get {
+                return ResourceManager.GetString("BotMovementLogRouteLoadedFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogErrorFormat {
+            get {
+                return ResourceManager.GetString("BotMovementLogErrorFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogUnstuckNoProgressFormat {
+            get {
+                return ResourceManager.GetString("BotMovementLogUnstuckNoProgressFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogUnstuckTooManySkips {
+            get {
+                return ResourceManager.GetString("BotMovementLogUnstuckTooManySkips", resourceCulture);
+            }
+        }
+
+        internal static string BotMovementLogUnstuckStuckSkippingPointFormat {
+            get {
+                return ResourceManager.GetString("BotMovementLogUnstuckStuckSkippingPointFormat", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

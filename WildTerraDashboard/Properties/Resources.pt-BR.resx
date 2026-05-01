@@ -373,4 +373,28 @@
   <data name="TrainingModeValidateAutoAttackTargetEmpty" xml:space="preserve">
     <value>O bloco de Auto Ataque está ativo, mas o nome do alvo está vazio.</value>
   </data>
+  <data name="BotMovementLogStartedWithUnstuck" xml:space="preserve">
+    <value>Bot Iniciado (Com Sistema Anti-Travamento).</value>
+  </data>
+  <data name="BotMovementLogEmptyRouteError" xml:space="preserve">
+    <value>Erro: Rota vazia.</value>
+  </data>
+  <data name="BotMovementLogStopped" xml:space="preserve">
+    <value>Bot Parado.</value>
+  </data>
+  <data name="BotMovementLogRouteLoadedFormat" xml:space="preserve">
+    <value>Rota: {0} pontos carregados.</value>
+  </data>
+  <data name="BotMovementLogErrorFormat" xml:space="preserve">
+    <value>Erro: {0}</value>
+  </data>
+  <data name="BotMovementLogUnstuckNoProgressFormat" xml:space="preserve">
+    <value>[UNSTUCK-PROGRESSO] Sem progresso até o ponto {0} (dist={1:0.0}, best={2:0.0}). Pulando waypoint (possível território bloqueado).</value>
+  </data>
+  <data name="BotMovementLogUnstuckTooManySkips" xml:space="preserve">
+    <value>[UNSTUCK] Muitos pulos consecutivos (rota possivelmente inválida). Parando bot por segurança.</value>
+  </data>
+  <data name="BotMovementLogUnstuckStuckSkippingPointFormat" xml:space="preserve">
+    <value>[UNSTUCK] Travado! Pulando o ponto {0}.</value>
+  </data>
 </root>

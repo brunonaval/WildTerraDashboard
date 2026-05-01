@@ -63,18 +63,18 @@ namespace WildTerraDashboard
 
 
 
-                OnLog?.Invoke("Bot Iniciado (Com Sistema Anti-Travamento).");
+                OnLog?.Invoke(Properties.Resources.BotMovementLogStartedWithUnstuck);
             }
             else
             {
-                OnLog?.Invoke("Erro: Rota vazia.");
+                OnLog?.Invoke(Properties.Resources.BotMovementLogEmptyRouteError);
             }
         }
 
         public void Parar()
         {
             IsRodando = false;
-            OnLog?.Invoke("Bot Parado.");
+            OnLog?.Invoke(Properties.Resources.BotMovementLogStopped);
         }
 
         public string ObterPontoRetomada(float xAtual, float zAtual, float distMinima)
@@ -129,11 +129,15 @@ namespace WildTerraDashboard
                     }
                 }
                 indiceAtual = 0;
-                OnLog?.Invoke($"Rota: {rota.Count} pontos carregados.");
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.BotMovementLogRouteLoadedFormat,
+                    rota.Count));
             }
             catch (Exception ex)
             {
-                OnLog?.Invoke("Erro: " + ex.Message);
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.BotMovementLogErrorFormat,
+                    ex.Message));
             }
         }
 
@@ -232,7 +236,11 @@ namespace WildTerraDashboard
             contadorSemProgresso++;
             if (contadorSemProgresso > LIMITE_SEM_PROGRESSO)
             {
-                OnLog?.Invoke($"[UNSTUCK-PROGRESSO] Sem progresso até o ponto {indiceAtual + 1} (dist={distanciaAtual:0.0}, best={melhorDistAoDestino:0.0}). Pulando waypoint (possível território bloqueado).");
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.BotMovementLogUnstuckNoProgressFormat,
+                    indiceAtual + 1,
+                    distanciaAtual,
+                    melhorDistAoDestino));
                 AvancarProximoPonto();
                 indiceRefProgresso = -1;
                 melhorDistAoDestino = float.MaxValue;
@@ -241,7 +249,7 @@ namespace WildTerraDashboard
 
                 if (pulosConsecutivos >= MAX_PULOS_CONSECUTIVOS)
                 {
-                    OnLog?.Invoke("[UNSTUCK] Muitos pulos consecutivos (rota possivelmente inválida). Parando bot por segurança.");
+                    OnLog?.Invoke(Properties.Resources.BotMovementLogUnstuckTooManySkips);
                     Parar();
                 }
 
@@ -275,7 +283,9 @@ namespace WildTerraDashboard
                 // Se o contador estourar o limite (aprox 3 segundos travado no mesmo metro)
                 if (contadorTravado > LIMITE_TENTATIVAS)
                 {
-                    OnLog?.Invoke($"[UNSTUCK] Travado! Pulando o ponto {indiceAtual + 1}.");
+                    OnLog?.Invoke(string.Format(
+                        Properties.Resources.BotMovementLogUnstuckStuckSkippingPointFormat,
+                        indiceAtual + 1));
                     AvancarProximoPonto();
 
                     // Reseta
