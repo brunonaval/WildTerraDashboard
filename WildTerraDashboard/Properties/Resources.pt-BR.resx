@@ -259,4 +259,34 @@
   <data name="Form1TrainingLogTamingDisabledForTraining" xml:space="preserve">
     <value>[TRAINING] Doma desativada para ativar o modo Treinamento.</value>
   </data>
+  <data name="Form1TamingMessageStopTrainingBeforeTaming" xml:space="preserve">
+    <value>Pare o modo Treinamento antes de iniciar a Doma.</value>
+  </data>
+  <data name="Form1TamingMessageStopMainBotBeforeTaming" xml:space="preserve">
+    <value>Pare o Bot Principal antes de iniciar a Doma.</value>
+  </data>
+  <data name="Form1TamingMessageStopFishingBeforeTaming" xml:space="preserve">
+    <value>Pare a Pesca antes de iniciar a Doma.</value>
+  </data>
+  <data name="Form1TamingMessageStopRouteRecordingBeforeTaming" xml:space="preserve">
+    <value>Pare a gravação da rota antes de iniciar a Doma.</value>
+  </data>
+  <data name="Form1TamingMessageLoadRouteBeforeTaming" xml:space="preserve">
+    <value>Carregue uma rota antes de iniciar a Doma.</value>
+  </data>
+  <data name="Form1TamingMessageFillTrapName" xml:space="preserve">
+    <value>Preencha o nome da armadilha.</value>
+  </data>
+  <data name="Form1TamingMessageFillAtLeastOneTarget" xml:space="preserve">
+    <value>Preencha ao menos um alvo.</value>
+  </data>
+  <data name="Form1TamingMessageFillCombatWeaponForAggressiveMode" xml:space="preserve">
+    <value>No modo Agressivo, preencha a arma de combate.</value>
+  </data>
+  <data name="Form1TamingButtonStop" xml:space="preserve">
+    <value>PARAR DOMA</value>
+  </data>
+  <data name="Form1TamingButtonStart" xml:space="preserve">
+    <value>INICIAR DOMA</value>
+  </data>
 </root>

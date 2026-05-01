@@ -459,6 +459,66 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1TamingMessageStopTrainingBeforeTaming {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageStopTrainingBeforeTaming", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageStopMainBotBeforeTaming {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageStopMainBotBeforeTaming", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageStopFishingBeforeTaming {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageStopFishingBeforeTaming", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageStopRouteRecordingBeforeTaming {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageStopRouteRecordingBeforeTaming", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageLoadRouteBeforeTaming {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageLoadRouteBeforeTaming", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageFillTrapName {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageFillTrapName", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageFillAtLeastOneTarget {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageFillAtLeastOneTarget", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingMessageFillCombatWeaponForAggressiveMode {
+            get {
+                return ResourceManager.GetString("Form1TamingMessageFillCombatWeaponForAggressiveMode", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingButtonStop {
+            get {
+                return ResourceManager.GetString("Form1TamingButtonStop", resourceCulture);
+            }
+        }
+
+        internal static string Form1TamingButtonStart {
+            get {
+                return ResourceManager.GetString("Form1TamingButtonStart", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

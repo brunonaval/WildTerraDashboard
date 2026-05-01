@@ -68,7 +68,7 @@ namespace WildTerraDashboard
         {
             if (IsTrainingModeActive)
             {
-                MessageBox.Show("Pare o modo Treinamento antes de iniciar a Doma.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageStopTrainingBeforeTaming);
                 return;
             }
 
@@ -85,25 +85,25 @@ namespace WildTerraDashboard
         {
             if (botTimer != null && botTimer.Enabled)
             {
-                MessageBox.Show("Pare o Bot Principal antes de iniciar a Doma.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageStopMainBotBeforeTaming);
                 return;
             }
 
             if (isFishingRunning)
             {
-                MessageBox.Show("Pare a Pesca antes de iniciar a Doma.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageStopFishingBeforeTaming);
                 return;
             }
 
             if (gravadorRota != null && gravadorRota.IsGravando)
             {
-                MessageBox.Show("Pare a gravação da rota antes de iniciar a Doma.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageStopRouteRecordingBeforeTaming);
                 return;
             }
 
             if (botMovimento == null || !botMovimento.HasRoute)
             {
-                MessageBox.Show("Carregue uma rota no btnLoadRoute antes de iniciar a Doma.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageLoadRouteBeforeTaming);
                 return;
             }
 
@@ -114,19 +114,19 @@ namespace WildTerraDashboard
 
             if (string.IsNullOrWhiteSpace(trapName))
             {
-                MessageBox.Show("Preencha o nome da armadilha em txtTamingTrapName.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageFillTrapName);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(targetsPayload))
             {
-                MessageBox.Show("Preencha ao menos um alvo em txtTamingTargets.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageFillAtLeastOneTarget);
                 return;
             }
 
             if (string.Equals(mode, "AGRESSIVO", StringComparison.OrdinalIgnoreCase) && string.IsNullOrWhiteSpace(combatWeaponName))
             {
-                MessageBox.Show("No modo Agressivo, preencha a arma de combate em txtWeaponName.");
+                MessageBox.Show(Properties.Resources.Form1TamingMessageFillCombatWeaponForAggressiveMode);
                 return;
             }
 
@@ -199,13 +199,13 @@ namespace WildTerraDashboard
 
             if (ativo)
             {
-                btnStartTamingRef.Text = "PARAR DOMA";
+                btnStartTamingRef.Text = Properties.Resources.Form1TamingButtonStop;
                 btnStartTamingRef.BackColor = Color.Red;
                 btnStartTamingRef.ForeColor = Color.White;
             }
             else
             {
-                btnStartTamingRef.Text = "INICIAR DOMA";
+                btnStartTamingRef.Text = Properties.Resources.Form1TamingButtonStart;
                 btnStartTamingRef.BackColor = Color.Green;
                 btnStartTamingRef.ForeColor = Color.White;
             }

@@ -462,4 +462,34 @@
   <data name="Form1TrainingLogTamingDisabledForTraining" xml:space="preserve">
     <value>[TRAINING] Taming disabled to enable Training mode.</value>
   </data>
+  <data name="Form1TamingMessageStopTrainingBeforeTaming" xml:space="preserve">
+    <value>Stop Training mode before starting Taming.</value>
+  </data>
+  <data name="Form1TamingMessageStopMainBotBeforeTaming" xml:space="preserve">
+    <value>Stop the Main Bot before starting Taming.</value>
+  </data>
+  <data name="Form1TamingMessageStopFishingBeforeTaming" xml:space="preserve">
+    <value>Stop Fishing before starting Taming.</value>
+  </data>
+  <data name="Form1TamingMessageStopRouteRecordingBeforeTaming" xml:space="preserve">
+    <value>Stop route recording before starting Taming.</value>
+  </data>
+  <data name="Form1TamingMessageLoadRouteBeforeTaming" xml:space="preserve">
+    <value>Load a route before starting Taming.</value>
+  </data>
+  <data name="Form1TamingMessageFillTrapName" xml:space="preserve">
+    <value>Enter the trap name.</value>
+  </data>
+  <data name="Form1TamingMessageFillAtLeastOneTarget" xml:space="preserve">
+    <value>Enter at least one target.</value>
+  </data>
+  <data name="Form1TamingMessageFillCombatWeaponForAggressiveMode" xml:space="preserve">
+    <value>In Aggressive mode, enter the combat weapon.</value>
+  </data>
+  <data name="Form1TamingButtonStop" xml:space="preserve">
+    <value>STOP TAMING</value>
+  </data>
+  <data name="Form1TamingButtonStart" xml:space="preserve">
+    <value>START TAMING</value>
+  </data>
 </root>
