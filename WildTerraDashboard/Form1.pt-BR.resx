@@ -120,18 +120,6 @@
   <data name="btnConnect.Text" xml:space="preserve">
     <value>🔌 Conectar</value>
   </data>
-  <data name="columnHeader1.Text" xml:space="preserve">
-    <value>Tipo</value>
-  </data>
-  <data name="columnHeader6.Text" xml:space="preserve">
-    <value>Nível</value>
-  </data>
-  <data name="columnHeader2.Text" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="columnHeader3.Text" xml:space="preserve">
-    <value>Distância</value>
-  </data>
   <data name="btnLoadRoute.Text" xml:space="preserve">
     <value>📂 Carregar Rota</value>
   </data>
@@ -151,32 +139,11 @@
   <data name="chkAtivarColeta.Text" xml:space="preserve">
     <value>HABILITAR COLETA</value>
   </data>
-  <data name="btnSaveList.Text" xml:space="preserve">
-    <value>SALVAR</value>
-  </data>
-  <data name="btnLoadList.Text" xml:space="preserve">
-    <value>ABRIR</value>
-  </data>
-  <data name="Estrutura.Text" xml:space="preserve">
-    <value>Estrutura</value>
-  </data>
-  <data name="btnSaveSafe.Text" xml:space="preserve">
-    <value>Salvar Lista</value>
-  </data>
-  <data name="btnLoadSafe.Text" xml:space="preserve">
-    <value>Abrir Lista</value>
-  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 13</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>COLETAR</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Coordenadas:</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 13</value>
@@ -199,15 +166,6 @@
   <data name="chkUseMount.Text" xml:space="preserve">
     <value>USAR MONTARIA (&gt;15m)</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 13</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Local da sua casa</value>
-  </data>
-  <data name="tabPage1.Text" xml:space="preserve">
-    <value>Coleta</value>
-  </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 13</value>
   </data>
@@ -219,12 +177,6 @@
   </data>
   <data name="chkAtivarHunt.Text" xml:space="preserve">
     <value>Habilitar caça</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>Combate</value>
-  </data>
-  <data name="tabPage3.Text" xml:space="preserve">
-    <value>Comida</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
@@ -247,9 +199,6 @@
   <data name="label11.Text" xml:space="preserve">
     <value>Nome da Vara:</value>
   </data>
-  <data name="tabPage4.Text" xml:space="preserve">
-    <value>Pesca</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tabHeal.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 3, 3, 3</value>
@@ -257,11 +206,200 @@
   <data name="tabHeal.Text" xml:space="preserve">
     <value>Cura</value>
   </data>
+  <data name="btnTestHome.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1062, 42</value>
+  </data>
+  <data name="lblX.Text" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="lblY.Text" xml:space="preserve">
+    <value>Y</value>
+  </data>
+  <data name="lblZ.Text" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="columnHeader1.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="columnHeader6.Text" xml:space="preserve">
+    <value>Nível</value>
+  </data>
+  <data name="columnHeader2.Text" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="columnHeader3.Text" xml:space="preserve">
+    <value>Distância</value>
+  </data>
+  <data name="btnSaveList.Text" xml:space="preserve">
+    <value>SALVAR</value>
+  </data>
+  <data name="btnLoadList.Text" xml:space="preserve">
+    <value>ABRIR</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Coord X</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Coord Z</value>
+  </data>
+  <data name="Estrutura.Text" xml:space="preserve">
+    <value>Estrutura</value>
+  </data>
+  <data name="btnSaveSafe.Text" xml:space="preserve">
+    <value>Salvar Lista</value>
+  </data>
+  <data name="btnLoadSafe.Text" xml:space="preserve">
+    <value>Abrir Lista</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>RADAR</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Coordenadas:</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Local da sua casa</value>
+  </data>
+  <data name="tabPage1.Text" xml:space="preserve">
+    <value>Coleta</value>
+  </data>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>Combate</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Comidas com Status</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Auto Eat (Lista)</value>
+  </data>
+  <data name="tabPage3.Text" xml:space="preserve">
+    <value>Comida</value>
+  </data>
+  <data name="tabPage4.Text" xml:space="preserve">
+    <value>Pesca</value>
+  </data>
+  <data name="chkHealFollowTopTarget.Text" xml:space="preserve">
+    <value>Ativar Follow Heal (topo da lista)</value>
+  </data>
+  <data name="lblHealSelfRecoveryResumeHpPct.Text" xml:space="preserve">
+    <value>Retomar cura acima de (%)</value>
+  </data>
+  <data name="lblHealSelfRecoveryHpPct.Text" xml:space="preserve">
+    <value>Usar autocura abaixo de (%)</value>
+  </data>
+  <data name="lblHealSelfRecoveryItems.Text" xml:space="preserve">
+    <value>Itens de autocura</value>
+  </data>
+  <data name="lblHealFollowDistance.Text" xml:space="preserve">
+    <value>Distância do alvo</value>
+  </data>
+  <data name="lblHealFollowTargetHpPct.Text" xml:space="preserve">
+    <value>Curar alvo abaixo de (%)</value>
+  </data>
+  <data name="txtHealFollowSkill.Text" xml:space="preserve">
+    <value>SacrificeHealth</value>
+  </data>
+  <data name="lblHealFollowSkill.Text" xml:space="preserve">
+    <value>Skill de cura</value>
+  </data>
+  <data name="grpHealFollowMode.Text" xml:space="preserve">
+    <value>Follow Heal</value>
+  </data>
+  <data name="lblHealStatus.Text" xml:space="preserve">
+    <value>CURA: OFF</value>
+  </data>
+  <data name="btnHealTrain.Text" xml:space="preserve">
+    <value>Iniciar Cura</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Alvos (PLAYER_BY_NAME)</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>1 skill por linha (prioridade de cima para baixo)</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Raio (m)</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Modo alvo:</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Arma de cura:</value>
+  </data>
+  <data name="lblTamingMode.Text" xml:space="preserve">
+    <value>Tipo de doma</value>
+  </data>
+  <data name="lblTamingTrapName.Text" xml:space="preserve">
+    <value>Nome da armadilha</value>
+  </data>
+  <data name="lblTamingTargets.Text" xml:space="preserve">
+    <value>Nomes dos alvos</value>
+  </data>
+  <data name="btnStartTaming.Text" xml:space="preserve">
+    <value>INICIAR DOMA</value>
+  </data>
+  <data name="tabTaming.Text" xml:space="preserve">
+    <value>Taming</value>
+  </data>
+  <data name="txtTrainingAutoAttackTarget.Text" xml:space="preserve">
+    <value>Cavecrawler</value>
+  </data>
+  <data name="lblTrainingAutoAttackTarget.Text" xml:space="preserve">
+    <value>Nome do alvo:</value>
+  </data>
+  <data name="chkTrainingAutoAttack.Text" xml:space="preserve">
+    <value>Atacar sem parar no alvo configurado</value>
+  </data>
+  <data name="grpTrainingAutoAttack.Text" xml:space="preserve">
+    <value>Auto Ataque (somente desmontado)</value>
+  </data>
+  <data name="lblTrainingSpThreshold.Text" xml:space="preserve">
+    <value>Usar item de SP abaixo de (%):</value>
+  </data>
+  <data name="lblTrainingHpThreshold.Text" xml:space="preserve">
+    <value>Usar item de HP abaixo de (%):</value>
+  </data>
+  <data name="lblTrainingRecoveryHint.Text" xml:space="preserve">
+    <value>Use uma linha por item no formato HP:NomeDoItem ou SP:NomeDoItem.</value>
+  </data>
+  <data name="chkTrainingRecovery.Text" xml:space="preserve">
+    <value>Ativar recuperação automática</value>
+  </data>
+  <data name="grpTrainingRecovery.Text" xml:space="preserve">
+    <value>Recuperação HP / SP (somente desmontado)</value>
+  </data>
+  <data name="lblTrainingBuffRefreshSeconds.Text" xml:space="preserve">
+    <value>Reaplicar quando faltar (seg):</value>
+  </data>
+  <data name="lblTrainingBuffItemsHint.Text" xml:space="preserve">
+    <value>Um item por linha. O bot tenta reutilizar quando o buff do item expirar.</value>
+  </data>
+  <data name="chkTrainingBuffItems.Text" xml:space="preserve">
+    <value>Ativar uso automático de consumíveis com buff</value>
+  </data>
+  <data name="grpTrainingBuffItems.Text" xml:space="preserve">
+    <value>Consumíveis com Buff (somente desmontado)</value>
+  </data>
+  <data name="lblTrainingSkillsHint.Text" xml:space="preserve">
+    <value>Uma skill por linha. Use o nome interno da skill.</value>
+  </data>
+  <data name="chkTrainingSkills.Text" xml:space="preserve">
+    <value>Ativar uso automático de skills</value>
+  </data>
+  <data name="grpTrainingSkills.Text" xml:space="preserve">
+    <value>Skills (somente desmontado)</value>
+  </data>
+  <data name="lblTrainingInfo.Text" xml:space="preserve">
+    <value>Modo exclusivo. Skills, consumíveis com buff e recuperação só funcionam desmontado.</value>
+  </data>
+  <data name="lblTrainingStatus.Text" xml:space="preserve">
+    <value>Status: OFF</value>
+  </data>
   <data name="btnTrainingToggle.Text" xml:space="preserve">
     <value>Iniciar Treinamento</value>
   </data>
-  <data name="btnTestHome.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1062, 42</value>
+  <data name="tabTraining.Text" xml:space="preserve">
+    <value>Treinamento</value>
   </data>
   <data name="btnTestHome.Text" xml:space="preserve">
     <value>CASA</value>
@@ -271,5 +409,14 @@
   </data>
   <data name="columnHeader5.Text" xml:space="preserve">
     <value>Qtd:</value>
+  </data>
+  <data name="btnInspectPlayer.Text" xml:space="preserve">
+    <value>Extrair Inspect</value>
+  </data>
+  <data name="barSP.Text" xml:space="preserve">
+    <value>coloredProgressBar1</value>
+  </data>
+  <data name="barHP.Text" xml:space="preserve">
+    <value>coloredProgressBar1</value>
   </data>
 </root>
