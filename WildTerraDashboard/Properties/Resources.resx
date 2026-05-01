@@ -261,4 +261,55 @@
   <data name="FishingSpot_Default" xml:space="preserve">
     <value>River</value>
   </data>
+  <data name="Form1DialogFilterRouteFile" xml:space="preserve">
+    <value>Route File|*.txt</value>
+  </data>
+  <data name="Form1DialogFilterSafeList" xml:space="preserve">
+    <value>Safe List|*.txt</value>
+  </data>
+  <data name="Form1DialogFilterTextFiles" xml:space="preserve">
+    <value>Text Files|*.txt</value>
+  </data>
+  <data name="Form1MessageErrorFormat" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="Form1MessageFillRodBaitAndLocation" xml:space="preserve">
+    <value>Fill in Rod, Bait and Location!</value>
+  </data>
+  <data name="Form1MessageFillXAndZ" xml:space="preserve">
+    <value>Fill in the X and Z coordinates!</value>
+  </data>
+  <data name="Form1MessageFollowHealRequiresMainSkill" xml:space="preserve">
+    <value>Enter the main Follow Heal skill.</value>
+  </data>
+  <data name="Form1MessageFollowHealRequiresPlayerByName" xml:space="preserve">
+    <value>Follow Heal mode can only be used when the target mode is PLAYER_BY_NAME.</value>
+  </data>
+  <data name="Form1MessageFollowHealRequiresTargetName" xml:space="preserve">
+    <value>Enter at least one target name to use Follow Heal.</value>
+  </data>
+  <data name="Form1MessageHealResumeMustBeGreater" xml:space="preserve">
+    <value>The value of 'Resume healing above (%)' must be greater than 'Use self-heal below (%)'.</value>
+  </data>
+  <data name="Form1MessageSaved" xml:space="preserve">
+    <value>Saved!</value>
+  </data>
+  <data name="Form1MessageStopFishingBeforeMainBot" xml:space="preserve">
+    <value>Stop the Fishing Bot first!</value>
+  </data>
+  <data name="Form1MessageStopMainBotBeforeFishing" xml:space="preserve">
+    <value>Stop the Main Bot before starting Fishing!</value>
+  </data>
+  <data name="Form1MessageStopRecordingBeforeMainBot" xml:space="preserve">
+    <value>Stop recording first!</value>
+  </data>
+  <data name="Form1MessageStopTrainingBeforeFishing" xml:space="preserve">
+    <value>Stop Training mode before starting Fishing!</value>
+  </data>
+  <data name="Form1MessageStopTrainingBeforeHeal" xml:space="preserve">
+    <value>Stop Training mode before starting Heal.</value>
+  </data>
+  <data name="Form1MessageStopTrainingBeforeMainBot" xml:space="preserve">
+    <value>Stop Training mode before starting the Main Bot.</value>
+  </data>
 </root>

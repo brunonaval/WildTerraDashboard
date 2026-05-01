@@ -441,18 +441,18 @@ namespace WildTerraDashboard
         private void BtnSaveSafe_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Safe List|*.txt";
+            sfd.Filter = Properties.Resources.Form1DialogFilterSafeList;
             sfd.FileName = "lista_segura.txt";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     File.WriteAllText(sfd.FileName, txtSafeList.Text);
-                    MessageBox.Show("Salvo!");
+                    MessageBox.Show(Properties.Resources.Form1MessageSaved);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro: " + ex.Message);
+                    MessageBox.Show(string.Format(Properties.Resources.Form1MessageErrorFormat, ex.Message));
                 }
             }
         }
@@ -460,7 +460,7 @@ namespace WildTerraDashboard
         private void BtnLoadSafe_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Safe List|*.txt";
+            ofd.Filter = Properties.Resources.Form1DialogFilterSafeList;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -469,7 +469,7 @@ namespace WildTerraDashboard
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro: " + ex.Message);
+                    MessageBox.Show(string.Format(Properties.Resources.Form1MessageErrorFormat, ex.Message));
                 }
             }
         }
@@ -721,9 +721,9 @@ namespace WildTerraDashboard
 
         private void btnStartBot_Click(object sender, EventArgs e)
         {
-            if (IsTrainingModeActive) { MessageBox.Show("Pare o modo Treinamento antes de iniciar o Bot Principal."); return; }
-            if (isFishingRunning) { MessageBox.Show("Pare o Bot de Pesca antes!"); return; }
-            if (gravadorRota.IsGravando) { MessageBox.Show("Pare a gravação antes!"); return; }
+            if (IsTrainingModeActive) { MessageBox.Show(Properties.Resources.Form1MessageStopTrainingBeforeMainBot); return; }
+            if (isFishingRunning) { MessageBox.Show(Properties.Resources.Form1MessageStopFishingBeforeMainBot); return; }
+            if (gravadorRota.IsGravando) { MessageBox.Show(Properties.Resources.Form1MessageStopRecordingBeforeMainBot); return; }
 
             if (botMovimento.IsRodando) PararBotUI();
             else IniciarBotUI();
@@ -743,7 +743,7 @@ namespace WildTerraDashboard
             else
             {
                 SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "Arquivo de Rota|*.txt";
+                sfd.Filter = Properties.Resources.Form1DialogFilterRouteFile;
                 sfd.FileName = "nova_rota.txt";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -759,7 +759,7 @@ namespace WildTerraDashboard
         private void btnLoadRoute_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Arquivos de Texto|*.txt";
+            ofd.Filter = Properties.Resources.Form1DialogFilterTextFiles;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 botMovimento.CarregarRota(ofd.FileName);
@@ -777,18 +777,18 @@ namespace WildTerraDashboard
         private void btnSaveList_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Arquivos de Texto|*.txt";
+            sfd.Filter = Properties.Resources.Form1DialogFilterTextFiles;
             sfd.FileName = "lista_coleta.txt";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     System.IO.File.WriteAllText(sfd.FileName, txtListaColeta.Text);
-                    MessageBox.Show("Salvo!");
+                    MessageBox.Show(Properties.Resources.Form1MessageSaved);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro: " + ex.Message);
+                    MessageBox.Show(string.Format(Properties.Resources.Form1MessageErrorFormat, ex.Message));
                 }
             }
         }
@@ -796,7 +796,7 @@ namespace WildTerraDashboard
         private void btnLoadList_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Arquivos de Texto|*.txt";
+            ofd.Filter = Properties.Resources.Form1DialogFilterTextFiles;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -807,7 +807,7 @@ namespace WildTerraDashboard
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro: " + ex.Message);
+                    MessageBox.Show(string.Format(Properties.Resources.Form1MessageErrorFormat, ex.Message));
                 }
             }
         }
@@ -1333,7 +1333,7 @@ namespace WildTerraDashboard
             if (string.IsNullOrEmpty(x) || string.IsNullOrEmpty(z))
             {
                 LogarMensagem("[ERRO] Preencha as Coordenadas X e Z!");
-                MessageBox.Show("Preencha as coordenadas X e Z!");
+                MessageBox.Show(Properties.Resources.Form1MessageFillXAndZ);
                 return;
             }
             LogarMensagem($"[TESTE] Voltando para Casa ({x}, {z})...");
@@ -1345,13 +1345,13 @@ namespace WildTerraDashboard
         {
             if (IsTrainingModeActive)
             {
-                MessageBox.Show("Pare o modo Treinamento antes de iniciar a Pesca!");
+                MessageBox.Show(Properties.Resources.Form1MessageStopTrainingBeforeFishing);
                 return;
             }
 
             if (botMovimento.IsRodando)
             {
-                MessageBox.Show("Pare o Bot Principal antes de iniciar a Pesca!");
+                MessageBox.Show(Properties.Resources.Form1MessageStopMainBotBeforeFishing);
                 return;
             }
 
@@ -1374,7 +1374,7 @@ namespace WildTerraDashboard
 
                 if (string.IsNullOrEmpty(vara) || string.IsNullOrEmpty(isca))
                 {
-                    MessageBox.Show("Preencha Vara, Isca e Local!");
+                    MessageBox.Show(Properties.Resources.Form1MessageFillRodBaitAndLocation);
                     return;
                 }
 
@@ -1474,7 +1474,7 @@ namespace WildTerraDashboard
             {
                 if (IsTrainingModeActive)
                 {
-                    MessageBox.Show("Pare o modo Treinamento antes de iniciar a Cura.");
+                    MessageBox.Show(Properties.Resources.Form1MessageStopTrainingBeforeHeal);
                     return;
                 }
 
@@ -1542,25 +1542,25 @@ namespace WildTerraDashboard
                     {
                         if (!string.Equals(mode, "PLAYER_BY_NAME", StringComparison.OrdinalIgnoreCase))
                         {
-                            MessageBox.Show("O modo Follow Heal só pode ser usado quando o modo de alvo for PLAYER_BY_NAME.");
+                            MessageBox.Show(Properties.Resources.Form1MessageFollowHealRequiresPlayerByName);
                             return;
                         }
 
                         if (string.IsNullOrWhiteSpace(txtHealTargetNames?.Text))
                         {
-                            MessageBox.Show("Informe ao menos um nome em txtHealTargetNames para usar o Follow Heal.");
+                            MessageBox.Show(Properties.Resources.Form1MessageFollowHealRequiresTargetName);
                             return;
                         }
 
                         if (string.IsNullOrWhiteSpace(followSkill))
                         {
-                            MessageBox.Show("Informe a skill principal do Follow Heal.");
+                            MessageBox.Show(Properties.Resources.Form1MessageFollowHealRequiresMainSkill);
                             return;
                         }
 
                         if (selfRecoveryResumeHpPct <= selfRecoveryHpPct)
                         {
-                            MessageBox.Show("O valor de 'Retomar cura acima de (%)' deve ser maior que o de 'Usar autocura abaixo de (%)'.");
+                            MessageBox.Show(Properties.Resources.Form1MessageHealResumeMustBeGreater);
                             return;
                         }
                     }

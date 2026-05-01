@@ -149,6 +149,159 @@ namespace WildTerraDashboard.Properties {
                 return ResourceManager.GetString("FishingSpot_Default", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Route File|*.txt.
+        /// </summary>
+        internal static string Form1DialogFilterRouteFile {
+            get {
+                return ResourceManager.GetString("Form1DialogFilterRouteFile", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Safe List|*.txt.
+        /// </summary>
+        internal static string Form1DialogFilterSafeList {
+            get {
+                return ResourceManager.GetString("Form1DialogFilterSafeList", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Text Files|*.txt.
+        /// </summary>
+        internal static string Form1DialogFilterTextFiles {
+            get {
+                return ResourceManager.GetString("Form1DialogFilterTextFiles", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Error: {0}.
+        /// </summary>
+        internal static string Form1MessageErrorFormat {
+            get {
+                return ResourceManager.GetString("Form1MessageErrorFormat", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Fill in Rod, Bait and Location!.
+        /// </summary>
+        internal static string Form1MessageFillRodBaitAndLocation {
+            get {
+                return ResourceManager.GetString("Form1MessageFillRodBaitAndLocation", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Fill in the X and Z coordinates!.
+        /// </summary>
+        internal static string Form1MessageFillXAndZ {
+            get {
+                return ResourceManager.GetString("Form1MessageFillXAndZ", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Enter the main Follow Heal skill..
+        /// </summary>
+        internal static string Form1MessageFollowHealRequiresMainSkill {
+            get {
+                return ResourceManager.GetString("Form1MessageFollowHealRequiresMainSkill", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Follow Heal mode can only be used when the target mode is PLAYER_BY_NAME..
+        /// </summary>
+        internal static string Form1MessageFollowHealRequiresPlayerByName {
+            get {
+                return ResourceManager.GetString("Form1MessageFollowHealRequiresPlayerByName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Enter at least one target name to use Follow Heal..
+        /// </summary>
+        internal static string Form1MessageFollowHealRequiresTargetName {
+            get {
+                return ResourceManager.GetString("Form1MessageFollowHealRequiresTargetName", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a The value of 'Resume healing above (%)' must be greater than 'Use self-heal below (%)'..
+        /// </summary>
+        internal static string Form1MessageHealResumeMustBeGreater {
+            get {
+                return ResourceManager.GetString("Form1MessageHealResumeMustBeGreater", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Saved!.
+        /// </summary>
+        internal static string Form1MessageSaved {
+            get {
+                return ResourceManager.GetString("Form1MessageSaved", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Stop the Fishing Bot first!.
+        /// </summary>
+        internal static string Form1MessageStopFishingBeforeMainBot {
+            get {
+                return ResourceManager.GetString("Form1MessageStopFishingBeforeMainBot", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Stop the Main Bot before starting Fishing!.
+        /// </summary>
+        internal static string Form1MessageStopMainBotBeforeFishing {
+            get {
+                return ResourceManager.GetString("Form1MessageStopMainBotBeforeFishing", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Stop recording first!.
+        /// </summary>
+        internal static string Form1MessageStopRecordingBeforeMainBot {
+            get {
+                return ResourceManager.GetString("Form1MessageStopRecordingBeforeMainBot", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Stop Training mode before starting Fishing!.
+        /// </summary>
+        internal static string Form1MessageStopTrainingBeforeFishing {
+            get {
+                return ResourceManager.GetString("Form1MessageStopTrainingBeforeFishing", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Stop Training mode before starting Heal..
+        /// </summary>
+        internal static string Form1MessageStopTrainingBeforeHeal {
+            get {
+                return ResourceManager.GetString("Form1MessageStopTrainingBeforeHeal", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Stop Training mode before starting the Main Bot..
+        /// </summary>
+        internal static string Form1MessageStopTrainingBeforeMainBot {
+            get {
+                return ResourceManager.GetString("Form1MessageStopTrainingBeforeMainBot", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a [ALERT] Missing tool for {0}..

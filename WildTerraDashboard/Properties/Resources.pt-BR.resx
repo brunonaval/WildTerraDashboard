@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Form1DialogFilterRouteFile" xml:space="preserve">
+    <value>Arquivo de Rota|*.txt</value>
+  </data>
+  <data name="Form1DialogFilterSafeList" xml:space="preserve">
+    <value>Lista segura|*.txt</value>
+  </data>
+  <data name="Form1DialogFilterTextFiles" xml:space="preserve">
+    <value>Arquivos de Texto|*.txt</value>
+  </data>
+  <data name="Form1MessageErrorFormat" xml:space="preserve">
+    <value>Erro: {0}</value>
+  </data>
+  <data name="Form1MessageFillRodBaitAndLocation" xml:space="preserve">
+    <value>Preencha Vara, Isca e Local!</value>
+  </data>
+  <data name="Form1MessageFillXAndZ" xml:space="preserve">
+    <value>Preencha as coordenadas X e Z!</value>
+  </data>
+  <data name="Form1MessageFollowHealRequiresMainSkill" xml:space="preserve">
+    <value>Informe a skill principal do Follow Heal.</value>
+  </data>
+  <data name="Form1MessageFollowHealRequiresPlayerByName" xml:space="preserve">
+    <value>O modo Follow Heal só pode ser usado quando o modo de alvo for PLAYER_BY_NAME.</value>
+  </data>
+  <data name="Form1MessageFollowHealRequiresTargetName" xml:space="preserve">
+    <value>Informe ao menos um nome de alvo para usar o Follow Heal.</value>
+  </data>
+  <data name="Form1MessageHealResumeMustBeGreater" xml:space="preserve">
+    <value>O valor de 'Retomar cura acima de (%)' deve ser maior que 'Usar autocura abaixo de (%)'.</value>
+  </data>
+  <data name="Form1MessageSaved" xml:space="preserve">
+    <value>Salvo!</value>
+  </data>
+  <data name="Form1MessageStopFishingBeforeMainBot" xml:space="preserve">
+    <value>Pare o Bot de Pesca antes!</value>
+  </data>
+  <data name="Form1MessageStopMainBotBeforeFishing" xml:space="preserve">
+    <value>Pare o Bot Principal antes de iniciar a Pesca!</value>
+  </data>
+  <data name="Form1MessageStopRecordingBeforeMainBot" xml:space="preserve">
+    <value>Pare a gravação antes!</value>
+  </data>
+  <data name="Form1MessageStopTrainingBeforeFishing" xml:space="preserve">
+    <value>Pare o modo Treinamento antes de iniciar a Pesca!</value>
+  </data>
+  <data name="Form1MessageStopTrainingBeforeHeal" xml:space="preserve">
+    <value>Pare o modo Treinamento antes de iniciar a Cura.</value>
+  </data>
+  <data name="Form1MessageStopTrainingBeforeMainBot" xml:space="preserve">
+    <value>Pare o modo Treinamento antes de iniciar o Bot Principal.</value>
+  </data>
+</root>
