@@ -322,4 +322,40 @@
   <data name="Form1InspectLogErrorFormat" xml:space="preserve">
     <value>[INSPECT] {0}</value>
   </data>
+  <data name="RouteRecorderLogRecordingStartedFormat" xml:space="preserve">
+    <value>REC: Gravação iniciada em: {0}</value>
+  </data>
+  <data name="RouteRecorderLogWalkToTraceRoute" xml:space="preserve">
+    <value>REC: Ande pelo jogo para traçar a rota...</value>
+  </data>
+  <data name="RouteRecorderLogErrorFormat" xml:space="preserve">
+    <value>REC Erro: {0}</value>
+  </data>
+  <data name="RouteRecorderLogRecordingFinished" xml:space="preserve">
+    <value>REC: Gravação finalizada e salva.</value>
+  </data>
+  <data name="RouteRecorderLogPointAddedFormat" xml:space="preserve">
+    <value>REC: Ponto adicionado ({0:F1}; {1:F1})</value>
+  </data>
+  <data name="RouteRecorderLogSaveErrorFormat" xml:space="preserve">
+    <value>REC Erro ao salvar: {0}</value>
+  </data>
+  <data name="BotMountLogSystemStatusFormat" xml:space="preserve">
+    <value>[MONTARIA] Sistema {0}. Distância mín: {1}m.</value>
+  </data>
+  <data name="BotMountStatusEnabled" xml:space="preserve">
+    <value>Ativado</value>
+  </data>
+  <data name="BotMountStatusDisabled" xml:space="preserve">
+    <value>Desativado</value>
+  </data>
+  <data name="BotTamingLogNoRouteLoaded" xml:space="preserve">
+    <value>[TAMING] Nenhuma rota carregada. Carregue uma rota antes de iniciar.</value>
+  </data>
+  <data name="BotTamingLogStartedFormat" xml:space="preserve">
+    <value>[TAMING] Iniciado com {0} pontos na rota.</value>
+  </data>
+  <data name="BotTamingLogStopped" xml:space="preserve">
+    <value>[TAMING] Parado.</value>
+  </data>
 </root>

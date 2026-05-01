@@ -14,7 +14,10 @@ namespace WildTerraDashboard
             if (IsAtivo != ativo)
             {
                 IsAtivo = ativo;
-                OnLog?.Invoke($"[MONTARIA] Sistema {(IsAtivo ? "Ativado" : "Desativado")}. Distância mín: {DistanciaMinima}m.");
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.BotMountLogSystemStatusFormat,
+                    IsAtivo ? Properties.Resources.BotMountStatusEnabled : Properties.Resources.BotMountStatusDisabled,
+                    DistanciaMinima));
             }
         }
     }

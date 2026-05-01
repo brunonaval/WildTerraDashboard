@@ -28,12 +28,16 @@ namespace WildTerraDashboard
                 IsGravando = true;
                 ultimoPontoGravado = null; // Reinicia
 
-                OnLog?.Invoke($"REC: Gravação iniciada em: {Path.GetFileName(caminhoArquivo)}");
-                OnLog?.Invoke("REC: Ande pelo jogo para traçar a rota...");
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.RouteRecorderLogRecordingStartedFormat,
+                    Path.GetFileName(caminhoArquivo)));
+                OnLog?.Invoke(Properties.Resources.RouteRecorderLogWalkToTraceRoute);
             }
             catch (Exception ex)
             {
-                OnLog?.Invoke("REC Erro: " + ex.Message);
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.RouteRecorderLogErrorFormat,
+                    ex.Message));
                 IsGravando = false;
             }
         }
@@ -41,7 +45,7 @@ namespace WildTerraDashboard
         public void PararGravacao()
         {
             IsGravando = false;
-            OnLog?.Invoke("REC: Gravação finalizada e salva.");
+            OnLog?.Invoke(Properties.Resources.RouteRecorderLogRecordingFinished);
         }
 
         public void ProcessarPosicao(float x, float z)
@@ -88,11 +92,16 @@ namespace WildTerraDashboard
                 // Atualiza o último ponto
                 ultimoPontoGravado = new Waypoint { X = x, Z = z };
 
-                OnLog?.Invoke($"REC: Ponto adicionado ({x:F1}; {z:F1})");
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.RouteRecorderLogPointAddedFormat,
+                    x,
+                    z));
             }
             catch (Exception ex)
             {
-                OnLog?.Invoke("REC Erro ao salvar: " + ex.Message);
+                OnLog?.Invoke(string.Format(
+                    Properties.Resources.RouteRecorderLogSaveErrorFormat,
+                    ex.Message));
             }
         }
     }

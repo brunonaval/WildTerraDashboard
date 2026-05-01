@@ -23,7 +23,7 @@ namespace WildTerraDashboard
         {
             if (!movimento.HasRoute)
             {
-                OnLog?.Invoke("[TAMING] Nenhuma rota carregada. Use o btnLoadRoute antes de iniciar.");
+                OnLog?.Invoke(Properties.Resources.BotTamingLogNoRouteLoaded);
                 return false;
             }
 
@@ -33,7 +33,9 @@ namespace WildTerraDashboard
             if (!movimento.IsRodando) return false;
 
             IsAtivo = true;
-            OnLog?.Invoke($"[TAMING] Iniciado com {movimento.RouteCount} pontos na rota.");
+            OnLog?.Invoke(string.Format(
+                Properties.Resources.BotTamingLogStartedFormat,
+                movimento.RouteCount));
             return true;
         }
 
@@ -43,7 +45,7 @@ namespace WildTerraDashboard
 
             IsAtivo = false;
             movimento.Parar();
-            OnLog?.Invoke("[TAMING] Parado.");
+            OnLog?.Invoke(Properties.Resources.BotTamingLogStopped);
         }
 
         public string ProcessarTick(PlayerStats stats)

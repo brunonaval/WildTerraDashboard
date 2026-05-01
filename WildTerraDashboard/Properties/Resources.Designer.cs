@@ -585,6 +585,78 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string RouteRecorderLogRecordingStartedFormat {
+            get {
+                return ResourceManager.GetString("RouteRecorderLogRecordingStartedFormat", resourceCulture);
+            }
+        }
+
+        internal static string RouteRecorderLogWalkToTraceRoute {
+            get {
+                return ResourceManager.GetString("RouteRecorderLogWalkToTraceRoute", resourceCulture);
+            }
+        }
+
+        internal static string RouteRecorderLogErrorFormat {
+            get {
+                return ResourceManager.GetString("RouteRecorderLogErrorFormat", resourceCulture);
+            }
+        }
+
+        internal static string RouteRecorderLogRecordingFinished {
+            get {
+                return ResourceManager.GetString("RouteRecorderLogRecordingFinished", resourceCulture);
+            }
+        }
+
+        internal static string RouteRecorderLogPointAddedFormat {
+            get {
+                return ResourceManager.GetString("RouteRecorderLogPointAddedFormat", resourceCulture);
+            }
+        }
+
+        internal static string RouteRecorderLogSaveErrorFormat {
+            get {
+                return ResourceManager.GetString("RouteRecorderLogSaveErrorFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotMountLogSystemStatusFormat {
+            get {
+                return ResourceManager.GetString("BotMountLogSystemStatusFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotMountStatusEnabled {
+            get {
+                return ResourceManager.GetString("BotMountStatusEnabled", resourceCulture);
+            }
+        }
+
+        internal static string BotMountStatusDisabled {
+            get {
+                return ResourceManager.GetString("BotMountStatusDisabled", resourceCulture);
+            }
+        }
+
+        internal static string BotTamingLogNoRouteLoaded {
+            get {
+                return ResourceManager.GetString("BotTamingLogNoRouteLoaded", resourceCulture);
+            }
+        }
+
+        internal static string BotTamingLogStartedFormat {
+            get {
+                return ResourceManager.GetString("BotTamingLogStartedFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotTamingLogStopped {
+            get {
+                return ResourceManager.GetString("BotTamingLogStopped", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);
