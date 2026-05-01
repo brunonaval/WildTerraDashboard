@@ -1208,9 +1208,9 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
-        private VisualRadar visualRadar1;
-        private ColoredProgressBar barHP;
-        private ColoredProgressBar barSP;
+        private WildTerraDashboard.VisualRadar visualRadar1;
+        private WildTerraDashboard.ColoredProgressBar barHP;
+        private WildTerraDashboard.ColoredProgressBar barSP;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Button btnLoadRoute;
         private System.Windows.Forms.Button btnStartBot;
