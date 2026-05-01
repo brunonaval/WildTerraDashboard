@@ -109,4 +109,55 @@
   <data name="Form1MessageStopTrainingBeforeMainBot" xml:space="preserve">
     <value>Pare o modo Treinamento antes de iniciar o Bot Principal.</value>
   </data>
+  <data name="Form1ButtonRecordRoute" xml:space="preserve">
+    <value>GRAVAR ROTA</value>
+  </data>
+  <data name="Form1ButtonStartBot" xml:space="preserve">
+    <value>INICIAR BOT</value>
+  </data>
+  <data name="Form1ButtonStartFishing" xml:space="preserve">
+    <value>INICIAR PESCA</value>
+  </data>
+  <data name="Form1ButtonStartHeal" xml:space="preserve">
+    <value>Iniciar Cura</value>
+  </data>
+  <data name="Form1ButtonStopBot" xml:space="preserve">
+    <value>PARAR BOT</value>
+  </data>
+  <data name="Form1ButtonStopFishing" xml:space="preserve">
+    <value>PARAR PESCA</value>
+  </data>
+  <data name="Form1ButtonStopHeal" xml:space="preserve">
+    <value>Parar Cura</value>
+  </data>
+  <data name="Form1ButtonStopRecording" xml:space="preserve">
+    <value>PARAR GRAVAÇÃO</value>
+  </data>
+  <data name="Form1ButtonSynced" xml:space="preserve">
+    <value>Sincronizado</value>
+  </data>
+  <data name="Form1CoordXFormat" xml:space="preserve">
+    <value>X: {0}</value>
+  </data>
+  <data name="Form1CoordYFormat" xml:space="preserve">
+    <value>Y: {0}</value>
+  </data>
+  <data name="Form1CoordZFormat" xml:space="preserve">
+    <value>Z: {0}</value>
+  </data>
+  <data name="Form1HealStatusOff" xml:space="preserve">
+    <value>CURA: OFF</value>
+  </data>
+  <data name="Form1HealStatusOn" xml:space="preserve">
+    <value>CURA: ON</value>
+  </data>
+  <data name="Form1TrainingStatusOff" xml:space="preserve">
+    <value>Status: OFF</value>
+  </data>
+  <data name="Form1TrainingStatusOn" xml:space="preserve">
+    <value>Status: ON</value>
+  </data>
+  <data name="Form1WindowTitleWithPortsFormat" xml:space="preserve">
+    <value>WildTerraDashboard [{0} -&gt; {1}]</value>
+  </data>
 </root>

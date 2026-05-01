@@ -302,6 +302,108 @@ namespace WildTerraDashboard.Properties {
                 return ResourceManager.GetString("Form1MessageStopTrainingBeforeMainBot", resourceCulture);
             }
         }
+
+        internal static string Form1ButtonRecordRoute {
+            get {
+                return ResourceManager.GetString("Form1ButtonRecordRoute", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStartBot {
+            get {
+                return ResourceManager.GetString("Form1ButtonStartBot", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStartFishing {
+            get {
+                return ResourceManager.GetString("Form1ButtonStartFishing", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStartHeal {
+            get {
+                return ResourceManager.GetString("Form1ButtonStartHeal", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStopBot {
+            get {
+                return ResourceManager.GetString("Form1ButtonStopBot", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStopFishing {
+            get {
+                return ResourceManager.GetString("Form1ButtonStopFishing", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStopHeal {
+            get {
+                return ResourceManager.GetString("Form1ButtonStopHeal", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonStopRecording {
+            get {
+                return ResourceManager.GetString("Form1ButtonStopRecording", resourceCulture);
+            }
+        }
+
+        internal static string Form1ButtonSynced {
+            get {
+                return ResourceManager.GetString("Form1ButtonSynced", resourceCulture);
+            }
+        }
+
+        internal static string Form1CoordXFormat {
+            get {
+                return ResourceManager.GetString("Form1CoordXFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1CoordYFormat {
+            get {
+                return ResourceManager.GetString("Form1CoordYFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1CoordZFormat {
+            get {
+                return ResourceManager.GetString("Form1CoordZFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1HealStatusOff {
+            get {
+                return ResourceManager.GetString("Form1HealStatusOff", resourceCulture);
+            }
+        }
+
+        internal static string Form1HealStatusOn {
+            get {
+                return ResourceManager.GetString("Form1HealStatusOn", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingStatusOff {
+            get {
+                return ResourceManager.GetString("Form1TrainingStatusOff", resourceCulture);
+            }
+        }
+
+        internal static string Form1TrainingStatusOn {
+            get {
+                return ResourceManager.GetString("Form1TrainingStatusOn", resourceCulture);
+            }
+        }
+
+        internal static string Form1WindowTitleWithPortsFormat {
+            get {
+                return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a [ALERT] Missing tool for {0}..

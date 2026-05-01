@@ -677,7 +677,7 @@ namespace WildTerraDashboard
 
             if (btnStartBot != null)
             {
-                btnStartBot.Text = "INICIAR BOT";
+                btnStartBot.Text = Properties.Resources.Form1ButtonStartBot;
                 btnStartBot.BackColor = Color.Green;
             }
 
@@ -698,7 +698,7 @@ namespace WildTerraDashboard
 
             if (btnStartBot != null)
             {
-                btnStartBot.Text = "PARAR BOT";
+                btnStartBot.Text = Properties.Resources.Form1ButtonStopBot;
                 btnStartBot.BackColor = Color.Red;
             }
 
@@ -736,7 +736,7 @@ namespace WildTerraDashboard
             {
                 gravadorRota.PararGravacao();
                 recordTimer.Stop();
-                btnRecordRoute.Text = "GRAVAR ROTA";
+                btnRecordRoute.Text = Properties.Resources.Form1ButtonRecordRoute;
                 btnRecordRoute.BackColor = Color.Orange;
                 btnRecordRoute.ForeColor = Color.Black;
             }
@@ -749,7 +749,7 @@ namespace WildTerraDashboard
                 {
                     gravadorRota.IniciarGravacao(sfd.FileName);
                     recordTimer.Start();
-                    btnRecordRoute.Text = "PARAR GRAVAÇÃO";
+                    btnRecordRoute.Text = Properties.Resources.Form1ButtonStopRecording;
                     btnRecordRoute.BackColor = Color.Red;
                     btnRecordRoute.ForeColor = Color.White;
                 }
@@ -953,7 +953,7 @@ namespace WildTerraDashboard
             this.BeginInvoke((MethodInvoker)delegate
             {
                 if (lstLog != null) lstLog.Items.Add($"UDP Iniciado. Escutando {_portaEscutaDashboard} -> Bot {_portaEnvioBot}");
-                this.Text = $"WildTerraDashboard [{_portaEscutaDashboard}/{_portaEnvioBot}]";
+                this.Text = string.Format(Properties.Resources.Form1WindowTitleWithPortsFormat, _portaEscutaDashboard, _portaEnvioBot);
             });
         }
 
@@ -1103,10 +1103,10 @@ namespace WildTerraDashboard
 
                         if (barHP != null) { barHP.Value = statsJogador.HP; barHP.Refresh(); }
                         if (barSP != null) { barSP.Value = statsJogador.SP; barSP.Refresh(); }
-                        if (lblX != null) lblX.Text = "X: " + statsJogador.X;
-                        if (lblY != null) lblY.Text = "Y: " + statsJogador.Y;
-                        if (lblZ != null) lblZ.Text = "Z: " + statsJogador.Z;
-                        if (btnConnect != null && btnConnect.Text != "Sincronizado") btnConnect.Text = "Sincronizado";
+                        if (lblX != null) lblX.Text = string.Format(Properties.Resources.Form1CoordXFormat, statsJogador.X);
+                        if (lblY != null) lblY.Text = string.Format(Properties.Resources.Form1CoordYFormat, statsJogador.Y);
+                        if (lblZ != null) lblZ.Text = string.Format(Properties.Resources.Form1CoordZFormat, statsJogador.Z);
+                        if (btnConnect != null && btnConnect.Text != Properties.Resources.Form1ButtonSynced) btnConnect.Text = Properties.Resources.Form1ButtonSynced;
                         break;
 
                     case "RADAR":
@@ -1359,7 +1359,7 @@ namespace WildTerraDashboard
             {
                 EnviarComandoJogo("FISHING;OFF");
                 isFishingRunning = false;
-                btnStartFishing.Text = "INICIAR PESCA";
+                btnStartFishing.Text = Properties.Resources.Form1ButtonStartFishing;
                 btnStartFishing.BackColor = Color.Navy;
                 btnStartBot.Enabled = true;
                 LogarMensagem("[PESCA] Sistema Desativado.");
@@ -1405,7 +1405,7 @@ namespace WildTerraDashboard
                 catch { }
 
                 isFishingRunning = true;
-                btnStartFishing.Text = "PARAR PESCA";
+                btnStartFishing.Text = Properties.Resources.Form1ButtonStopFishing;
                 btnStartFishing.BackColor = Color.Red;
                 btnStartBot.Enabled = false;
                 LogarMensagem($"[PESCA] Iniciando... Local: {local}, Isca: {isca}");
@@ -1586,16 +1586,16 @@ namespace WildTerraDashboard
                     EnviarComandoJogo(cmd);
                     botCura.Start();
 
-                    if (btnHealTrain != null) btnHealTrain.Text = "Parar Cura";
-                    if (lblHealStatus != null) lblHealStatus.Text = "CURA: ON";
+                    if (btnHealTrain != null) btnHealTrain.Text = Properties.Resources.Form1ButtonStopHeal;
+                    if (lblHealStatus != null) lblHealStatus.Text = Properties.Resources.Form1HealStatusOn;
                     if (lstLog != null) lstLog.Items.Add("[CURA] ATIVADO.");
                 }
                 else
                 {
                     EnviarComandoJogo(botCura.BuildOffCommand());
                     botCura.Stop();
-                    if (btnHealTrain != null) btnHealTrain.Text = "Iniciar Cura";
-                    if (lblHealStatus != null) lblHealStatus.Text = "CURA: OFF";
+                    if (btnHealTrain != null) btnHealTrain.Text = Properties.Resources.Form1ButtonStartHeal;
+                    if (lblHealStatus != null) lblHealStatus.Text = Properties.Resources.Form1HealStatusOff;
                     if (lstLog != null) lstLog.Items.Add("[CURA] DESATIVADO.");
                 }
             }
