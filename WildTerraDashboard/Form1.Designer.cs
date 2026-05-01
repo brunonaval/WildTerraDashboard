@@ -75,6 +75,8 @@
             this.chkAtivarHunt = new System.Windows.Forms.CheckBox();
             this.txtListaMobs = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtAutoEatStatus = new System.Windows.Forms.TextBox();
             this.numEatThreshold = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.txtAutoEat = new System.Windows.Forms.TextBox();
@@ -161,8 +163,6 @@
             this.barSP = new WildTerraDashboard.ColoredProgressBar();
             this.barHP = new WildTerraDashboard.ColoredProgressBar();
             this.visualRadar1 = new WildTerraDashboard.VisualRadar();
-            this.txtAutoEatStatus = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -482,6 +482,17 @@
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // txtAutoEatStatus
+            // 
+            this.txtAutoEatStatus.AcceptsReturn = true;
+            resources.ApplyResources(this.txtAutoEatStatus, "txtAutoEatStatus");
+            this.txtAutoEatStatus.Name = "txtAutoEatStatus";
             // 
             // numEatThreshold
             // 
@@ -1120,17 +1131,6 @@
             resources.ApplyResources(this.visualRadar1, "visualRadar1");
             this.visualRadar1.Name = "visualRadar1";
             this.visualRadar1.TabStop = false;
-            // 
-            // txtAutoEatStatus
-            // 
-            this.txtAutoEatStatus.AcceptsReturn = true;
-            resources.ApplyResources(this.txtAutoEatStatus, "txtAutoEatStatus");
-            this.txtAutoEatStatus.Name = "txtAutoEatStatus";
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
             // 
             // Form1
             // 

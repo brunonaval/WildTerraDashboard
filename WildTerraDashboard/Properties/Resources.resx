@@ -433,7 +433,7 @@
     <value>[HEAL] Enter the heal weapon name.</value>
   </data>
   <data name="Form1TrainingInfoExclusiveMode" xml:space="preserve">
-    <value>Exclusive mode. Skills, buff consumables, recovery and auto attack only work while dismounted.</value>
+    <value>Exclusive mode. Skills, buff consumables, recovery, and auto attack only work while dismounted.</value>
   </data>
   <data name="Form1TrainingMessageStopRouteRecordingBeforeTraining" xml:space="preserve">
     <value>Stop route recording before starting Training mode.</value>

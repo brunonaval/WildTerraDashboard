@@ -96,6 +96,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.pt-BR.resx">
       <DependentUpon>Resources.resx</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -1243,7 +1243,7 @@
     <value>488, 241</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 13</value>
+    <value>74, 13</value>
   </data>
   <data name="label19.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -1324,7 +1324,7 @@
     <value>147, 49</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
+    <value>81, 13</value>
   </data>
   <data name="label9.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1627,7 +1627,7 @@
     <value>34, 190</value>
   </data>
   <data name="chkHealFollowTopTarget.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 17</value>
+    <value>186, 17</value>
   </data>
   <data name="chkHealFollowTopTarget.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -1729,7 +1729,7 @@
     <value>325, 60</value>
   </data>
   <data name="lblHealSelfRecoveryHpPct.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 13</value>
+    <value>129, 13</value>
   </data>
   <data name="lblHealSelfRecoveryHpPct.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -1789,7 +1789,7 @@
     <value>6, 60</value>
   </data>
   <data name="lblHealSelfRecoveryItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 13</value>
+    <value>83, 13</value>
   </data>
   <data name="lblHealSelfRecoveryItems.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1840,7 +1840,7 @@
     <value>384, 30</value>
   </data>
   <data name="lblHealFollowDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 13</value>
+    <value>85, 13</value>
   </data>
   <data name="lblHealFollowDistance.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1891,7 +1891,7 @@
     <value>187, 30</value>
   </data>
   <data name="lblHealFollowTargetHpPct.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 13</value>
+    <value>120, 13</value>
   </data>
   <data name="lblHealFollowTargetHpPct.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1945,7 +1945,7 @@
     <value>4, 30</value>
   </data>
   <data name="lblHealFollowSkill.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
+    <value>53, 13</value>
   </data>
   <data name="lblHealFollowSkill.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -1999,7 +1999,7 @@
     <value>640, 10</value>
   </data>
   <data name="lblHealStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
+    <value>61, 13</value>
   </data>
   <data name="lblHealStatus.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -2083,7 +2083,7 @@
     <value>305, 52</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 13</value>
+    <value>153, 13</value>
   </data>
   <data name="label18.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -2140,7 +2140,7 @@
     <value>22, 51</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 13</value>
+    <value>219, 13</value>
   </data>
   <data name="label17.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2191,7 +2191,7 @@
     <value>251, 30</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 13</value>
+    <value>63, 13</value>
   </data>
   <data name="label16.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2251,7 +2251,7 @@
     <value>22, 35</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 13</value>
+    <value>75, 13</value>
   </data>
   <data name="label15.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2302,7 +2302,7 @@
     <value>19, 10</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
+    <value>78, 13</value>
   </data>
   <data name="label14.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2356,7 +2356,7 @@
     <value>97, 38</value>
   </data>
   <data name="lblTamingMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
+    <value>71, 13</value>
   </data>
   <data name="lblTamingMode.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
@@ -2386,7 +2386,7 @@
     <value>271, 126</value>
   </data>
   <data name="lblTamingTrapName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 13</value>
+    <value>61, 13</value>
   </data>
   <data name="lblTamingTrapName.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -2416,7 +2416,7 @@
     <value>80, 126</value>
   </data>
   <data name="lblTamingTargets.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 13</value>
+    <value>76, 13</value>
   </data>
   <data name="lblTamingTargets.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2599,7 +2599,7 @@
     <value>3, 72</value>
   </data>
   <data name="lblTrainingAutoAttackTarget.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 13</value>
+    <value>74, 13</value>
   </data>
   <data name="lblTrainingAutoAttackTarget.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2629,7 +2629,7 @@
     <value>6, 43</value>
   </data>
   <data name="chkTrainingAutoAttack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 17</value>
+    <value>224, 17</value>
   </data>
   <data name="chkTrainingAutoAttack.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2683,7 +2683,7 @@
     <value>260, 119</value>
   </data>
   <data name="lblTrainingSpThreshold.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 13</value>
+    <value>127, 13</value>
   </data>
   <data name="lblTrainingSpThreshold.TabIndex" type="System.Int32, mscorlib">
     <value>41</value>
@@ -2734,7 +2734,7 @@
     <value>260, 59</value>
   </data>
   <data name="lblTrainingHpThreshold.Size" type="System.Drawing.Size, System.Drawing">
-    <value>168, 13</value>
+    <value>129, 13</value>
   </data>
   <data name="lblTrainingHpThreshold.TabIndex" type="System.Int32, mscorlib">
     <value>39</value>
@@ -2785,7 +2785,7 @@
     <value>7, 32</value>
   </data>
   <data name="lblTrainingRecoveryHint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 13</value>
+    <value>333, 13</value>
   </data>
   <data name="lblTrainingRecoveryHint.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2842,7 +2842,7 @@
     <value>263, 12</value>
   </data>
   <data name="chkTrainingRecovery.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 17</value>
+    <value>163, 17</value>
   </data>
   <data name="chkTrainingRecovery.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -2896,7 +2896,7 @@
     <value>237, 63</value>
   </data>
   <data name="lblTrainingBuffRefreshSeconds.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 13</value>
+    <value>178, 13</value>
   </data>
   <data name="lblTrainingBuffRefreshSeconds.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2947,7 +2947,7 @@
     <value>6, 42</value>
   </data>
   <data name="lblTrainingBuffItemsHint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 13</value>
+    <value>368, 13</value>
   </data>
   <data name="lblTrainingBuffItemsHint.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3004,7 +3004,7 @@
     <value>7, 22</value>
   </data>
   <data name="chkTrainingBuffItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 17</value>
+    <value>241, 17</value>
   </data>
   <data name="chkTrainingBuffItems.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3085,7 +3085,7 @@
     <value>7, 50</value>
   </data>
   <data name="lblTrainingSkillsHint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 13</value>
+    <value>239, 13</value>
   </data>
   <data name="lblTrainingSkillsHint.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3115,7 +3115,7 @@
     <value>69, 21</value>
   </data>
   <data name="chkTrainingSkills.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 17</value>
+    <value>173, 17</value>
   </data>
   <data name="chkTrainingSkills.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3169,7 +3169,7 @@
     <value>6, 10</value>
   </data>
   <data name="lblTrainingInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>463, 13</value>
+    <value>509, 13</value>
   </data>
   <data name="lblTrainingInfo.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -3507,11 +3507,17 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>66</value>
+  </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1439, 966</value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Wild Terra Bot - M4rMil</value>
