@@ -397,4 +397,19 @@
   <data name="BotMovementLogUnstuckStuckSkippingPointFormat" xml:space="preserve">
     <value>[UNSTUCK] Travado! Pulando o ponto {0}.</value>
   </data>
+  <data name="BotHarvestLogListUpdatedFormat" xml:space="preserve">
+    <value>Lista de Coleta atualizada: {0} itens.</value>
+  </data>
+  <data name="BotHarvestLogItemBlacklistedNoToolFormat" xml:space="preserve">
+    <value>[ALERTA] '{0}' adicionado à Lista Negra (Sem ferramenta). Ignorando...</value>
+  </data>
+  <data name="BotHarvestLogWorldIdCooldownReasonSuffixFormat" xml:space="preserve">
+    <value> Motivo={0}.</value>
+  </data>
+  <data name="BotHarvestLogWorldIdCooldownFormat" xml:space="preserve">
+    <value>[HARVEST] worldId {0} entrou em cooldown temporário.{1}</value>
+  </data>
+  <data name="BotHarvestLogBlacklistClearedNewItemsDetected" xml:space="preserve">
+    <value>[SISTEMA] Novos itens detectados! Lista Negra limpa. Tentando coletar novamente...</value>
+  </data>
 </root>

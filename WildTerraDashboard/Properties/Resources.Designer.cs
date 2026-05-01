@@ -735,6 +735,36 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string BotHarvestLogListUpdatedFormat {
+            get {
+                return ResourceManager.GetString("BotHarvestLogListUpdatedFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotHarvestLogItemBlacklistedNoToolFormat {
+            get {
+                return ResourceManager.GetString("BotHarvestLogItemBlacklistedNoToolFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotHarvestLogWorldIdCooldownReasonSuffixFormat {
+            get {
+                return ResourceManager.GetString("BotHarvestLogWorldIdCooldownReasonSuffixFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotHarvestLogWorldIdCooldownFormat {
+            get {
+                return ResourceManager.GetString("BotHarvestLogWorldIdCooldownFormat", resourceCulture);
+            }
+        }
+
+        internal static string BotHarvestLogBlacklistClearedNewItemsDetected {
+            get {
+                return ResourceManager.GetString("BotHarvestLogBlacklistClearedNewItemsDetected", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

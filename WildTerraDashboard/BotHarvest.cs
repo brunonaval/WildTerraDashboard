@@ -35,7 +35,9 @@ namespace WildTerraDashboard
             Blacklist.Clear();
             _worldIdBlacklistUntil.Clear();
 
-            OnLog?.Invoke($"Lista de Coleta atualizada: {ItensParaColetar.Count} itens.");
+            OnLog?.Invoke(string.Format(
+                Properties.Resources.BotHarvestLogListUpdatedFormat,
+                ItensParaColetar.Count));
         }
 
 
@@ -63,15 +65,22 @@ namespace WildTerraDashboard
             if (Blacklist.Contains(nomeItem)) return;
 
             Blacklist.Add(nomeItem);
-            OnLog?.Invoke($"[ALERTA] '{nomeItem}' adicionado à Lista Negra (Sem ferramenta). Ignorando...");
+            OnLog?.Invoke(string.Format(
+                Properties.Resources.BotHarvestLogItemBlacklistedNoToolFormat,
+                nomeItem));
         }
 
         public void AdicionarBlacklistWorldId(int worldId, TimeSpan? ttl = null, string reason = null)
         {
             if (worldId <= 0) return;
             _worldIdBlacklistUntil[worldId] = DateTime.Now + (ttl ?? WorldIdBlacklistTtl);
-            string suffix = string.IsNullOrWhiteSpace(reason) ? "" : $" Motivo={reason}.";
-            OnLog?.Invoke($"[HARVEST] worldId {worldId} entrou em cooldown temporário.{suffix}");
+            string suffix = string.IsNullOrWhiteSpace(reason)
+                ? ""
+                : string.Format(Properties.Resources.BotHarvestLogWorldIdCooldownReasonSuffixFormat, reason);
+            OnLog?.Invoke(string.Format(
+                Properties.Resources.BotHarvestLogWorldIdCooldownFormat,
+                worldId,
+                suffix));
         }
 
         private bool IsWorldIdBlacklisted(int worldId)
@@ -122,7 +131,7 @@ namespace WildTerraDashboard
             {
                 Blacklist.Clear();
                 _worldIdBlacklistUntil.Clear();
-                OnLog?.Invoke("[SISTEMA] Novos itens detectados! Lista Negra limpa. Tentando coletar novamente...");
+                OnLog?.Invoke(Properties.Resources.BotHarvestLogBlacklistClearedNewItemsDetected);
             }
         }
     }

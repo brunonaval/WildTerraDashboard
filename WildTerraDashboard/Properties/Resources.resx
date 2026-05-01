@@ -600,4 +600,19 @@
   <data name="BotMovementLogUnstuckStuckSkippingPointFormat" xml:space="preserve">
     <value>[UNSTUCK] Stuck! Skipping point {0}.</value>
   </data>
+  <data name="BotHarvestLogListUpdatedFormat" xml:space="preserve">
+    <value>Harvest list updated: {0} items.</value>
+  </data>
+  <data name="BotHarvestLogItemBlacklistedNoToolFormat" xml:space="preserve">
+    <value>[ALERT] '{0}' added to blacklist (no tool). Ignoring...</value>
+  </data>
+  <data name="BotHarvestLogWorldIdCooldownReasonSuffixFormat" xml:space="preserve">
+    <value> Reason={0}.</value>
+  </data>
+  <data name="BotHarvestLogWorldIdCooldownFormat" xml:space="preserve">
+    <value>[HARVEST] worldId {0} entered temporary cooldown.{1}</value>
+  </data>
+  <data name="BotHarvestLogBlacklistClearedNewItemsDetected" xml:space="preserve">
+    <value>[SYSTEM] New items detected! Blacklist cleared. Trying to collect again...</value>
+  </data>
 </root>
