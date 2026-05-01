@@ -33,7 +33,7 @@ namespace WildTerraDashboard
             string playerName = (txtInspectPlayerNameRef != null ? txtInspectPlayerNameRef.Text : "").Trim();
             if (string.IsNullOrWhiteSpace(playerName))
             {
-                MessageBox.Show("Preencha o nome do player em txtInspectPlayerName.");
+                MessageBox.Show(Properties.Resources.Form1InspectMessageFillPlayerName);
                 return;
             }
 
@@ -45,7 +45,9 @@ namespace WildTerraDashboard
                 btnInspectPlayerRef.Enabled = false;
 
             EnviarComandoJogo("INSPECT_PLAYER;" + SanitizeUdpValue(playerName));
-            LogarMensagem($"[INSPECT] Solicitada inspeção de '{playerName}'.");
+            LogarMensagem(string.Format(
+                Properties.Resources.Form1InspectLogRequestedFormat,
+                playerName));
         }
 
         private void HandleInspectBegin(string[] partes)
@@ -54,7 +56,9 @@ namespace WildTerraDashboard
             _inspectRequestedName = partes.Length >= 2 ? partes[1] : _inspectRequestedName;
             _inspectResolvedName = partes.Length >= 3 ? partes[2] : _inspectRequestedName;
 
-            LogarMensagem($"[INSPECT] Coletando dados de '{_inspectResolvedName}'...");
+            LogarMensagem(string.Format(
+                Properties.Resources.Form1InspectLogCollectingDataFormat,
+                _inspectResolvedName));
         }
 
         private void HandleInspectChunk(string[] partes)
@@ -70,7 +74,7 @@ namespace WildTerraDashboard
                 string base64 = _inspectBase64Buffer.ToString();
                 if (string.IsNullOrWhiteSpace(base64))
                 {
-                    LogarMensagem("[INSPECT] Nenhum dado recebido.");
+                    LogarMensagem(Properties.Resources.Form1InspectLogNoDataReceived);
                     return;
                 }
 
@@ -87,12 +91,18 @@ namespace WildTerraDashboard
 
                 File.WriteAllText(fullPath, texto, Encoding.UTF8);
 
-                LogarMensagem($"[INSPECT] Arquivo salvo: {fullPath}");
+                LogarMensagem(string.Format(
+                    Properties.Resources.Form1InspectLogFileSavedFormat,
+                    fullPath));
             }
             catch (Exception ex)
             {
-                LogarMensagem("[INSPECT] Falha ao salvar: " + ex.Message);
-                MessageBox.Show("Falha ao salvar o inspect: " + ex.Message, "Inspect Player");
+                LogarMensagem(string.Format(
+                    Properties.Resources.Form1InspectLogSaveFailedFormat,
+                    ex.Message));
+                MessageBox.Show(
+                    string.Format(Properties.Resources.Form1InspectMessageSaveFailedFormat, ex.Message),
+                    Properties.Resources.Form1InspectMessageBoxTitle);
             }
             finally
             {
@@ -106,10 +116,14 @@ namespace WildTerraDashboard
         {
             string erro = partes.Length >= 2
                 ? string.Join(";", partes, 1, partes.Length - 1)
-                : "Erro desconhecido ao inspecionar o player.";
+                : Properties.Resources.Form1InspectUnknownError;
 
-            LogarMensagem("[INSPECT] " + erro);
-            MessageBox.Show(erro, "Inspect Player");
+            LogarMensagem(string.Format(
+                Properties.Resources.Form1InspectLogErrorFormat,
+                erro));
+            MessageBox.Show(
+                erro,
+                Properties.Resources.Form1InspectMessageBoxTitle);
 
             _inspectBase64Buffer.Clear();
 

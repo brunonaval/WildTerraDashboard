@@ -525,6 +525,66 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1InspectMessageFillPlayerName {
+            get {
+                return ResourceManager.GetString("Form1InspectMessageFillPlayerName", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectLogRequestedFormat {
+            get {
+                return ResourceManager.GetString("Form1InspectLogRequestedFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectLogCollectingDataFormat {
+            get {
+                return ResourceManager.GetString("Form1InspectLogCollectingDataFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectLogNoDataReceived {
+            get {
+                return ResourceManager.GetString("Form1InspectLogNoDataReceived", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectLogFileSavedFormat {
+            get {
+                return ResourceManager.GetString("Form1InspectLogFileSavedFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectLogSaveFailedFormat {
+            get {
+                return ResourceManager.GetString("Form1InspectLogSaveFailedFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectMessageSaveFailedFormat {
+            get {
+                return ResourceManager.GetString("Form1InspectMessageSaveFailedFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectMessageBoxTitle {
+            get {
+                return ResourceManager.GetString("Form1InspectMessageBoxTitle", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectUnknownError {
+            get {
+                return ResourceManager.GetString("Form1InspectUnknownError", resourceCulture);
+            }
+        }
+
+        internal static string Form1InspectLogErrorFormat {
+            get {
+                return ResourceManager.GetString("Form1InspectLogErrorFormat", resourceCulture);
+            }
+        }
+
         internal static string Form1WindowTitleWithPortsFormat {
             get {
                 return ResourceManager.GetString("Form1WindowTitleWithPortsFormat", resourceCulture);

@@ -495,4 +495,34 @@
   <data name="Form1TamingLogStandaloneModeConfigSentFormat" xml:space="preserve">
     <value>[TAMING] Standalone mode active. Config sent. mode={0} trap='{1}' weapon='{2}'</value>
   </data>
+  <data name="Form1InspectMessageFillPlayerName" xml:space="preserve">
+    <value>Enter the player name.</value>
+  </data>
+  <data name="Form1InspectLogRequestedFormat" xml:space="preserve">
+    <value>[INSPECT] Inspection requested for '{0}'.</value>
+  </data>
+  <data name="Form1InspectLogCollectingDataFormat" xml:space="preserve">
+    <value>[INSPECT] Collecting data for '{0}'...</value>
+  </data>
+  <data name="Form1InspectLogNoDataReceived" xml:space="preserve">
+    <value>[INSPECT] No data received.</value>
+  </data>
+  <data name="Form1InspectLogFileSavedFormat" xml:space="preserve">
+    <value>[INSPECT] File saved: {0}</value>
+  </data>
+  <data name="Form1InspectLogSaveFailedFormat" xml:space="preserve">
+    <value>[INSPECT] Save failed: {0}</value>
+  </data>
+  <data name="Form1InspectMessageSaveFailedFormat" xml:space="preserve">
+    <value>Failed to save inspect: {0}</value>
+  </data>
+  <data name="Form1InspectMessageBoxTitle" xml:space="preserve">
+    <value>Inspect Player</value>
+  </data>
+  <data name="Form1InspectUnknownError" xml:space="preserve">
+    <value>Unknown error while inspecting the player.</value>
+  </data>
+  <data name="Form1InspectLogErrorFormat" xml:space="preserve">
+    <value>[INSPECT] {0}</value>
+  </data>
 </root>
