@@ -2146,7 +2146,7 @@
     <value>6</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>1 skill por linha (prioridade de cima para baixo)</value>
+    <value>One skill per line (top to bottom priority)</value>
   </data>
   <data name="&gt;&gt;label17.Name" xml:space="preserve">
     <value>label17</value>
@@ -3145,7 +3145,7 @@
     <value>3</value>
   </data>
   <data name="grpTrainingSkills.Text" xml:space="preserve">
-    <value>Skills (somente desmontado)</value>
+    <value>Skills (dismounted only)</value>
   </data>
   <data name="&gt;&gt;grpTrainingSkills.Name" xml:space="preserve">
     <value>grpTrainingSkills</value>
