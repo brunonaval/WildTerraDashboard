@@ -206,6 +206,39 @@
   <data name="tabHeal.Text" xml:space="preserve">
     <value>Cura</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Wild Terra Bot - M4rMil</value>
+  </data>
+  <data name="cmbFishingSpot.Items" xml:space="preserve">
+    <value>River</value>
+  </data>
+  <data name="cmbFishingSpot.Items1" xml:space="preserve">
+    <value>Ocean</value>
+  </data>
+  <data name="cmbFishingSpot.Items2" xml:space="preserve">
+    <value>Desert</value>
+  </data>
+  <data name="cmbFishingSpot.Items3" xml:space="preserve">
+    <value>Withered Canyon</value>
+  </data>
+  <data name="cmbFishingSpot.Items4" xml:space="preserve">
+    <value>Battle Field Island</value>
+  </data>
+  <data name="cmbHealTargetMode.Items" xml:space="preserve">
+    <value>PET</value>
+  </data>
+  <data name="cmbHealTargetMode.Items1" xml:space="preserve">
+    <value>SELF</value>
+  </data>
+  <data name="cmbHealTargetMode.Items2" xml:space="preserve">
+    <value>PLAYER_BY_NAME</value>
+  </data>
+  <data name="cmbTamingMode.Items" xml:space="preserve">
+    <value>Pacifico</value>
+  </data>
+  <data name="cmbTamingMode.Items1" xml:space="preserve">
+    <value>Agressivo</value>
+  </data>
   <data name="btnTestHome.Location" type="System.Drawing.Point, System.Drawing">
     <value>1062, 42</value>
   </data>
@@ -412,11 +445,5 @@
   </data>
   <data name="btnInspectPlayer.Text" xml:space="preserve">
     <value>Extrair Inspect</value>
-  </data>
-  <data name="barSP.Text" xml:space="preserve">
-    <value>coloredProgressBar1</value>
-  </data>
-  <data name="barHP.Text" xml:space="preserve">
-    <value>coloredProgressBar1</value>
   </data>
 </root>
