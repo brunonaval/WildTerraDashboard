@@ -7,10 +7,12 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Web.Script.Serialization; // <- precisa da referência System.Web.Extensions
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace WildTerraDashboard
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialForm
     {
 
         private BotHealTrainer botCura = new BotHealTrainer();
@@ -114,7 +116,7 @@ namespace WildTerraDashboard
 
 
             InitializeComponent();
-
+            AplicarTema();
 
             // UI responsiva para diferentes resoluções/escala do Windows:
             // habilita barras de rolagem quando a tela/escala não comporta o layout completo.
@@ -206,9 +208,123 @@ namespace WildTerraDashboard
             InitializeTamingModule();
             InitializeTrainingModule();
             InitializeInspectModule();
-
-
         }
+
+        // =============================================
+        // TEMA MATERIAL DARK
+        // =============================================
+        private static readonly Color _corFundo    = Color.FromArgb(30, 30, 46);
+        private static readonly Color _corControle = Color.FromArgb(45, 45, 63);
+        private static readonly Color _corTexto    = Color.FromArgb(240, 240, 255);
+        private static readonly Color _corBotao    = Color.FromArgb(56, 56, 80);
+        private static readonly Color _corBorda    = Color.FromArgb(80, 80, 110);
+        private static readonly Color _corDestaque = Color.FromArgb(76, 175, 80);
+
+        private void AplicarTema()
+        {
+            var skin = MaterialSkinManager.Instance;
+            skin.AddFormToManage(this);
+            skin.Theme = MaterialSkinManager.Themes.DARK;
+            skin.ColorScheme = new ColorScheme(
+                Primary.Green700, Primary.Green800,
+                Primary.Green500, Accent.LightGreen200,
+                TextShade.WHITE);
+
+            AplicarTemaNosControles(this);
+            AplicarCoresBotoesAcao();
+        }
+
+        private void AplicarCoresBotoesAcao()
+        {
+            // Botão de conexão: destaque de ação primária
+            if (btnConnect != null)
+            {
+                btnConnect.BackColor = Color.FromArgb(30, 120, 60);
+                btnConnect.ForeColor = Color.White;
+                btnConnect.Font = new Font(btnConnect.Font, FontStyle.Bold);
+            }
+            // Botão iniciar bot: verde (bot parado = pronto para iniciar)
+            if (btnStartBot != null)
+            {
+                btnStartBot.BackColor = Color.FromArgb(30, 120, 60);
+                btnStartBot.ForeColor = Color.White;
+                btnStartBot.Font = new Font(btnStartBot.Font, FontStyle.Bold);
+            }
+            // Gravar rota: laranja
+            if (btnRecordRoute != null)
+            {
+                btnRecordRoute.BackColor = Color.FromArgb(180, 90, 0);
+                btnRecordRoute.ForeColor = Color.White;
+            }
+            // Carregar rota: neutro mais visível
+            if (btnLoadRoute != null)
+            {
+                btnLoadRoute.BackColor = Color.FromArgb(50, 70, 100);
+                btnLoadRoute.ForeColor = Color.White;
+            }
+        }
+
+        private void AplicarTemaNosControles(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                switch (ctrl)
+                {
+                    case TextBox tb:
+                        tb.BackColor = _corControle;
+                        tb.ForeColor = _corTexto;
+                        tb.BorderStyle = BorderStyle.FixedSingle;
+                        break;
+                    case ListBox lb:
+                        lb.BackColor = _corControle;
+                        lb.ForeColor = _corTexto;
+                        break;
+                    case ListView lv:
+                        lv.BackColor = _corControle;
+                        lv.ForeColor = _corTexto;
+                        break;
+                    case NumericUpDown nud:
+                        nud.BackColor = _corControle;
+                        nud.ForeColor = _corTexto;
+                        break;
+                    case ComboBox cmb:
+                        cmb.BackColor = _corControle;
+                        cmb.ForeColor = _corTexto;
+                        break;
+                    case Button btn:
+                        btn.BackColor = _corBotao;
+                        btn.ForeColor = _corTexto;
+                        btn.FlatStyle = FlatStyle.Flat;
+                        btn.FlatAppearance.BorderColor = _corBorda;
+                        btn.FlatAppearance.MouseOverBackColor = Color.FromArgb(70, 70, 100);
+                        btn.Cursor = Cursors.Hand;
+                        break;
+                    case CheckBox chk:
+                        chk.ForeColor = _corTexto;
+                        chk.BackColor = Color.Transparent;
+                        break;
+                    case Label lbl:
+                        lbl.ForeColor = _corTexto;
+                        lbl.BackColor = Color.Transparent;
+                        break;
+                    case GroupBox grp:
+                        grp.ForeColor = _corDestaque;
+                        grp.BackColor = Color.Transparent;
+                        break;
+                    case TabPage tp:
+                        tp.BackColor = _corFundo;
+                        tp.ForeColor = _corTexto;
+                        break;
+                    case TabControl tc:
+                        tc.ForeColor = _corTexto;
+                        break;
+                }
+
+                if (ctrl.Controls.Count > 0)
+                    AplicarTemaNosControles(ctrl);
+            }
+        }
+
 
 
         private static void ResolverPortasDashboard(int portaEscutaSolicitada, int portaEnvioSolicitada, out int portaEscutaResolvida, out int portaEnvioResolvida)
