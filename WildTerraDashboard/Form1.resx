@@ -1624,7 +1624,7 @@
     <value>NoControl</value>
   </data>
   <data name="chkHealFollowTopTarget.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 170</value>
+    <value>20, 210</value>
   </data>
   <data name="chkHealFollowTopTarget.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 17</value>
@@ -1648,7 +1648,7 @@
     <value>0</value>
   </data>
   <data name="numHealSelfRecoveryResumeHpPct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>331, 150</value>
+    <value>560, 125</value>
   </data>
   <data name="numHealSelfRecoveryResumeHpPct.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 22</value>
@@ -1669,7 +1669,7 @@
     <value>0</value>
   </data>
   <data name="numHealSelfRecoveryHpPct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>331, 87</value>
+    <value>560, 69</value>
   </data>
   <data name="numHealSelfRecoveryHpPct.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 22</value>
@@ -1696,7 +1696,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealSelfRecoveryResumeHpPct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>328, 122</value>
+    <value>350, 128</value>
   </data>
   <data name="lblHealSelfRecoveryResumeHpPct.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 13</value>
@@ -1726,7 +1726,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealSelfRecoveryHpPct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>325, 60</value>
+    <value>350, 72</value>
   </data>
   <data name="lblHealSelfRecoveryHpPct.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 13</value>
@@ -1750,7 +1750,7 @@
     <value>3</value>
   </data>
   <data name="txtHealSelfRecoveryItems.Location" type="System.Drawing.Point, System.Drawing">
-    <value>109, 51</value>
+    <value>10, 82</value>
   </data>
   <data name="txtHealSelfRecoveryItems.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1759,7 +1759,7 @@
     <value>Vertical</value>
   </data>
   <data name="txtHealSelfRecoveryItems.Size" type="System.Drawing.Size, System.Drawing">
-    <value>213, 154</value>
+    <value>320, 90</value>
   </data>
   <data name="txtHealSelfRecoveryItems.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -1786,7 +1786,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealSelfRecoveryItems.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 60</value>
+    <value>10, 62</value>
   </data>
   <data name="lblHealSelfRecoveryItems.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -1810,7 +1810,7 @@
     <value>5</value>
   </data>
   <data name="numHealFollowDistance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>482, 21</value>
+    <value>550, 25</value>
   </data>
   <data name="numHealFollowDistance.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 22</value>
@@ -1837,7 +1837,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealFollowDistance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>384, 30</value>
+    <value>455, 28</value>
   </data>
   <data name="lblHealFollowDistance.Size" type="System.Drawing.Size, System.Drawing">
     <value>85, 13</value>
@@ -1861,7 +1861,7 @@
     <value>7</value>
   </data>
   <data name="numHealFollowTargetHpPct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>328, 21</value>
+    <value>395, 25</value>
   </data>
   <data name="numHealFollowTargetHpPct.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 22</value>
@@ -1888,7 +1888,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealFollowTargetHpPct.Location" type="System.Drawing.Point, System.Drawing">
-    <value>187, 30</value>
+    <value>250, 28</value>
   </data>
   <data name="lblHealFollowTargetHpPct.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 13</value>
@@ -1912,10 +1912,10 @@
     <value>9</value>
   </data>
   <data name="txtHealFollowSkill.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 21</value>
+    <value>85, 25</value>
   </data>
   <data name="txtHealFollowSkill.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 22</value>
+    <value>150, 22</value>
   </data>
   <data name="txtHealFollowSkill.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1942,7 +1942,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealFollowSkill.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 30</value>
+    <value>10, 28</value>
   </data>
   <data name="lblHealFollowSkill.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 13</value>
@@ -1966,10 +1966,10 @@
     <value>11</value>
   </data>
   <data name="grpHealFollowMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 192</value>
+    <value>20, 235</value>
   </data>
   <data name="grpHealFollowMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>680, 210</value>
+    <value>690, 185</value>
   </data>
   <data name="grpHealFollowMode.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1996,7 +1996,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHealStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>640, 10</value>
+    <value>645, 27</value>
   </data>
   <data name="lblHealStatus.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 13</value>
@@ -2023,10 +2023,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnHealTrain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>517, 10</value>
+    <value>535, 22</value>
   </data>
   <data name="btnHealTrain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>95, 23</value>
   </data>
   <data name="btnHealTrain.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -2047,7 +2047,7 @@
     <value>3</value>
   </data>
   <data name="txtHealTargetNames.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 68</value>
+    <value>360, 105</value>
   </data>
   <data name="txtHealTargetNames.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2056,7 +2056,7 @@
     <value>Vertical</value>
   </data>
   <data name="txtHealTargetNames.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 95</value>
+    <value>310, 95</value>
   </data>
   <data name="txtHealTargetNames.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -2080,7 +2080,7 @@
     <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>305, 52</value>
+    <value>360, 85</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 13</value>
@@ -2104,7 +2104,7 @@
     <value>5</value>
   </data>
   <data name="txtHealSkills.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 67</value>
+    <value>20, 105</value>
   </data>
   <data name="txtHealSkills.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2113,7 +2113,7 @@
     <value>Vertical</value>
   </data>
   <data name="txtHealSkills.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 95</value>
+    <value>310, 95</value>
   </data>
   <data name="txtHealSkills.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -2137,7 +2137,7 @@
     <value>NoControl</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 51</value>
+    <value>20, 85</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 13</value>
@@ -2161,10 +2161,10 @@
     <value>7</value>
   </data>
   <data name="numHealRadius.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 27</value>
+    <value>365, 52</value>
   </data>
   <data name="numHealRadius.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>90, 22</value>
   </data>
   <data name="numHealRadius.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2188,7 +2188,7 @@
     <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 30</value>
+    <value>295, 55</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 13</value>
@@ -2221,10 +2221,10 @@
     <value>PLAYER_BY_NAME</value>
   </data>
   <data name="cmbHealTargetMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 27</value>
+    <value>115, 52</value>
   </data>
   <data name="cmbHealTargetMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 21</value>
+    <value>160, 21</value>
   </data>
   <data name="cmbHealTargetMode.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -2248,7 +2248,7 @@
     <value>NoControl</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 35</value>
+    <value>20, 55</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
@@ -2272,10 +2272,10 @@
     <value>11</value>
   </data>
   <data name="txtHealWeaponName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 3</value>
+    <value>115, 22</value>
   </data>
   <data name="txtHealWeaponName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 22</value>
+    <value>230, 22</value>
   </data>
   <data name="txtHealWeaponName.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2299,7 +2299,7 @@
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 10</value>
+    <value>20, 25</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 13</value>
