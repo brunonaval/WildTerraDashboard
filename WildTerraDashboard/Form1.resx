@@ -1240,7 +1240,7 @@
     <value>NoControl</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>470, 160</value>
+    <value>390, 90</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 13</value>
@@ -1264,7 +1264,7 @@
     <value>0</value>
   </data>
   <data name="txtAutoEatStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>390, 180</value>
+    <value>390, 110</value>
   </data>
   <data name="txtAutoEatStatus.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1273,7 +1273,7 @@
     <value>Vertical</value>
   </data>
   <data name="txtAutoEatStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 210</value>
+    <value>300, 270</value>
   </data>
   <data name="txtAutoEatStatus.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -1294,7 +1294,7 @@
     <value>1</value>
   </data>
   <data name="numEatThreshold.Location" type="System.Drawing.Point, System.Drawing">
-    <value>554, 28</value>
+    <value>554, 25</value>
   </data>
   <data name="numEatThreshold.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 22</value>
@@ -1321,7 +1321,7 @@
     <value>NoControl</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 40</value>
+    <value>20, 60</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 13</value>
@@ -1345,13 +1345,13 @@
     <value>3</value>
   </data>
   <data name="txtAutoEat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 60</value>
+    <value>20, 80</value>
   </data>
   <data name="txtAutoEat.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="txtAutoEat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 330</value>
+    <value>330, 300</value>
   </data>
   <data name="txtAutoEat.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
