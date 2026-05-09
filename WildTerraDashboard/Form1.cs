@@ -62,6 +62,15 @@ namespace WildTerraDashboard
         private Label lblLocationName;
         private Label lblLocationX;
         private Label lblLocationZ;
+        private bool _locationGoActive = false;
+        private decimal _locationGoTargetX = 0m;
+        private decimal _locationGoTargetZ = 0m;
+        private string _locationGoTargetName = "";
+        private DateTime _locationGoStartedAt = DateTime.MinValue;
+        private Timer _locationGoTimer;
+        private const int LOCATION_GO_TIMER_INTERVAL_MS = 500;
+        private const int LOCATION_GO_TIMEOUT_SECONDS = 60;
+        private const double LOCATION_GO_ARRIVAL_DISTANCE = 2.0;
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -704,6 +713,7 @@ namespace WildTerraDashboard
             listViewLocations.Columns.Add(nameHeaderText, 300);
             listViewLocations.Columns.Add(xHeaderText, 180);
             listViewLocations.Columns.Add(zHeaderText, 180);
+            listViewLocations.Resize += (s, e) => ResizeLocationsColumns();
 
             lblLocationName = new Label
             {
@@ -717,7 +727,7 @@ namespace WildTerraDashboard
             {
                 Name = "txtLocationName",
                 Location = new Point(16, 36),
-                Size = new Size(220, 22),
+                Size = new Size(170, 22),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
 
@@ -726,14 +736,14 @@ namespace WildTerraDashboard
                 Name = "lblLocationX",
                 Text = xHeaderText,
                 AutoSize = true,
-                Location = new Point(252, 16)
+                Location = new Point(196, 16)
             };
 
             txtLocationX = new TextBox
             {
                 Name = "txtLocationX",
-                Location = new Point(252, 36),
-                Size = new Size(110, 22),
+                Location = new Point(196, 36),
+                Size = new Size(90, 22),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
 
@@ -742,14 +752,14 @@ namespace WildTerraDashboard
                 Name = "lblLocationZ",
                 Text = zHeaderText,
                 AutoSize = true,
-                Location = new Point(378, 16)
+                Location = new Point(296, 16)
             };
 
             txtLocationZ = new TextBox
             {
                 Name = "txtLocationZ",
-                Location = new Point(378, 36),
-                Size = new Size(110, 22),
+                Location = new Point(296, 36),
+                Size = new Size(90, 22),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
 
@@ -757,8 +767,8 @@ namespace WildTerraDashboard
             {
                 Name = "btnAddLocation",
                 Text = addButtonText,
-                Location = new Point(508, 34),
-                Size = new Size(100, 26),
+                Location = new Point(392, 34),
+                Size = new Size(88, 26),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
             btnAddLocation.Click += BtnAddLocation_Click;
@@ -767,8 +777,8 @@ namespace WildTerraDashboard
             {
                 Name = "btnDeleteLocation",
                 Text = deleteButtonText,
-                Location = new Point(616, 34),
-                Size = new Size(100, 26),
+                Location = new Point(486, 34),
+                Size = new Size(88, 26),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
             btnDeleteLocation.Click += BtnDeleteLocation_Click;
@@ -777,8 +787,8 @@ namespace WildTerraDashboard
             {
                 Name = "btnGoLocation",
                 Text = goButtonText,
-                Location = new Point(724, 34),
-                Size = new Size(80, 26),
+                Location = new Point(580, 34),
+                Size = new Size(72, 26),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
             btnGoLocation.Click += BtnGoLocation_Click;
@@ -795,6 +805,8 @@ namespace WildTerraDashboard
             tabLocations.Controls.Add(listViewLocations);
 
             tabControl1.TabPages.Add(tabLocations);
+            EnsureLocationsGoTimer();
+            ResizeLocationsColumns();
             RefreshLocationsList();
         }
 
@@ -818,6 +830,28 @@ namespace WildTerraDashboard
             {
                 listViewLocations.EndUpdate();
             }
+
+            ResizeLocationsColumns();
+        }
+
+        private void ResizeLocationsColumns()
+        {
+            if (listViewLocations == null || listViewLocations.Columns == null || listViewLocations.Columns.Count < 3) return;
+
+            int total = listViewLocations.ClientSize.Width - 6;
+            if (total <= 0) return;
+
+            int nameWidth = (int)(total * 0.50);
+            int xWidth = (int)(total * 0.25);
+            int zWidth = total - nameWidth - xWidth;
+
+            if (nameWidth < 120) nameWidth = 120;
+            if (xWidth < 60) xWidth = 60;
+            if (zWidth < 60) zWidth = 60;
+
+            listViewLocations.Columns[0].Width = nameWidth;
+            listViewLocations.Columns[1].Width = xWidth;
+            listViewLocations.Columns[2].Width = zWidth;
         }
 
         private bool TryReadLocationInputs(out DashboardLocationEntry entry)
@@ -897,20 +931,14 @@ namespace WildTerraDashboard
                 return;
             }
 
-            bool connected = btnConnect != null &&
-                             string.Equals(btnConnect.Text, Properties.Resources.Form1ButtonSynced, StringComparison.Ordinal);
+            bool connected = IsDashboardSyncedForLocationsGo();
             if (!connected)
             {
                 MessageBox.Show(GetLocationsResourceText("Form1LocationsGoRequiresConnection"));
                 return;
             }
 
-            bool hasActiveMode =
-                (botMovimento != null && botMovimento.IsRodando) ||
-                isFishingRunning ||
-                IsTrainingModeActive ||
-                (botCura != null && botCura.IsAtivo) ||
-                (botTaming != null && botTaming.IsAtivo);
+            bool hasActiveMode = HasActiveModeForLocationGo();
 
             if (hasActiveMode)
             {
@@ -919,10 +947,9 @@ namespace WildTerraDashboard
             }
 
             DashboardLocationEntry location = _savedLocations[index];
-            string x = location.X.ToString(CultureInfo.InvariantCulture);
-            string z = location.Z.ToString(CultureInfo.InvariantCulture);
-
-            EnviarComandoJogo($"MOVE;{x};{z}");
+            StartLocationGo(location);
+            string x = _locationGoTargetX.ToString(CultureInfo.InvariantCulture);
+            string z = _locationGoTargetZ.ToString(CultureInfo.InvariantCulture);
             LogarMensagem(string.Format(
                 GetLocationsResourceText("Form1LocationsGoingToFormat"),
                 location.Name ?? "",
@@ -930,10 +957,117 @@ namespace WildTerraDashboard
                 z));
         }
 
+        private void EnsureLocationsGoTimer()
+        {
+            if (_locationGoTimer != null) return;
+
+            _locationGoTimer = new Timer();
+            _locationGoTimer.Interval = LOCATION_GO_TIMER_INTERVAL_MS;
+            _locationGoTimer.Tick += LocationGoTimer_Tick;
+        }
+
+        private void StartLocationGo(DashboardLocationEntry location)
+        {
+            if (location == null) return;
+
+            EnsureLocationsGoTimer();
+            _locationGoTargetName = location.Name ?? "";
+            _locationGoTargetX = location.X;
+            _locationGoTargetZ = location.Z;
+            _locationGoStartedAt = DateTime.Now;
+            _locationGoActive = true;
+
+            SendLocationGoMove();
+            _locationGoTimer.Start();
+        }
+
+        private void StopLocationGo()
+        {
+            _locationGoActive = false;
+            if (_locationGoTimer != null) _locationGoTimer.Stop();
+        }
+
+        private void LocationGoTimer_Tick(object sender, EventArgs e)
+        {
+            if (!_locationGoActive)
+            {
+                StopLocationGo();
+                return;
+            }
+
+            if (!IsDashboardSyncedForLocationsGo())
+            {
+                StopLocationGo();
+                return;
+            }
+
+            if (HasActiveModeForLocationGo())
+            {
+                StopLocationGo();
+                return;
+            }
+
+            double dist = CalcularDistancia(
+                statsJogador.X,
+                statsJogador.Z,
+                (float)_locationGoTargetX,
+                (float)_locationGoTargetZ);
+            if (dist <= LOCATION_GO_ARRIVAL_DISTANCE)
+            {
+                StopLocationGo();
+                return;
+            }
+
+            if ((DateTime.Now - _locationGoStartedAt).TotalSeconds >= LOCATION_GO_TIMEOUT_SECONDS)
+            {
+                StopLocationGo();
+                return;
+            }
+
+            SendLocationGoMove();
+        }
+
+        private void SendLocationGoMove()
+        {
+            string x = _locationGoTargetX.ToString(CultureInfo.InvariantCulture);
+            string z = _locationGoTargetZ.ToString(CultureInfo.InvariantCulture);
+            EnviarComandoJogo($"MOVE;{x};{z}");
+        }
+
+        private bool HasActiveModeForLocationGo()
+        {
+            return (botMovimento != null && botMovimento.IsRodando)
+                || isFishingRunning
+                || IsTrainingModeActive
+                || (botCura != null && botCura.IsAtivo)
+                || (botTaming != null && botTaming.IsAtivo);
+        }
+
         private bool IsDashboardUiPortuguese()
         {
             string harvestTabText = (tabPage1?.Text ?? "").Trim();
             return string.Equals(harvestTabText, "Coleta", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool IsDashboardSyncedForLocationsGo()
+        {
+            if (btnConnect == null) return false;
+
+            string current = (btnConnect.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(current)) return false;
+
+            var candidates = new List<string>
+            {
+                Properties.Resources.Form1ButtonSynced ?? "",
+                Properties.Resources.ResourceManager.GetString("Form1ButtonSynced", CultureInfo.InvariantCulture) ?? "",
+                Properties.Resources.ResourceManager.GetString("Form1ButtonSynced", new CultureInfo("pt-BR")) ?? "",
+                "Synced",
+                "Sincronizado"
+            };
+
+            return candidates
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Any(s => string.Equals(current, s.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         private string GetLocationsTabText()
@@ -2224,6 +2358,7 @@ namespace WildTerraDashboard
 
             try { if (watchdogTimer != null) watchdogTimer.Stop(); } catch { }
             try { if (restartTimer != null) restartTimer.Stop(); } catch { }
+            try { StopLocationGo(); } catch { }
 
             if (rede != null) rede.Parar();
             if (enviadorUDP != null) enviadorUDP.Close();
