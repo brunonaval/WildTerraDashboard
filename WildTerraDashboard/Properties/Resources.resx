@@ -633,4 +633,13 @@
   <data name="RadarTypePlayer" xml:space="preserve">
     <value>Player</value>
   </data>
+  <data name="Form1ContextAddToDrop" xml:space="preserve">
+    <value>Add to Drop</value>
+  </data>
+  <data name="Form1ContextAddToFood" xml:space="preserve">
+    <value>Add to Food</value>
+  </data>
+  <data name="Form1ContextAddToSafeList" xml:space="preserve">
+    <value>Add to Safe List</value>
+  </data>
 </root>

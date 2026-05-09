@@ -210,6 +210,7 @@ namespace WildTerraDashboard
             InitializeTamingModule();
             InitializeTrainingModule();
             InitializeInspectModule();
+            InitializeBagContextMenu();
 
 
         }
@@ -609,6 +610,80 @@ namespace WildTerraDashboard
         private void ChkUseMount_CheckedChanged(object sender, EventArgs e)
         {
             if (botMontaria != null) botMontaria.AtualizarConfig(chkUseMount.Checked);
+        }
+
+        private void InitializeBagContextMenu()
+        {
+            if (listViewBag == null) return;
+
+            var cms = new ContextMenuStrip();
+            var miDrop = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToDrop);
+            var miFood = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToFood);
+            var miSafe = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToSafeList);
+
+            miDrop.Click += (s, e) => AddSelectedBagItemToDrop();
+            miFood.Click += (s, e) => AddSelectedBagItemToFood();
+            miSafe.Click += (s, e) => AddSelectedBagItemToSafeList();
+
+            cms.Items.Add(miDrop);
+            cms.Items.Add(miFood);
+            cms.Items.Add(miSafe);
+
+            listViewBag.ContextMenuStrip = cms;
+            listViewBag.MouseDown += ListViewBag_MouseDown;
+        }
+
+        private void ListViewBag_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right || listViewBag == null) return;
+            var hit = listViewBag.HitTest(e.Location);
+            if (hit == null || hit.Item == null) return;
+            if (!hit.Item.Selected)
+            {
+                listViewBag.SelectedItems.Clear();
+                hit.Item.Selected = true;
+            }
+        }
+
+        private string GetSelectedBagItemName()
+        {
+            if (listViewBag == null) return "";
+            if (listViewBag.SelectedItems == null || listViewBag.SelectedItems.Count == 0) return "";
+            return (listViewBag.SelectedItems[0].Text ?? "").Trim();
+        }
+
+        private void AddSelectedBagItemToDrop()
+        {
+            AppendUniqueLine(txtDropList, GetSelectedBagItemName());
+        }
+
+        private void AddSelectedBagItemToFood()
+        {
+            AppendUniqueLine(txtAutoEat, GetSelectedBagItemName());
+        }
+
+        private void AddSelectedBagItemToSafeList()
+        {
+            AppendUniqueLine(txtSafeList, GetSelectedBagItemName());
+        }
+
+        private void AppendUniqueLine(TextBox target, string value)
+        {
+            if (target == null) return;
+            if (string.IsNullOrWhiteSpace(value)) return;
+
+            string normalizedValue = value.Trim();
+            var lines = (target.Text ?? "")
+                .Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)
+                .Select(l => l.Trim())
+                .Where(l => l.Length > 0)
+                .ToList();
+
+            if (lines.Any(l => string.Equals(l, normalizedValue, StringComparison.OrdinalIgnoreCase)))
+                return;
+
+            lines.Add(normalizedValue);
+            target.Text = string.Join(Environment.NewLine, lines);
         }
 
         // --- CONFIGURAÇÃO E PERSISTÊNCIA (BANCO) ---
