@@ -296,6 +296,7 @@ namespace WildTerraDashboard
                 if (txtAutoEat != null) dict["txtAutoEat"] = txtAutoEat.Text ?? "";
                 var txtAutoEatStatus = GetAutoEatStatusTextBox();
                 if (txtAutoEatStatus != null) dict["txtAutoEatStatus"] = txtAutoEatStatus.Text ?? "";
+                if (numEatThreshold != null) dict["numEatThreshold"] = numEatThreshold.Value.ToString();
                 if (txtRodName != null) dict["txtRodName"] = txtRodName.Text ?? "";
                 if (txtBaitName != null) dict["txtBaitName"] = txtBaitName.Text ?? "";
 
@@ -327,6 +328,15 @@ namespace WildTerraDashboard
                 if (txtAutoEat != null && dict.TryGetValue("txtAutoEat", out var v6)) txtAutoEat.Text = v6 ?? "";
                 var txtAutoEatStatus = GetAutoEatStatusTextBox();
                 if (txtAutoEatStatus != null && dict.TryGetValue("txtAutoEatStatus", out var v6b)) txtAutoEatStatus.Text = v6b ?? "";
+                if (numEatThreshold != null && dict.TryGetValue("numEatThreshold", out var v6c))
+                {
+                    if (decimal.TryParse(v6c, out var eatThreshold))
+                    {
+                        if (eatThreshold < numEatThreshold.Minimum) eatThreshold = numEatThreshold.Minimum;
+                        if (eatThreshold > numEatThreshold.Maximum) eatThreshold = numEatThreshold.Maximum;
+                        numEatThreshold.Value = eatThreshold;
+                    }
+                }
                 if (txtRodName != null && dict.TryGetValue("txtRodName", out var v7)) txtRodName.Text = v7 ?? "";
                 if (txtBaitName != null && dict.TryGetValue("txtBaitName", out var v8)) txtBaitName.Text = v8 ?? "";
             }
@@ -1317,6 +1327,7 @@ namespace WildTerraDashboard
             SalvarConfigBanco();
             SalvarListaLixo();
             SalvarListaComer();
+            SalvarListaComerStatus();
             SaveTrainingUi();
 
             base.OnFormClosing(e);
