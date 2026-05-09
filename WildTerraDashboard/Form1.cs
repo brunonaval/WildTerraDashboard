@@ -62,6 +62,7 @@ namespace WildTerraDashboard
         private Label lblLocationName;
         private Label lblLocationX;
         private Label lblLocationZ;
+        private Button btnRespawn;
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -232,6 +233,7 @@ namespace WildTerraDashboard
             InitializeBagContextMenu();
             InitializeRadarContextMenu();
             InitializeLocationsModule();
+            InitializeRespawnButton();
 
 
         }
@@ -2426,6 +2428,51 @@ namespace WildTerraDashboard
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
+
+        private string GetResourceTextOrDefault(string key, string fallback)
+        {
+            try
+            {
+                string value = Properties.Resources.ResourceManager.GetString(key, CultureInfo.CurrentUICulture);
+                if (!string.IsNullOrWhiteSpace(value)) return value;
+            }
+            catch
+            {
+            }
+
+            return fallback;
+        }
+
+        private void InitializeRespawnButton()
+        {
+            if (btnTestMount == null) return;
+
+            Control parent = btnTestMount.Parent ?? this;
+            if (parent.Controls.ContainsKey("btnRespawn")) return;
+
+            string buttonText = GetResourceTextOrDefault("Form1ButtonRespawn", "Respawn");
+
+            btnRespawn = new Button
+            {
+                Name = "btnRespawn",
+                Text = buttonText,
+                Size = btnTestMount.Size,
+                Anchor = btnTestMount.Anchor,
+                Location = new Point(btnTestMount.Right + 8, btnTestMount.Top),
+                BackColor = btnTestMount.BackColor,
+                ForeColor = btnTestMount.ForeColor,
+                UseVisualStyleBackColor = btnTestMount.UseVisualStyleBackColor
+            };
+            btnRespawn.Click += BtnRespawn_Click;
+            parent.Controls.Add(btnRespawn);
+            btnRespawn.BringToFront();
+        }
+
+        private void BtnRespawn_Click(object sender, EventArgs e)
+        {
+            EnviarComandoJogo("RESPAWN");
+            LogarMensagem(GetResourceTextOrDefault("Form1LogRespawnSent", "RESPAWN command sent."));
+        }
 
         // --- BOTÃO DE TESTE DE MONTARIA ---
         private void btnTestMount_Click(object sender, EventArgs e)

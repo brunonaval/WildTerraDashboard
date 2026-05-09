@@ -339,6 +339,9 @@
   <data name="Form1ButtonSynced" xml:space="preserve">
     <value>Synced</value>
   </data>
+  <data name="Form1ButtonRespawn" xml:space="preserve">
+    <value>Respawn</value>
+  </data>
   <data name="Form1CoordXFormat" xml:space="preserve">
     <value>X: {0}</value>
   </data>
@@ -428,6 +431,9 @@
   </data>
   <data name="Form1LogSendingManualMountCommand" xml:space="preserve">
     <value>[TEST] Sending manual mount command...</value>
+  </data>
+  <data name="Form1LogRespawnSent" xml:space="preserve">
+    <value>RESPAWN command sent.</value>
   </data>
   <data name="Form1LogHealWeaponNameRequired" xml:space="preserve">
     <value>[HEAL] Enter the heal weapon name.</value>

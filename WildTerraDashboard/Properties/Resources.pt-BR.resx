@@ -136,6 +136,9 @@
   <data name="Form1ButtonSynced" xml:space="preserve">
     <value>Sincronizado</value>
   </data>
+  <data name="Form1ButtonRespawn" xml:space="preserve">
+    <value>Renascer</value>
+  </data>
   <data name="Form1CoordXFormat" xml:space="preserve">
     <value>X: {0}</value>
   </data>
@@ -225,6 +228,9 @@
   </data>
   <data name="Form1LogSendingManualMountCommand" xml:space="preserve">
     <value>[TESTE] Enviando comando de Montar manual...</value>
+  </data>
+  <data name="Form1LogRespawnSent" xml:space="preserve">
+    <value>Comando RESPAWN enviado.</value>
   </data>
   <data name="Form1LogHealWeaponNameRequired" xml:space="preserve">
     <value>[CURA] Informe o nome da arma de cura.</value>
