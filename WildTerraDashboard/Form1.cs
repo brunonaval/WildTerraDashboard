@@ -182,7 +182,8 @@ namespace WildTerraDashboard
 
             if (chkAtivarHunt != null) chkAtivarHunt.CheckedChanged += (s, e) =>
             {
-                botCaçador.IsAtivo = chkAtivarHunt.Checked;
+                if (botCaçador != null) botCaçador.IsAtivo = chkAtivarHunt.Checked;
+                if (_isLoadingUiText) return;
                 LogarMensagem(string.Format(
                     Properties.Resources.Form1LogHunterStatusFormat,
                     botCaçador.IsAtivo ? "ON" : "OFF"));
@@ -293,6 +294,7 @@ namespace WildTerraDashboard
                 if (txtSafeList != null) dict["txtSafeList"] = txtSafeList.Text ?? "";
                 if (txtWeaponName != null) dict["txtWeaponName"] = txtWeaponName.Text ?? "";
                 if (txtListaMobs != null) dict["txtListaMobs"] = txtListaMobs.Text ?? "";
+                if (chkAtivarHunt != null) dict["chkAtivarHunt"] = chkAtivarHunt.Checked ? "true" : "false";
                 if (txtAutoEat != null) dict["txtAutoEat"] = txtAutoEat.Text ?? "";
                 var txtAutoEatStatus = GetAutoEatStatusTextBox();
                 if (txtAutoEatStatus != null) dict["txtAutoEatStatus"] = txtAutoEatStatus.Text ?? "";
@@ -325,6 +327,11 @@ namespace WildTerraDashboard
                 if (txtSafeList != null && dict.TryGetValue("txtSafeList", out var v3)) txtSafeList.Text = v3 ?? "";
                 if (txtWeaponName != null && dict.TryGetValue("txtWeaponName", out var v4)) txtWeaponName.Text = v4 ?? "";
                 if (txtListaMobs != null && dict.TryGetValue("txtListaMobs", out var v5)) txtListaMobs.Text = v5 ?? "";
+                if (chkAtivarHunt != null && dict.TryGetValue("chkAtivarHunt", out var v5b))
+                {
+                    if (bool.TryParse(v5b, out var huntEnabled))
+                        chkAtivarHunt.Checked = huntEnabled;
+                }
                 if (txtAutoEat != null && dict.TryGetValue("txtAutoEat", out var v6)) txtAutoEat.Text = v6 ?? "";
                 var txtAutoEatStatus = GetAutoEatStatusTextBox();
                 if (txtAutoEatStatus != null && dict.TryGetValue("txtAutoEatStatus", out var v6b)) txtAutoEatStatus.Text = v6b ?? "";
