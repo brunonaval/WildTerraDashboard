@@ -141,6 +141,8 @@ namespace WildTerraDashboard
             botColeta = new BotHarvest();
             botMontaria = new BotMount();
             botCaçador = new BotHunter();
+            if (chkAtivarHunt != null && botCaçador != null)
+                botCaçador.IsAtivo = chkAtivarHunt.Checked;
 
             // 3. LIGAÇÃO DE EVENTOS DE REDE
             rede.OnPacoteRecebido += Rede_OnPacoteRecebido;
