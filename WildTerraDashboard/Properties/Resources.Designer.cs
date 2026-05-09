@@ -207,6 +207,60 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1LocationsAdd {
+            get {
+                return ResourceManager.GetString("Form1LocationsAdd", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsDelete {
+            get {
+                return ResourceManager.GetString("Form1LocationsDelete", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsInvalidCoordinates {
+            get {
+                return ResourceManager.GetString("Form1LocationsInvalidCoordinates", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsName {
+            get {
+                return ResourceManager.GetString("Form1LocationsName", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsNameRequired {
+            get {
+                return ResourceManager.GetString("Form1LocationsNameRequired", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsSelectToDelete {
+            get {
+                return ResourceManager.GetString("Form1LocationsSelectToDelete", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsX {
+            get {
+                return ResourceManager.GetString("Form1LocationsX", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsZ {
+            get {
+                return ResourceManager.GetString("Form1LocationsZ", resourceCulture);
+            }
+        }
+
+        internal static string Form1TabLocations {
+            get {
+                return ResourceManager.GetString("Form1TabLocations", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Error: {0}.
         /// </summary>

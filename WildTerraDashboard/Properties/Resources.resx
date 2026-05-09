@@ -648,4 +648,31 @@
   <data name="Form1ContextAddToHuntList" xml:space="preserve">
     <value>Add to Hunt List</value>
   </data>
+  <data name="Form1TabLocations" xml:space="preserve">
+    <value>Locations</value>
+  </data>
+  <data name="Form1LocationsName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Form1LocationsX" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="Form1LocationsZ" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="Form1LocationsAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Form1LocationsDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Form1LocationsInvalidCoordinates" xml:space="preserve">
+    <value>Invalid coordinates.</value>
+  </data>
+  <data name="Form1LocationsNameRequired" xml:space="preserve">
+    <value>Location name is required.</value>
+  </data>
+  <data name="Form1LocationsSelectToDelete" xml:space="preserve">
+    <value>Select a location to delete.</value>
+  </data>
 </root>
