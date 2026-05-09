@@ -44,6 +44,8 @@ namespace WildTerraDashboard
         private int _ultimoThresholdEnviado = -1;
         private bool _ultimoEstadoMountEnviado = false;
         private bool isFishingRunning = false; // Controle de Pesca
+        private string _bagContextItemName = "";
+        private string _radarContextEntityName = "";
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -629,6 +631,13 @@ namespace WildTerraDashboard
             cms.Items.Add(miDrop);
             cms.Items.Add(miFood);
             cms.Items.Add(miSafe);
+            cms.Opening += (s, e) =>
+            {
+                bool hasItem = !string.IsNullOrWhiteSpace(_bagContextItemName);
+                miDrop.Enabled = hasItem;
+                miFood.Enabled = hasItem;
+                miSafe.Enabled = hasItem;
+            };
 
             listViewBag.ContextMenuStrip = cms;
             listViewBag.MouseDown += ListViewBag_MouseDown;
@@ -638,34 +647,38 @@ namespace WildTerraDashboard
         {
             if (e.Button != MouseButtons.Right || listViewBag == null) return;
             var hit = listViewBag.HitTest(e.Location);
-            if (hit == null || hit.Item == null) return;
+            if (hit == null || hit.Item == null)
+            {
+                _bagContextItemName = "";
+                return;
+            }
             if (!hit.Item.Selected)
             {
                 listViewBag.SelectedItems.Clear();
                 hit.Item.Selected = true;
             }
+            _bagContextItemName = GetBagItemName(hit.Item);
         }
 
-        private string GetSelectedBagItemName()
+        private string GetBagItemName(ListViewItem item)
         {
-            if (listViewBag == null) return "";
-            if (listViewBag.SelectedItems == null || listViewBag.SelectedItems.Count == 0) return "";
-            return (listViewBag.SelectedItems[0].Text ?? "").Trim();
+            if (item == null) return "";
+            return (item.Text ?? "").Trim();
         }
 
         private void AddSelectedBagItemToDrop()
         {
-            AppendUniqueLine(txtDropList, GetSelectedBagItemName());
+            AppendUniqueLine(txtDropList, _bagContextItemName);
         }
 
         private void AddSelectedBagItemToFood()
         {
-            AppendUniqueLine(txtAutoEat, GetSelectedBagItemName());
+            AppendUniqueLine(txtAutoEat, _bagContextItemName);
         }
 
         private void AddSelectedBagItemToSafeList()
         {
-            AppendUniqueLine(txtSafeList, GetSelectedBagItemName());
+            AppendUniqueLine(txtSafeList, _bagContextItemName);
         }
 
         private void InitializeRadarContextMenu()
@@ -681,6 +694,12 @@ namespace WildTerraDashboard
 
             cms.Items.Add(miHarvest);
             cms.Items.Add(miHunt);
+            cms.Opening += (s, e) =>
+            {
+                bool hasItem = !string.IsNullOrWhiteSpace(_radarContextEntityName);
+                miHarvest.Enabled = hasItem;
+                miHunt.Enabled = hasItem;
+            };
 
             listView1.ContextMenuStrip = cms;
             listView1.MouseDown += ListView1_MouseDown;
@@ -690,34 +709,36 @@ namespace WildTerraDashboard
         {
             if (e.Button != MouseButtons.Right || listView1 == null) return;
             var hit = listView1.HitTest(e.Location);
-            if (hit == null || hit.Item == null) return;
+            if (hit == null || hit.Item == null)
+            {
+                _radarContextEntityName = "";
+                return;
+            }
             if (!hit.Item.Selected)
             {
                 listView1.SelectedItems.Clear();
                 hit.Item.Selected = true;
             }
+            _radarContextEntityName = GetRadarEntityName(hit.Item);
         }
 
-        private string GetSelectedRadarEntityName()
+        private string GetRadarEntityName(ListViewItem item)
         {
-            if (listView1 == null) return "";
-            if (listView1.SelectedItems == null || listView1.SelectedItems.Count == 0) return "";
+            if (item == null) return "";
+            if (item.SubItems != null && item.SubItems.Count >= 3)
+                return (item.SubItems[2].Text ?? "").Trim();
 
-            var selected = listView1.SelectedItems[0];
-            if (selected.SubItems != null && selected.SubItems.Count >= 3)
-                return (selected.SubItems[2].Text ?? "").Trim();
-
-            return (selected.Text ?? "").Trim();
+            return (item.Text ?? "").Trim();
         }
 
         private void AddSelectedRadarEntityToHarvestList()
         {
-            AppendUniqueLine(txtListaColeta, GetSelectedRadarEntityName());
+            AppendUniqueLine(txtListaColeta, _radarContextEntityName);
         }
 
         private void AddSelectedRadarEntityToHuntList()
         {
-            AppendUniqueLine(txtListaMobs, GetSelectedRadarEntityName());
+            AppendUniqueLine(txtListaMobs, _radarContextEntityName);
         }
 
         private void AppendUniqueLine(TextBox target, string value)
