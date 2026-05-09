@@ -648,4 +648,46 @@
   <data name="Form1ContextAddToHuntList" xml:space="preserve">
     <value>Add to Hunt List</value>
   </data>
+  <data name="Form1TabLocations" xml:space="preserve">
+    <value>Locations</value>
+  </data>
+  <data name="Form1LocationsName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Form1LocationsX" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="Form1LocationsZ" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="Form1LocationsAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Form1LocationsDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Form1LocationsInvalidCoordinates" xml:space="preserve">
+    <value>Invalid coordinates.</value>
+  </data>
+  <data name="Form1LocationsNameRequired" xml:space="preserve">
+    <value>Location name is required.</value>
+  </data>
+  <data name="Form1LocationsSelectToDelete" xml:space="preserve">
+    <value>Select a location to delete.</value>
+  </data>
+  <data name="Form1LocationsGo" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Form1LocationsSelectToGo" xml:space="preserve">
+    <value>Select a location to go.</value>
+  </data>
+  <data name="Form1LocationsGoRequiresConnection" xml:space="preserve">
+    <value>Connect before using Go.</value>
+  </data>
+  <data name="Form1LocationsGoBlockedByActiveMode" xml:space="preserve">
+    <value>Stop active bot modes before using Go.</value>
+  </data>
+  <data name="Form1LocationsGoingToFormat" xml:space="preserve">
+    <value>Going to {0} ({1}, {2}).</value>
+  </data>
 </root>

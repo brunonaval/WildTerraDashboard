@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using System.Globalization;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
@@ -48,6 +49,19 @@ namespace WildTerraDashboard
         private string _radarContextEntityName = "";
         private string _lastRadarListSnapshot = "";
         private string _lastBagListSnapshot = "";
+        private readonly string _locationsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "locations.json");
+        private List<DashboardLocationEntry> _savedLocations = new List<DashboardLocationEntry>();
+        private TabPage tabLocations;
+        private ListView listViewLocations;
+        private TextBox txtLocationName;
+        private TextBox txtLocationX;
+        private TextBox txtLocationZ;
+        private Button btnAddLocation;
+        private Button btnDeleteLocation;
+        private Button btnGoLocation;
+        private Label lblLocationName;
+        private Label lblLocationX;
+        private Label lblLocationZ;
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -135,6 +149,7 @@ namespace WildTerraDashboard
             CarregarListaComerStatus();      // compat (txtAutoEatStatus)
             CarregarTextboxesSelecionadas(); // preferencial (sobrescreve se existir)
             CarregarDashboardProfileV1();    // consolidado v1 (sobrescreve legados se existir)
+            LoadLocations();                 // locations (fase 4.1A)
 
             // 1. INICIALIZAÇÃO DE DADOS E REDE (Primeiro)
             statsJogador = new PlayerStats();
@@ -216,6 +231,7 @@ namespace WildTerraDashboard
             InitializeInspectModule();
             InitializeBagContextMenu();
             InitializeRadarContextMenu();
+            InitializeLocationsModule();
 
 
         }
@@ -581,6 +597,459 @@ namespace WildTerraDashboard
             {
                 _isLoadingUiText = false;
             }
+        }
+
+        private void LoadLocations()
+        {
+            try
+            {
+                if (!File.Exists(_locationsFile))
+                {
+                    _savedLocations = new List<DashboardLocationEntry>();
+                    return;
+                }
+
+                string json = File.ReadAllText(_locationsFile, Encoding.UTF8);
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    _savedLocations = new List<DashboardLocationEntry>();
+                    return;
+                }
+
+                var serializer = new JavaScriptSerializer();
+                var file = serializer.Deserialize<DashboardLocationsFile>(json);
+                if (file == null || file.Version != 1 || file.Locations == null)
+                {
+                    _savedLocations = new List<DashboardLocationEntry>();
+                    return;
+                }
+
+                _savedLocations = file.Locations
+                    .Select(l => new DashboardLocationEntry
+                    {
+                        Name = l?.Name ?? "",
+                        X = l?.X ?? 0m,
+                        Z = l?.Z ?? 0m
+                    })
+                    .ToList();
+            }
+            catch
+            {
+                _savedLocations = new List<DashboardLocationEntry>();
+            }
+        }
+
+        private void SaveLocations()
+        {
+            try
+            {
+                var payload = new DashboardLocationsFile
+                {
+                    Version = 1,
+                    SavedAtUtc = DateTime.UtcNow.ToString("o"),
+                    Locations = (_savedLocations ?? new List<DashboardLocationEntry>())
+                        .Select(l => new DashboardLocationEntry
+                        {
+                            Name = l?.Name ?? "",
+                            X = l?.X ?? 0m,
+                            Z = l?.Z ?? 0m
+                        })
+                        .ToList()
+                };
+
+                var serializer = new JavaScriptSerializer();
+                string json = serializer.Serialize(payload);
+                File.WriteAllText(_locationsFile, json, Encoding.UTF8);
+            }
+            catch
+            {
+            }
+        }
+
+        private void InitializeLocationsModule()
+        {
+            if (tabControl1 == null) return;
+            if (tabControl1.TabPages.ContainsKey("tabLocations"))
+            {
+                tabLocations = tabControl1.TabPages["tabLocations"];
+                return;
+            }
+
+            string tabText = GetLocationsTabText();
+            string nameHeaderText = GetLocationsResourceText("Form1LocationsName");
+            string xHeaderText = GetLocationsResourceText("Form1LocationsX");
+            string zHeaderText = GetLocationsResourceText("Form1LocationsZ");
+            string addButtonText = GetLocationsResourceText("Form1LocationsAdd");
+            string deleteButtonText = GetLocationsResourceText("Form1LocationsDelete");
+            string goButtonText = GetLocationsResourceText("Form1LocationsGo");
+
+            tabLocations = new TabPage
+            {
+                Name = "tabLocations",
+                Text = tabText,
+                UseVisualStyleBackColor = true
+            };
+
+            listViewLocations = new ListView
+            {
+                Name = "listViewLocations",
+                View = View.Details,
+                FullRowSelect = true,
+                GridLines = true,
+                HideSelection = false,
+                Location = new Point(16, 70),
+                Size = new Size(700, 320),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
+            };
+            listViewLocations.Columns.Clear();
+            listViewLocations.Columns.Add(nameHeaderText, 300);
+            listViewLocations.Columns.Add(xHeaderText, 180);
+            listViewLocations.Columns.Add(zHeaderText, 180);
+            listViewLocations.Resize += (s, e) => ResizeLocationsColumns();
+
+            lblLocationName = new Label
+            {
+                Name = "lblLocationName",
+                Text = nameHeaderText,
+                AutoSize = true,
+                Location = new Point(16, 16)
+            };
+
+            txtLocationName = new TextBox
+            {
+                Name = "txtLocationName",
+                Location = new Point(16, 36),
+                Size = new Size(170, 22),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+
+            lblLocationX = new Label
+            {
+                Name = "lblLocationX",
+                Text = xHeaderText,
+                AutoSize = true,
+                Location = new Point(196, 16)
+            };
+
+            txtLocationX = new TextBox
+            {
+                Name = "txtLocationX",
+                Location = new Point(196, 36),
+                Size = new Size(90, 22),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+
+            lblLocationZ = new Label
+            {
+                Name = "lblLocationZ",
+                Text = zHeaderText,
+                AutoSize = true,
+                Location = new Point(296, 16)
+            };
+
+            txtLocationZ = new TextBox
+            {
+                Name = "txtLocationZ",
+                Location = new Point(296, 36),
+                Size = new Size(90, 22),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+
+            btnAddLocation = new Button
+            {
+                Name = "btnAddLocation",
+                Text = addButtonText,
+                Location = new Point(392, 34),
+                Size = new Size(88, 26),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+            btnAddLocation.Click += BtnAddLocation_Click;
+
+            btnDeleteLocation = new Button
+            {
+                Name = "btnDeleteLocation",
+                Text = deleteButtonText,
+                Location = new Point(486, 34),
+                Size = new Size(88, 26),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+            btnDeleteLocation.Click += BtnDeleteLocation_Click;
+
+            btnGoLocation = new Button
+            {
+                Name = "btnGoLocation",
+                Text = goButtonText,
+                Location = new Point(580, 34),
+                Size = new Size(72, 26),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+            btnGoLocation.Click += BtnGoLocation_Click;
+
+            tabLocations.Controls.Add(lblLocationName);
+            tabLocations.Controls.Add(txtLocationName);
+            tabLocations.Controls.Add(lblLocationX);
+            tabLocations.Controls.Add(txtLocationX);
+            tabLocations.Controls.Add(lblLocationZ);
+            tabLocations.Controls.Add(txtLocationZ);
+            tabLocations.Controls.Add(btnAddLocation);
+            tabLocations.Controls.Add(btnDeleteLocation);
+            tabLocations.Controls.Add(btnGoLocation);
+            tabLocations.Controls.Add(listViewLocations);
+            tabLocations.Resize += (s, e) => AdjustLocationsListBounds();
+
+            tabControl1.TabPages.Add(tabLocations);
+            AdjustLocationsListBounds();
+            ResizeLocationsColumns();
+            RefreshLocationsList();
+        }
+
+        private void RefreshLocationsList()
+        {
+            if (listViewLocations == null) return;
+
+            listViewLocations.BeginUpdate();
+            try
+            {
+                listViewLocations.Items.Clear();
+                foreach (var location in _savedLocations ?? Enumerable.Empty<DashboardLocationEntry>())
+                {
+                    var lvi = new ListViewItem((location?.Name ?? "").Trim());
+                    lvi.SubItems.Add((location?.X ?? 0m).ToString(CultureInfo.InvariantCulture));
+                    lvi.SubItems.Add((location?.Z ?? 0m).ToString(CultureInfo.InvariantCulture));
+                    lvi.Tag = location;
+                    listViewLocations.Items.Add(lvi);
+                }
+            }
+            finally
+            {
+                listViewLocations.EndUpdate();
+            }
+
+            ResizeLocationsColumns();
+        }
+
+        private void ResizeLocationsColumns()
+        {
+            if (listViewLocations == null || listViewLocations.Columns == null || listViewLocations.Columns.Count != 3) return;
+
+            int total = listViewLocations.ClientSize.Width;
+            if (total <= 0) total = listViewLocations.Width;
+            total = Math.Max(300, total - 2);
+
+            int nameWidth = Math.Max(120, (int)(total * 0.50));
+            int xWidth = Math.Max(60, (int)(total * 0.25));
+            int zWidth = total - nameWidth - xWidth;
+            if (zWidth < 60)
+            {
+                zWidth = 60;
+                xWidth = Math.Max(60, total - nameWidth - zWidth);
+                nameWidth = Math.Max(120, total - xWidth - zWidth);
+            }
+
+            // Z sempre recebe o restante final para eliminar sobra visual à direita.
+            zWidth = total - nameWidth - xWidth;
+            if (zWidth < 60) zWidth = 60;
+
+            listViewLocations.Columns[0].Width = nameWidth;
+            listViewLocations.Columns[1].Width = xWidth;
+            listViewLocations.Columns[2].Width = zWidth;
+        }
+
+        private void AdjustLocationsListBounds()
+        {
+            if (tabLocations == null || listViewLocations == null) return;
+
+            int left = listViewLocations.Left;
+            int top = listViewLocations.Top;
+            int rightMargin = 16;
+            int bottomMargin = 16;
+
+            int width = tabLocations.ClientSize.Width - left - rightMargin;
+            int height = tabLocations.ClientSize.Height - top - bottomMargin;
+
+            listViewLocations.Size = new Size(Math.Max(320, width), Math.Max(180, height));
+            ResizeLocationsColumns();
+        }
+
+        private bool TryReadLocationInputs(out DashboardLocationEntry entry)
+        {
+            entry = null;
+            string name = (txtLocationName?.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsNameRequired"));
+                return false;
+            }
+
+            string xTxt = (txtLocationX?.Text ?? "").Trim();
+            string zTxt = (txtLocationZ?.Text ?? "").Trim();
+            if (!decimal.TryParse(xTxt, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal x) ||
+                !decimal.TryParse(zTxt, NumberStyles.Float, CultureInfo.InvariantCulture, out decimal z))
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsInvalidCoordinates"));
+                return false;
+            }
+
+            entry = new DashboardLocationEntry
+            {
+                Name = name,
+                X = x,
+                Z = z
+            };
+            return true;
+        }
+
+        private void BtnAddLocation_Click(object sender, EventArgs e)
+        {
+            if (!TryReadLocationInputs(out DashboardLocationEntry entry)) return;
+
+            _savedLocations.Add(entry);
+            SaveLocations();
+            RefreshLocationsList();
+
+            if (txtLocationName != null) txtLocationName.Text = "";
+            if (txtLocationX != null) txtLocationX.Text = "";
+            if (txtLocationZ != null) txtLocationZ.Text = "";
+        }
+
+        private void BtnDeleteLocation_Click(object sender, EventArgs e)
+        {
+            if (listViewLocations == null || listViewLocations.SelectedItems == null || listViewLocations.SelectedItems.Count == 0)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToDelete"));
+                return;
+            }
+
+            var selectedItem = listViewLocations.SelectedItems[0];
+            var selectedLocation = selectedItem?.Tag as DashboardLocationEntry;
+            if (selectedLocation != null)
+            {
+                _savedLocations.Remove(selectedLocation);
+            }
+            else
+            {
+                int index = selectedItem?.Index ?? -1;
+                if (index < 0 || index >= _savedLocations.Count) return;
+                _savedLocations.RemoveAt(index);
+            }
+
+            SaveLocations();
+            RefreshLocationsList();
+        }
+
+        private void BtnGoLocation_Click(object sender, EventArgs e)
+        {
+            GoToSelectedLocation();
+        }
+
+        private void GoToSelectedLocation()
+        {
+            if (listViewLocations == null || listViewLocations.SelectedItems == null || listViewLocations.SelectedItems.Count == 0)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
+                return;
+            }
+
+            var selectedItem = listViewLocations.SelectedItems[0];
+            var location = selectedItem?.Tag as DashboardLocationEntry;
+            if (location == null)
+            {
+                int index = selectedItem?.Index ?? -1;
+                if (index < 0 || _savedLocations == null || index >= _savedLocations.Count)
+                {
+                    MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
+                    return;
+                }
+
+                location = _savedLocations[index];
+            }
+
+            bool connected = IsDashboardSyncedForLocationsGo();
+            if (!connected)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsGoRequiresConnection"));
+                return;
+            }
+
+            bool hasActiveMode = HasActiveModeForLocationGo();
+
+            if (hasActiveMode)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsGoBlockedByActiveMode"));
+                return;
+            }
+
+            string x = location.X.ToString(CultureInfo.InvariantCulture);
+            string z = location.Z.ToString(CultureInfo.InvariantCulture);
+            string mountFlag = (chkUseMount != null && chkUseMount.Checked) ? "ON" : "OFF";
+            EnviarComandoJogo($"LOCATION_GO;{x};{z};{mountFlag}");
+            LogarMensagem(string.Format(
+                GetLocationsResourceText("Form1LocationsGoingToFormat"),
+                location.Name ?? "",
+                x,
+                z));
+        }
+
+        private bool HasActiveModeForLocationGo()
+        {
+            return (botMovimento != null && botMovimento.IsRodando)
+                || isFishingRunning
+                || IsTrainingModeActive
+                || (botCura != null && botCura.IsAtivo)
+                || (botTaming != null && botTaming.IsAtivo);
+        }
+
+        private bool IsDashboardUiPortuguese()
+        {
+            string harvestTabText = (tabPage1?.Text ?? "").Trim();
+            return string.Equals(harvestTabText, "Coleta", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool IsDashboardSyncedForLocationsGo()
+        {
+            if (btnConnect == null) return false;
+
+            string current = (btnConnect.Text ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(current)) return false;
+
+            var candidates = new List<string>
+            {
+                Properties.Resources.Form1ButtonSynced ?? "",
+                Properties.Resources.ResourceManager.GetString("Form1ButtonSynced", CultureInfo.InvariantCulture) ?? "",
+                Properties.Resources.ResourceManager.GetString("Form1ButtonSynced", new CultureInfo("pt-BR")) ?? "",
+                "Synced",
+                "Sincronizado"
+            };
+
+            return candidates
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Any(s => string.Equals(current, s.Trim(), StringComparison.OrdinalIgnoreCase));
+        }
+
+        private string GetLocationsTabText()
+        {
+            string value = GetLocationsResourceText("Form1TabLocations");
+            return string.IsNullOrWhiteSpace(value) ? "Locations" : value;
+        }
+
+        private string GetLocationsResourceText(string resourceKey)
+        {
+            string value;
+            if (IsDashboardUiPortuguese())
+            {
+                value = Properties.Resources.ResourceManager.GetString(resourceKey, new CultureInfo("pt-BR"));
+            }
+            else
+            {
+                value = Properties.Resources.ResourceManager.GetString(resourceKey, CultureInfo.InvariantCulture);
+            }
+
+            if (!string.IsNullOrWhiteSpace(value)) return value;
+
+            string invariantValue = Properties.Resources.ResourceManager.GetString(resourceKey, CultureInfo.InvariantCulture);
+            if (!string.IsNullOrWhiteSpace(invariantValue)) return invariantValue;
+
+            return string.Empty;
         }
 
         private void SincronizarConfiguracoesCarregadasComBots()
@@ -1845,7 +2314,6 @@ namespace WildTerraDashboard
 
             try { if (watchdogTimer != null) watchdogTimer.Stop(); } catch { }
             try { if (restartTimer != null) restartTimer.Stop(); } catch { }
-
             if (rede != null) rede.Parar();
             if (enviadorUDP != null) enviadorUDP.Close();
 
@@ -1859,6 +2327,7 @@ namespace WildTerraDashboard
             SalvarListaComerStatus();
             SaveTrainingUi();
             SalvarDashboardProfileV1();
+            SaveLocations();
 
             base.OnFormClosing(e);
         }
@@ -1940,6 +2409,20 @@ namespace WildTerraDashboard
             public int ModeIndex { get; set; } = -1;
             public string TrapName { get; set; } = "";
             public string Targets { get; set; } = "";
+        }
+
+        private class DashboardLocationsFile
+        {
+            public int Version { get; set; } = 1;
+            public string SavedAtUtc { get; set; } = "";
+            public List<DashboardLocationEntry> Locations { get; set; } = new List<DashboardLocationEntry>();
+        }
+
+        private class DashboardLocationEntry
+        {
+            public string Name { get; set; } = "";
+            public decimal X { get; set; } = 0m;
+            public decimal Z { get; set; } = 0m;
         }
 
         private void Form1_Load(object sender, EventArgs e) { }

@@ -445,5 +445,47 @@
   <data name="Form1ContextAddToHuntList" xml:space="preserve">
     <value>Adicionar à Lista de Hunt</value>
   </data>
+  <data name="Form1TabLocations" xml:space="preserve">
+    <value>Localizações</value>
+  </data>
+  <data name="Form1LocationsName" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="Form1LocationsX" xml:space="preserve">
+    <value>X</value>
+  </data>
+  <data name="Form1LocationsZ" xml:space="preserve">
+    <value>Z</value>
+  </data>
+  <data name="Form1LocationsAdd" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="Form1LocationsDelete" xml:space="preserve">
+    <value>Excluir</value>
+  </data>
+  <data name="Form1LocationsInvalidCoordinates" xml:space="preserve">
+    <value>Coordenadas inválidas.</value>
+  </data>
+  <data name="Form1LocationsNameRequired" xml:space="preserve">
+    <value>Informe o nome da localização.</value>
+  </data>
+  <data name="Form1LocationsSelectToDelete" xml:space="preserve">
+    <value>Selecione uma localização para excluir.</value>
+  </data>
+  <data name="Form1LocationsGo" xml:space="preserve">
+    <value>Ir</value>
+  </data>
+  <data name="Form1LocationsSelectToGo" xml:space="preserve">
+    <value>Selecione uma localização para ir.</value>
+  </data>
+  <data name="Form1LocationsGoRequiresConnection" xml:space="preserve">
+    <value>Conecte antes de usar Ir.</value>
+  </data>
+  <data name="Form1LocationsGoBlockedByActiveMode" xml:space="preserve">
+    <value>Pare os modos ativos do bot antes de usar Ir.</value>
+  </data>
+  <data name="Form1LocationsGoingToFormat" xml:space="preserve">
+    <value>Indo para {0} ({1}, {2}).</value>
+  </data>
 </root>
 
