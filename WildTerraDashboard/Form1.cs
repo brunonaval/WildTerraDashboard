@@ -398,7 +398,8 @@ namespace WildTerraDashboard
                     Fishing = new DashboardFishingSection
                     {
                         RodName = txtRodName != null ? (txtRodName.Text ?? "") : "",
-                        BaitName = txtBaitName != null ? (txtBaitName.Text ?? "") : ""
+                        BaitName = txtBaitName != null ? (txtBaitName.Text ?? "") : "",
+                        SpotIndex = cmbFishingSpot != null ? cmbFishingSpot.SelectedIndex : -1
                     }
                 };
 
@@ -469,6 +470,12 @@ namespace WildTerraDashboard
                 {
                     if (txtRodName != null) txtRodName.Text = profile.Fishing.RodName ?? "";
                     if (txtBaitName != null) txtBaitName.Text = profile.Fishing.BaitName ?? "";
+                    if (cmbFishingSpot != null)
+                    {
+                        int idx = profile.Fishing.SpotIndex;
+                        if (idx >= 0 && idx < cmbFishingSpot.Items.Count)
+                            cmbFishingSpot.SelectedIndex = idx;
+                    }
                 }
             }
             catch { }
@@ -1534,6 +1541,7 @@ namespace WildTerraDashboard
         {
             public string RodName { get; set; } = "";
             public string BaitName { get; set; } = "";
+            public int SpotIndex { get; set; } = -1;
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
