@@ -211,6 +211,7 @@ namespace WildTerraDashboard
             InitializeTrainingModule();
             InitializeInspectModule();
             InitializeBagContextMenu();
+            InitializeRadarContextMenu();
 
 
         }
@@ -665,6 +666,58 @@ namespace WildTerraDashboard
         private void AddSelectedBagItemToSafeList()
         {
             AppendUniqueLine(txtSafeList, GetSelectedBagItemName());
+        }
+
+        private void InitializeRadarContextMenu()
+        {
+            if (listView1 == null) return;
+
+            var cms = new ContextMenuStrip();
+            var miHarvest = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToHarvestList);
+            var miHunt = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToHuntList);
+
+            miHarvest.Click += (s, e) => AddSelectedRadarEntityToHarvestList();
+            miHunt.Click += (s, e) => AddSelectedRadarEntityToHuntList();
+
+            cms.Items.Add(miHarvest);
+            cms.Items.Add(miHunt);
+
+            listView1.ContextMenuStrip = cms;
+            listView1.MouseDown += ListView1_MouseDown;
+        }
+
+        private void ListView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right || listView1 == null) return;
+            var hit = listView1.HitTest(e.Location);
+            if (hit == null || hit.Item == null) return;
+            if (!hit.Item.Selected)
+            {
+                listView1.SelectedItems.Clear();
+                hit.Item.Selected = true;
+            }
+        }
+
+        private string GetSelectedRadarEntityName()
+        {
+            if (listView1 == null) return "";
+            if (listView1.SelectedItems == null || listView1.SelectedItems.Count == 0) return "";
+
+            var selected = listView1.SelectedItems[0];
+            if (selected.SubItems != null && selected.SubItems.Count >= 3)
+                return (selected.SubItems[2].Text ?? "").Trim();
+
+            return (selected.Text ?? "").Trim();
+        }
+
+        private void AddSelectedRadarEntityToHarvestList()
+        {
+            AppendUniqueLine(txtListaColeta, GetSelectedRadarEntityName());
+        }
+
+        private void AddSelectedRadarEntityToHuntList()
+        {
+            AppendUniqueLine(txtListaMobs, GetSelectedRadarEntityName());
         }
 
         private void AppendUniqueLine(TextBox target, string value)

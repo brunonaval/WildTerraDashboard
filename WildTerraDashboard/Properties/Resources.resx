@@ -642,4 +642,10 @@
   <data name="Form1ContextAddToSafeList" xml:space="preserve">
     <value>Add to Safe List</value>
   </data>
+  <data name="Form1ContextAddToHarvestList" xml:space="preserve">
+    <value>Add to Harvest List</value>
+  </data>
+  <data name="Form1ContextAddToHuntList" xml:space="preserve">
+    <value>Add to Hunt List</value>
+  </data>
 </root>

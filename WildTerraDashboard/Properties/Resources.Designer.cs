@@ -183,9 +183,21 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1ContextAddToHarvestList {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToHarvestList", resourceCulture);
+            }
+        }
+
         internal static string Form1ContextAddToFood {
             get {
                 return ResourceManager.GetString("Form1ContextAddToFood", resourceCulture);
+            }
+        }
+
+        internal static string Form1ContextAddToHuntList {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToHuntList", resourceCulture);
             }
         }
 
