@@ -675,4 +675,19 @@
   <data name="Form1LocationsSelectToDelete" xml:space="preserve">
     <value>Select a location to delete.</value>
   </data>
+  <data name="Form1LocationsGo" xml:space="preserve">
+    <value>Go</value>
+  </data>
+  <data name="Form1LocationsSelectToGo" xml:space="preserve">
+    <value>Select a location to go.</value>
+  </data>
+  <data name="Form1LocationsGoRequiresConnection" xml:space="preserve">
+    <value>Connect before using Go.</value>
+  </data>
+  <data name="Form1LocationsGoBlockedByActiveMode" xml:space="preserve">
+    <value>Stop active bot modes before using Go.</value>
+  </data>
+  <data name="Form1LocationsGoingToFormat" xml:space="preserve">
+    <value>Going to {0} ({1}, {2}).</value>
+  </data>
 </root>

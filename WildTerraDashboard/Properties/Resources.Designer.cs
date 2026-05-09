@@ -219,6 +219,30 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1LocationsGo {
+            get {
+                return ResourceManager.GetString("Form1LocationsGo", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsGoBlockedByActiveMode {
+            get {
+                return ResourceManager.GetString("Form1LocationsGoBlockedByActiveMode", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsGoingToFormat {
+            get {
+                return ResourceManager.GetString("Form1LocationsGoingToFormat", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsGoRequiresConnection {
+            get {
+                return ResourceManager.GetString("Form1LocationsGoRequiresConnection", resourceCulture);
+            }
+        }
+
         internal static string Form1LocationsInvalidCoordinates {
             get {
                 return ResourceManager.GetString("Form1LocationsInvalidCoordinates", resourceCulture);
@@ -240,6 +264,12 @@ namespace WildTerraDashboard.Properties {
         internal static string Form1LocationsSelectToDelete {
             get {
                 return ResourceManager.GetString("Form1LocationsSelectToDelete", resourceCulture);
+            }
+        }
+
+        internal static string Form1LocationsSelectToGo {
+            get {
+                return ResourceManager.GetString("Form1LocationsSelectToGo", resourceCulture);
             }
         }
 

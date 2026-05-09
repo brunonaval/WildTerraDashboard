@@ -58,6 +58,7 @@ namespace WildTerraDashboard
         private TextBox txtLocationZ;
         private Button btnAddLocation;
         private Button btnDeleteLocation;
+        private Button btnGoLocation;
         private Label lblLocationName;
         private Label lblLocationX;
         private Label lblLocationZ;
@@ -680,6 +681,7 @@ namespace WildTerraDashboard
             string zHeaderText = GetLocationsResourceText("Form1LocationsZ");
             string addButtonText = GetLocationsResourceText("Form1LocationsAdd");
             string deleteButtonText = GetLocationsResourceText("Form1LocationsDelete");
+            string goButtonText = GetLocationsResourceText("Form1LocationsGo");
 
             tabLocations = new TabPage
             {
@@ -771,6 +773,16 @@ namespace WildTerraDashboard
             };
             btnDeleteLocation.Click += BtnDeleteLocation_Click;
 
+            btnGoLocation = new Button
+            {
+                Name = "btnGoLocation",
+                Text = goButtonText,
+                Location = new Point(724, 34),
+                Size = new Size(80, 26),
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+            btnGoLocation.Click += BtnGoLocation_Click;
+
             tabLocations.Controls.Add(lblLocationName);
             tabLocations.Controls.Add(txtLocationName);
             tabLocations.Controls.Add(lblLocationX);
@@ -779,6 +791,7 @@ namespace WildTerraDashboard
             tabLocations.Controls.Add(txtLocationZ);
             tabLocations.Controls.Add(btnAddLocation);
             tabLocations.Controls.Add(btnDeleteLocation);
+            tabLocations.Controls.Add(btnGoLocation);
             tabLocations.Controls.Add(listViewLocations);
 
             tabControl1.TabPages.Add(tabLocations);
@@ -862,6 +875,59 @@ namespace WildTerraDashboard
             _savedLocations.RemoveAt(index);
             SaveLocations();
             RefreshLocationsList();
+        }
+
+        private void BtnGoLocation_Click(object sender, EventArgs e)
+        {
+            GoToSelectedLocation();
+        }
+
+        private void GoToSelectedLocation()
+        {
+            if (listViewLocations == null || listViewLocations.SelectedIndices == null || listViewLocations.SelectedIndices.Count == 0)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
+                return;
+            }
+
+            int index = listViewLocations.SelectedIndices[0];
+            if (index < 0 || _savedLocations == null || index >= _savedLocations.Count)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
+                return;
+            }
+
+            bool connected = btnConnect != null &&
+                             string.Equals(btnConnect.Text, Properties.Resources.Form1ButtonSynced, StringComparison.Ordinal);
+            if (!connected)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsGoRequiresConnection"));
+                return;
+            }
+
+            bool hasActiveMode =
+                (botMovimento != null && botMovimento.IsRodando) ||
+                isFishingRunning ||
+                IsTrainingModeActive ||
+                (botCura != null && botCura.IsAtivo) ||
+                (botTaming != null && botTaming.IsAtivo);
+
+            if (hasActiveMode)
+            {
+                MessageBox.Show(GetLocationsResourceText("Form1LocationsGoBlockedByActiveMode"));
+                return;
+            }
+
+            DashboardLocationEntry location = _savedLocations[index];
+            string x = location.X.ToString(CultureInfo.InvariantCulture);
+            string z = location.Z.ToString(CultureInfo.InvariantCulture);
+
+            EnviarComandoJogo($"MOVE;{x};{z}");
+            LogarMensagem(string.Format(
+                GetLocationsResourceText("Form1LocationsGoingToFormat"),
+                location.Name ?? "",
+                x,
+                z));
         }
 
         private bool IsDashboardUiPortuguese()

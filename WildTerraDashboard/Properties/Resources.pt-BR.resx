@@ -472,5 +472,20 @@
   <data name="Form1LocationsSelectToDelete" xml:space="preserve">
     <value>Selecione uma localização para excluir.</value>
   </data>
+  <data name="Form1LocationsGo" xml:space="preserve">
+    <value>Ir</value>
+  </data>
+  <data name="Form1LocationsSelectToGo" xml:space="preserve">
+    <value>Selecione uma localização para ir.</value>
+  </data>
+  <data name="Form1LocationsGoRequiresConnection" xml:space="preserve">
+    <value>Conecte antes de usar Ir.</value>
+  </data>
+  <data name="Form1LocationsGoBlockedByActiveMode" xml:space="preserve">
+    <value>Pare os modos ativos do bot antes de usar Ir.</value>
+  </data>
+  <data name="Form1LocationsGoingToFormat" xml:space="preserve">
+    <value>Indo para {0} ({1}, {2}).</value>
+  </data>
 </root>
 
