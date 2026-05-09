@@ -400,6 +400,21 @@ namespace WildTerraDashboard
                         RodName = txtRodName != null ? (txtRodName.Text ?? "") : "",
                         BaitName = txtBaitName != null ? (txtBaitName.Text ?? "") : "",
                         SpotIndex = cmbFishingSpot != null ? cmbFishingSpot.SelectedIndex : -1
+                    },
+                    Heal = new DashboardHealSection
+                    {
+                        WeaponName = txtHealWeaponName != null ? (txtHealWeaponName.Text ?? "") : "",
+                        TargetModeIndex = cmbHealTargetMode != null ? cmbHealTargetMode.SelectedIndex : -1,
+                        Radius = numHealRadius != null ? Decimal.ToInt32(numHealRadius.Value) : 18,
+                        Skills = txtHealSkills != null ? (txtHealSkills.Text ?? "") : "",
+                        TargetNames = txtHealTargetNames != null ? (txtHealTargetNames.Text ?? "") : "",
+                        FollowHealEnabled = chkHealFollowTopTarget != null && chkHealFollowTopTarget.Checked,
+                        FollowSkill = txtHealFollowSkill != null ? (txtHealFollowSkill.Text ?? "") : "",
+                        FollowTargetHpPct = numHealFollowTargetHpPct != null ? Decimal.ToInt32(numHealFollowTargetHpPct.Value) : 75,
+                        FollowDistance = numHealFollowDistance != null ? numHealFollowDistance.Value : 4.5m,
+                        SelfRecoveryItems = txtHealSelfRecoveryItems != null ? (txtHealSelfRecoveryItems.Text ?? "") : "",
+                        SelfRecoveryHpPct = numHealSelfRecoveryHpPct != null ? Decimal.ToInt32(numHealSelfRecoveryHpPct.Value) : 40,
+                        SelfRecoveryResumeHpPct = numHealSelfRecoveryResumeHpPct != null ? Decimal.ToInt32(numHealSelfRecoveryResumeHpPct.Value) : 55
                     }
                 };
 
@@ -475,6 +490,64 @@ namespace WildTerraDashboard
                         int idx = profile.Fishing.SpotIndex;
                         if (idx >= 0 && idx < cmbFishingSpot.Items.Count)
                             cmbFishingSpot.SelectedIndex = idx;
+                    }
+                }
+
+                if (profile.Heal != null)
+                {
+                    if (txtHealWeaponName != null) txtHealWeaponName.Text = profile.Heal.WeaponName ?? "";
+                    if (cmbHealTargetMode != null)
+                    {
+                        int idx = profile.Heal.TargetModeIndex;
+                        if (idx >= 0 && idx < cmbHealTargetMode.Items.Count)
+                            cmbHealTargetMode.SelectedIndex = idx;
+                    }
+
+                    if (numHealRadius != null)
+                    {
+                        decimal val = profile.Heal.Radius;
+                        if (val < numHealRadius.Minimum) val = numHealRadius.Minimum;
+                        if (val > numHealRadius.Maximum) val = numHealRadius.Maximum;
+                        numHealRadius.Value = val;
+                    }
+
+                    if (txtHealSkills != null) txtHealSkills.Text = profile.Heal.Skills ?? "";
+                    if (txtHealTargetNames != null) txtHealTargetNames.Text = profile.Heal.TargetNames ?? "";
+                    if (chkHealFollowTopTarget != null) chkHealFollowTopTarget.Checked = profile.Heal.FollowHealEnabled;
+                    if (txtHealFollowSkill != null) txtHealFollowSkill.Text = profile.Heal.FollowSkill ?? "";
+
+                    if (numHealFollowTargetHpPct != null)
+                    {
+                        decimal val = profile.Heal.FollowTargetHpPct;
+                        if (val < numHealFollowTargetHpPct.Minimum) val = numHealFollowTargetHpPct.Minimum;
+                        if (val > numHealFollowTargetHpPct.Maximum) val = numHealFollowTargetHpPct.Maximum;
+                        numHealFollowTargetHpPct.Value = val;
+                    }
+
+                    if (numHealFollowDistance != null)
+                    {
+                        decimal val = profile.Heal.FollowDistance;
+                        if (val < numHealFollowDistance.Minimum) val = numHealFollowDistance.Minimum;
+                        if (val > numHealFollowDistance.Maximum) val = numHealFollowDistance.Maximum;
+                        numHealFollowDistance.Value = val;
+                    }
+
+                    if (txtHealSelfRecoveryItems != null) txtHealSelfRecoveryItems.Text = profile.Heal.SelfRecoveryItems ?? "";
+
+                    if (numHealSelfRecoveryHpPct != null)
+                    {
+                        decimal val = profile.Heal.SelfRecoveryHpPct;
+                        if (val < numHealSelfRecoveryHpPct.Minimum) val = numHealSelfRecoveryHpPct.Minimum;
+                        if (val > numHealSelfRecoveryHpPct.Maximum) val = numHealSelfRecoveryHpPct.Maximum;
+                        numHealSelfRecoveryHpPct.Value = val;
+                    }
+
+                    if (numHealSelfRecoveryResumeHpPct != null)
+                    {
+                        decimal val = profile.Heal.SelfRecoveryResumeHpPct;
+                        if (val < numHealSelfRecoveryResumeHpPct.Minimum) val = numHealSelfRecoveryResumeHpPct.Minimum;
+                        if (val > numHealSelfRecoveryResumeHpPct.Maximum) val = numHealSelfRecoveryResumeHpPct.Maximum;
+                        numHealSelfRecoveryResumeHpPct.Value = val;
                     }
                 }
             }
@@ -1500,6 +1573,7 @@ namespace WildTerraDashboard
             public DashboardHuntSection Hunt { get; set; } = new DashboardHuntSection();
             public DashboardFoodSection Food { get; set; } = new DashboardFoodSection();
             public DashboardFishingSection Fishing { get; set; } = new DashboardFishingSection();
+            public DashboardHealSection Heal { get; set; } = new DashboardHealSection();
         }
 
         private class DashboardGeneralSection
@@ -1542,6 +1616,22 @@ namespace WildTerraDashboard
             public string RodName { get; set; } = "";
             public string BaitName { get; set; } = "";
             public int SpotIndex { get; set; } = -1;
+        }
+
+        private class DashboardHealSection
+        {
+            public string WeaponName { get; set; } = "";
+            public int TargetModeIndex { get; set; } = -1;
+            public int Radius { get; set; } = 18;
+            public string Skills { get; set; } = "";
+            public string TargetNames { get; set; } = "";
+            public bool FollowHealEnabled { get; set; }
+            public string FollowSkill { get; set; } = "";
+            public int FollowTargetHpPct { get; set; } = 75;
+            public decimal FollowDistance { get; set; } = 4.5m;
+            public string SelfRecoveryItems { get; set; } = "";
+            public int SelfRecoveryHpPct { get; set; } = 40;
+            public int SelfRecoveryResumeHpPct { get; set; } = 55;
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
