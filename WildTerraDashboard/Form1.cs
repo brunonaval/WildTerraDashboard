@@ -415,6 +415,12 @@ namespace WildTerraDashboard
                         SelfRecoveryItems = txtHealSelfRecoveryItems != null ? (txtHealSelfRecoveryItems.Text ?? "") : "",
                         SelfRecoveryHpPct = numHealSelfRecoveryHpPct != null ? Decimal.ToInt32(numHealSelfRecoveryHpPct.Value) : 40,
                         SelfRecoveryResumeHpPct = numHealSelfRecoveryResumeHpPct != null ? Decimal.ToInt32(numHealSelfRecoveryResumeHpPct.Value) : 55
+                    },
+                    Taming = new DashboardTamingSection
+                    {
+                        ModeIndex = cmbTamingMode != null ? cmbTamingMode.SelectedIndex : -1,
+                        TrapName = txtTamingTrapName != null ? (txtTamingTrapName.Text ?? "") : "",
+                        Targets = txtTamingTargets != null ? (txtTamingTargets.Text ?? "") : ""
                     }
                 };
 
@@ -549,6 +555,19 @@ namespace WildTerraDashboard
                         if (val > numHealSelfRecoveryResumeHpPct.Maximum) val = numHealSelfRecoveryResumeHpPct.Maximum;
                         numHealSelfRecoveryResumeHpPct.Value = val;
                     }
+                }
+
+                if (profile.Taming != null)
+                {
+                    if (cmbTamingMode != null)
+                    {
+                        int idx = profile.Taming.ModeIndex;
+                        if (idx >= 0 && idx < cmbTamingMode.Items.Count)
+                            cmbTamingMode.SelectedIndex = idx;
+                    }
+
+                    if (txtTamingTrapName != null) txtTamingTrapName.Text = profile.Taming.TrapName ?? "";
+                    if (txtTamingTargets != null) txtTamingTargets.Text = profile.Taming.Targets ?? "";
                 }
             }
             catch { }
@@ -1574,6 +1593,7 @@ namespace WildTerraDashboard
             public DashboardFoodSection Food { get; set; } = new DashboardFoodSection();
             public DashboardFishingSection Fishing { get; set; } = new DashboardFishingSection();
             public DashboardHealSection Heal { get; set; } = new DashboardHealSection();
+            public DashboardTamingSection Taming { get; set; } = new DashboardTamingSection();
         }
 
         private class DashboardGeneralSection
@@ -1632,6 +1652,13 @@ namespace WildTerraDashboard
             public string SelfRecoveryItems { get; set; } = "";
             public int SelfRecoveryHpPct { get; set; } = 40;
             public int SelfRecoveryResumeHpPct { get; set; } = 55;
+        }
+
+        private class DashboardTamingSection
+        {
+            public int ModeIndex { get; set; } = -1;
+            public string TrapName { get; set; } = "";
+            public string Targets { get; set; } = "";
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
