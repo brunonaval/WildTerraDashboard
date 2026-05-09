@@ -823,6 +823,7 @@ namespace WildTerraDashboard
                     var lvi = new ListViewItem((location?.Name ?? "").Trim());
                     lvi.SubItems.Add((location?.X ?? 0m).ToString(CultureInfo.InvariantCulture));
                     lvi.SubItems.Add((location?.Z ?? 0m).ToString(CultureInfo.InvariantCulture));
+                    lvi.Tag = location;
                     listViewLocations.Items.Add(lvi);
                 }
             }
@@ -903,10 +904,19 @@ namespace WildTerraDashboard
                 return;
             }
 
-            int index = listViewLocations.SelectedItems[0].Index;
-            if (index < 0 || index >= _savedLocations.Count) return;
+            var selectedItem = listViewLocations.SelectedItems[0];
+            var selectedLocation = selectedItem?.Tag as DashboardLocationEntry;
+            if (selectedLocation != null)
+            {
+                _savedLocations.Remove(selectedLocation);
+            }
+            else
+            {
+                int index = selectedItem?.Index ?? -1;
+                if (index < 0 || index >= _savedLocations.Count) return;
+                _savedLocations.RemoveAt(index);
+            }
 
-            _savedLocations.RemoveAt(index);
             SaveLocations();
             RefreshLocationsList();
         }
@@ -918,17 +928,24 @@ namespace WildTerraDashboard
 
         private void GoToSelectedLocation()
         {
-            if (listViewLocations == null || listViewLocations.SelectedIndices == null || listViewLocations.SelectedIndices.Count == 0)
+            if (listViewLocations == null || listViewLocations.SelectedItems == null || listViewLocations.SelectedItems.Count == 0)
             {
                 MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
                 return;
             }
 
-            int index = listViewLocations.SelectedIndices[0];
-            if (index < 0 || _savedLocations == null || index >= _savedLocations.Count)
+            var selectedItem = listViewLocations.SelectedItems[0];
+            var location = selectedItem?.Tag as DashboardLocationEntry;
+            if (location == null)
             {
-                MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
-                return;
+                int index = selectedItem?.Index ?? -1;
+                if (index < 0 || _savedLocations == null || index >= _savedLocations.Count)
+                {
+                    MessageBox.Show(GetLocationsResourceText("Form1LocationsSelectToGo"));
+                    return;
+                }
+
+                location = _savedLocations[index];
             }
 
             bool connected = IsDashboardSyncedForLocationsGo();
@@ -946,7 +963,6 @@ namespace WildTerraDashboard
                 return;
             }
 
-            DashboardLocationEntry location = _savedLocations[index];
             StartLocationGo(location);
             string x = _locationGoTargetX.ToString(CultureInfo.InvariantCulture);
             string z = _locationGoTargetZ.ToString(CultureInfo.InvariantCulture);
@@ -970,6 +986,7 @@ namespace WildTerraDashboard
         {
             if (location == null) return;
 
+            StopLocationGo();
             EnsureLocationsGoTimer();
             _locationGoTargetName = location.Name ?? "";
             _locationGoTargetX = location.X;
@@ -1029,6 +1046,11 @@ namespace WildTerraDashboard
 
         private void SendLocationGoMove()
         {
+            if (chkUseMount != null)
+            {
+                EnviarComandoJogo($"MOUNT_CONFIG;{(chkUseMount.Checked ? "ON" : "OFF")}");
+            }
+
             string x = _locationGoTargetX.ToString(CultureInfo.InvariantCulture);
             string z = _locationGoTargetZ.ToString(CultureInfo.InvariantCulture);
             EnviarComandoJogo($"MOVE;{x};{z}");
