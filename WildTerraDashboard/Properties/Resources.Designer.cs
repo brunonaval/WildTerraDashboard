@@ -177,6 +177,36 @@ namespace WildTerraDashboard.Properties {
             }
         }
 
+        internal static string Form1ContextAddToDrop {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToDrop", resourceCulture);
+            }
+        }
+
+        internal static string Form1ContextAddToHarvestList {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToHarvestList", resourceCulture);
+            }
+        }
+
+        internal static string Form1ContextAddToFood {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToFood", resourceCulture);
+            }
+        }
+
+        internal static string Form1ContextAddToHuntList {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToHuntList", resourceCulture);
+            }
+        }
+
+        internal static string Form1ContextAddToSafeList {
+            get {
+                return ResourceManager.GetString("Form1ContextAddToSafeList", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Error: {0}.
         /// </summary>

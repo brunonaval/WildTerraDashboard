@@ -44,6 +44,8 @@ namespace WildTerraDashboard
         private int _ultimoThresholdEnviado = -1;
         private bool _ultimoEstadoMountEnviado = false;
         private bool isFishingRunning = false; // Controle de Pesca
+        private string _bagContextItemName = "";
+        private string _radarContextEntityName = "";
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -210,6 +212,8 @@ namespace WildTerraDashboard
             InitializeTamingModule();
             InitializeTrainingModule();
             InitializeInspectModule();
+            InitializeBagContextMenu();
+            InitializeRadarContextMenu();
 
 
         }
@@ -609,6 +613,151 @@ namespace WildTerraDashboard
         private void ChkUseMount_CheckedChanged(object sender, EventArgs e)
         {
             if (botMontaria != null) botMontaria.AtualizarConfig(chkUseMount.Checked);
+        }
+
+        private void InitializeBagContextMenu()
+        {
+            if (listViewBag == null) return;
+
+            var cms = new ContextMenuStrip();
+            var miDrop = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToDrop);
+            var miFood = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToFood);
+            var miSafe = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToSafeList);
+
+            miDrop.Click += (s, e) => AddSelectedBagItemToDrop();
+            miFood.Click += (s, e) => AddSelectedBagItemToFood();
+            miSafe.Click += (s, e) => AddSelectedBagItemToSafeList();
+
+            cms.Items.Add(miDrop);
+            cms.Items.Add(miFood);
+            cms.Items.Add(miSafe);
+            cms.Opening += (s, e) =>
+            {
+                bool hasItem = !string.IsNullOrWhiteSpace(_bagContextItemName);
+                miDrop.Enabled = hasItem;
+                miFood.Enabled = hasItem;
+                miSafe.Enabled = hasItem;
+            };
+
+            listViewBag.ContextMenuStrip = cms;
+            listViewBag.MouseDown += ListViewBag_MouseDown;
+        }
+
+        private void ListViewBag_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right || listViewBag == null) return;
+            var hit = listViewBag.HitTest(e.Location);
+            if (hit == null || hit.Item == null)
+            {
+                _bagContextItemName = "";
+                return;
+            }
+            if (!hit.Item.Selected)
+            {
+                listViewBag.SelectedItems.Clear();
+                hit.Item.Selected = true;
+            }
+            _bagContextItemName = GetBagItemName(hit.Item);
+        }
+
+        private string GetBagItemName(ListViewItem item)
+        {
+            if (item == null) return "";
+            return (item.Text ?? "").Trim();
+        }
+
+        private void AddSelectedBagItemToDrop()
+        {
+            AppendUniqueLine(txtDropList, _bagContextItemName);
+        }
+
+        private void AddSelectedBagItemToFood()
+        {
+            AppendUniqueLine(txtAutoEat, _bagContextItemName);
+        }
+
+        private void AddSelectedBagItemToSafeList()
+        {
+            AppendUniqueLine(txtSafeList, _bagContextItemName);
+        }
+
+        private void InitializeRadarContextMenu()
+        {
+            if (listView1 == null) return;
+
+            var cms = new ContextMenuStrip();
+            var miHarvest = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToHarvestList);
+            var miHunt = new ToolStripMenuItem(Properties.Resources.Form1ContextAddToHuntList);
+
+            miHarvest.Click += (s, e) => AddSelectedRadarEntityToHarvestList();
+            miHunt.Click += (s, e) => AddSelectedRadarEntityToHuntList();
+
+            cms.Items.Add(miHarvest);
+            cms.Items.Add(miHunt);
+            cms.Opening += (s, e) =>
+            {
+                bool hasItem = !string.IsNullOrWhiteSpace(_radarContextEntityName);
+                miHarvest.Enabled = hasItem;
+                miHunt.Enabled = hasItem;
+            };
+
+            listView1.ContextMenuStrip = cms;
+            listView1.MouseDown += ListView1_MouseDown;
+        }
+
+        private void ListView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right || listView1 == null) return;
+            var hit = listView1.HitTest(e.Location);
+            if (hit == null || hit.Item == null)
+            {
+                _radarContextEntityName = "";
+                return;
+            }
+            if (!hit.Item.Selected)
+            {
+                listView1.SelectedItems.Clear();
+                hit.Item.Selected = true;
+            }
+            _radarContextEntityName = GetRadarEntityName(hit.Item);
+        }
+
+        private string GetRadarEntityName(ListViewItem item)
+        {
+            if (item == null) return "";
+            if (item.SubItems != null && item.SubItems.Count >= 3)
+                return (item.SubItems[2].Text ?? "").Trim();
+
+            return (item.Text ?? "").Trim();
+        }
+
+        private void AddSelectedRadarEntityToHarvestList()
+        {
+            AppendUniqueLine(txtListaColeta, _radarContextEntityName);
+        }
+
+        private void AddSelectedRadarEntityToHuntList()
+        {
+            AppendUniqueLine(txtListaMobs, _radarContextEntityName);
+        }
+
+        private void AppendUniqueLine(TextBox target, string value)
+        {
+            if (target == null) return;
+            if (string.IsNullOrWhiteSpace(value)) return;
+
+            string normalizedValue = value.Trim();
+            var lines = (target.Text ?? "")
+                .Split(new[] { "\r\n", "\n" }, StringSplitOptions.None)
+                .Select(l => l.Trim())
+                .Where(l => l.Length > 0)
+                .ToList();
+
+            if (lines.Any(l => string.Equals(l, normalizedValue, StringComparison.OrdinalIgnoreCase)))
+                return;
+
+            lines.Add(normalizedValue);
+            target.Text = string.Join(Environment.NewLine, lines);
         }
 
         // --- CONFIGURAÇÃO E PERSISTÊNCIA (BANCO) ---
