@@ -46,6 +46,8 @@ namespace WildTerraDashboard
         private bool isFishingRunning = false; // Controle de Pesca
         private string _bagContextItemName = "";
         private string _radarContextEntityName = "";
+        private string _lastRadarListSnapshot = "";
+        private string _lastBagListSnapshot = "";
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -1673,36 +1675,166 @@ namespace WildTerraDashboard
         private void AtualizarLista(List<RadarEntity> entidades)
         {
             if (listView1 == null) return;
-            int indiceTopo = -1;
-            if (listView1.TopItem != null) indiceTopo = listView1.TopItem.Index;
+
             var itensVisuais = RadarSystem.GerarItensLista(entidades);
+            string novoSnapshot = BuildRadarSnapshot(itensVisuais);
+            if (string.Equals(novoSnapshot, _lastRadarListSnapshot, StringComparison.Ordinal))
+                return;
+
+            var selectedKeys = new HashSet<string>(
+                listView1.SelectedItems.Cast<ListViewItem>().Select(BuildListViewRowKey),
+                StringComparer.Ordinal);
+            string topKey = listView1.TopItem != null ? BuildListViewRowKey(listView1.TopItem) : "";
+            int indiceTopo = listView1.TopItem != null ? listView1.TopItem.Index : -1;
+
             listView1.BeginUpdate();
-            listView1.Items.Clear();
-            listView1.Items.AddRange(itensVisuais.ToArray());
-            listView1.EndUpdate();
-            if (indiceTopo != -1 && indiceTopo < listView1.Items.Count) listView1.TopItem = listView1.Items[indiceTopo];
+            try
+            {
+                listView1.Items.Clear();
+                listView1.Items.AddRange(itensVisuais.ToArray());
+
+                if (selectedKeys.Count > 0)
+                {
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        if (selectedKeys.Contains(BuildListViewRowKey(item)))
+                            item.Selected = true;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(topKey))
+                {
+                    foreach (ListViewItem item in listView1.Items)
+                    {
+                        if (string.Equals(BuildListViewRowKey(item), topKey, StringComparison.Ordinal))
+                        {
+                            listView1.TopItem = item;
+                            break;
+                        }
+                    }
+                }
+                else if (indiceTopo != -1 && indiceTopo < listView1.Items.Count)
+                {
+                    listView1.TopItem = listView1.Items[indiceTopo];
+                }
+            }
+            finally
+            {
+                listView1.EndUpdate();
+            }
+
+            _lastRadarListSnapshot = novoSnapshot;
         }
 
         private void AtualizarMochila(string dadosBrutos)
         {
             if (listViewBag == null) return;
-            int indiceTopo = -1;
-            if (listViewBag.TopItem != null) indiceTopo = listViewBag.TopItem.Index;
+
+            var linhas = ParseBagRows(dadosBrutos);
+            string novoSnapshot = BuildBagSnapshot(linhas);
+            if (string.Equals(novoSnapshot, _lastBagListSnapshot, StringComparison.Ordinal))
+                return;
+
+            var selectedNames = new HashSet<string>(
+                listViewBag.SelectedItems.Cast<ListViewItem>()
+                    .Select(i => (i.Text ?? "").Trim())
+                    .Where(n => n.Length > 0),
+                StringComparer.OrdinalIgnoreCase);
+
+            string topName = listViewBag.TopItem != null ? (listViewBag.TopItem.Text ?? "").Trim() : "";
+            int indiceTopo = listViewBag.TopItem != null ? listViewBag.TopItem.Index : -1;
+
             listViewBag.BeginUpdate();
-            listViewBag.Items.Clear();
+            try
+            {
+                listViewBag.Items.Clear();
+                foreach (var linha in linhas)
+                {
+                    ListViewItem lvi = new ListViewItem(linha.ItemName);
+                    lvi.SubItems.Add(linha.ItemValue);
+                    listViewBag.Items.Add(lvi);
+                }
+
+                if (selectedNames.Count > 0)
+                {
+                    foreach (ListViewItem item in listViewBag.Items)
+                    {
+                        if (selectedNames.Contains((item.Text ?? "").Trim()))
+                            item.Selected = true;
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(topName))
+                {
+                    foreach (ListViewItem item in listViewBag.Items)
+                    {
+                        if (string.Equals((item.Text ?? "").Trim(), topName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            listViewBag.TopItem = item;
+                            break;
+                        }
+                    }
+                }
+                else if (indiceTopo != -1 && indiceTopo < listViewBag.Items.Count)
+                {
+                    listViewBag.TopItem = listViewBag.Items[indiceTopo];
+                }
+            }
+            finally
+            {
+                listViewBag.EndUpdate();
+            }
+
+            _lastBagListSnapshot = novoSnapshot;
+        }
+
+        private static string BuildListViewRowKey(ListViewItem item)
+        {
+            if (item == null) return "";
+            var partes = new List<string> { item.Text ?? "" };
+            foreach (ListViewItem.ListViewSubItem sub in item.SubItems)
+                partes.Add(sub.Text ?? "");
+            return string.Join("\t", partes);
+        }
+
+        private static string BuildRadarSnapshot(List<ListViewItem> items)
+        {
+            if (items == null || items.Count == 0) return "";
+            return string.Join("\n", items.Select(BuildListViewRowKey));
+        }
+
+        private struct BagRow
+        {
+            public string ItemName;
+            public string ItemValue;
+        }
+
+        private static List<BagRow> ParseBagRows(string dadosBrutos)
+        {
+            var linhas = new List<BagRow>();
+            if (string.IsNullOrEmpty(dadosBrutos)) return linhas;
+
             string[] itens = dadosBrutos.Split('~');
             foreach (string item in itens)
             {
                 string[] p = item.Split(':');
                 if (p.Length >= 2)
                 {
-                    ListViewItem lvi = new ListViewItem(p[0]);
-                    lvi.SubItems.Add(p[1]);
-                    listViewBag.Items.Add(lvi);
+                    linhas.Add(new BagRow
+                    {
+                        ItemName = p[0] ?? "",
+                        ItemValue = p[1] ?? ""
+                    });
                 }
             }
-            listViewBag.EndUpdate();
-            if (indiceTopo != -1 && indiceTopo < listViewBag.Items.Count) listViewBag.TopItem = listViewBag.Items[indiceTopo];
+
+            return linhas;
+        }
+
+        private static string BuildBagSnapshot(List<BagRow> linhas)
+        {
+            if (linhas == null || linhas.Count == 0) return "";
+            return string.Join("\n", linhas.Select(l => (l.ItemName ?? "") + "\t" + (l.ItemValue ?? "")));
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
