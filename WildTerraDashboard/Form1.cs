@@ -62,15 +62,6 @@ namespace WildTerraDashboard
         private Label lblLocationName;
         private Label lblLocationX;
         private Label lblLocationZ;
-        private bool _locationGoActive = false;
-        private decimal _locationGoTargetX = 0m;
-        private decimal _locationGoTargetZ = 0m;
-        private string _locationGoTargetName = "";
-        private DateTime _locationGoStartedAt = DateTime.MinValue;
-        private Timer _locationGoTimer;
-        private const int LOCATION_GO_TIMER_INTERVAL_MS = 500;
-        private const int LOCATION_GO_TIMEOUT_SECONDS = 60;
-        private const double LOCATION_GO_ARRIVAL_DISTANCE = 2.0;
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -710,6 +701,7 @@ namespace WildTerraDashboard
                 Size = new Size(700, 320),
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right
             };
+            listViewLocations.Columns.Clear();
             listViewLocations.Columns.Add(nameHeaderText, 300);
             listViewLocations.Columns.Add(xHeaderText, 180);
             listViewLocations.Columns.Add(zHeaderText, 180);
@@ -803,9 +795,10 @@ namespace WildTerraDashboard
             tabLocations.Controls.Add(btnDeleteLocation);
             tabLocations.Controls.Add(btnGoLocation);
             tabLocations.Controls.Add(listViewLocations);
+            tabLocations.Resize += (s, e) => AdjustLocationsListBounds();
 
             tabControl1.TabPages.Add(tabLocations);
-            EnsureLocationsGoTimer();
+            AdjustLocationsListBounds();
             ResizeLocationsColumns();
             RefreshLocationsList();
         }
@@ -837,22 +830,45 @@ namespace WildTerraDashboard
 
         private void ResizeLocationsColumns()
         {
-            if (listViewLocations == null || listViewLocations.Columns == null || listViewLocations.Columns.Count < 3) return;
+            if (listViewLocations == null || listViewLocations.Columns == null || listViewLocations.Columns.Count != 3) return;
 
-            int total = listViewLocations.ClientSize.Width - 6;
-            if (total <= 0) return;
+            int total = listViewLocations.ClientSize.Width;
+            if (total <= 0) total = listViewLocations.Width;
+            total = Math.Max(300, total - 2);
 
-            int nameWidth = (int)(total * 0.50);
-            int xWidth = (int)(total * 0.25);
+            int nameWidth = Math.Max(120, (int)(total * 0.50));
+            int xWidth = Math.Max(60, (int)(total * 0.25));
             int zWidth = total - nameWidth - xWidth;
+            if (zWidth < 60)
+            {
+                zWidth = 60;
+                xWidth = Math.Max(60, total - nameWidth - zWidth);
+                nameWidth = Math.Max(120, total - xWidth - zWidth);
+            }
 
-            if (nameWidth < 120) nameWidth = 120;
-            if (xWidth < 60) xWidth = 60;
+            // Z sempre recebe o restante final para eliminar sobra visual à direita.
+            zWidth = total - nameWidth - xWidth;
             if (zWidth < 60) zWidth = 60;
 
             listViewLocations.Columns[0].Width = nameWidth;
             listViewLocations.Columns[1].Width = xWidth;
             listViewLocations.Columns[2].Width = zWidth;
+        }
+
+        private void AdjustLocationsListBounds()
+        {
+            if (tabLocations == null || listViewLocations == null) return;
+
+            int left = listViewLocations.Left;
+            int top = listViewLocations.Top;
+            int rightMargin = 16;
+            int bottomMargin = 16;
+
+            int width = tabLocations.ClientSize.Width - left - rightMargin;
+            int height = tabLocations.ClientSize.Height - top - bottomMargin;
+
+            listViewLocations.Size = new Size(Math.Max(320, width), Math.Max(180, height));
+            ResizeLocationsColumns();
         }
 
         private bool TryReadLocationInputs(out DashboardLocationEntry entry)
@@ -963,97 +979,15 @@ namespace WildTerraDashboard
                 return;
             }
 
-            StartLocationGo(location);
-            string x = _locationGoTargetX.ToString(CultureInfo.InvariantCulture);
-            string z = _locationGoTargetZ.ToString(CultureInfo.InvariantCulture);
+            string x = location.X.ToString(CultureInfo.InvariantCulture);
+            string z = location.Z.ToString(CultureInfo.InvariantCulture);
+            string mountFlag = (chkUseMount != null && chkUseMount.Checked) ? "ON" : "OFF";
+            EnviarComandoJogo($"LOCATION_GO;{x};{z};{mountFlag}");
             LogarMensagem(string.Format(
                 GetLocationsResourceText("Form1LocationsGoingToFormat"),
                 location.Name ?? "",
                 x,
                 z));
-        }
-
-        private void EnsureLocationsGoTimer()
-        {
-            if (_locationGoTimer != null) return;
-
-            _locationGoTimer = new Timer();
-            _locationGoTimer.Interval = LOCATION_GO_TIMER_INTERVAL_MS;
-            _locationGoTimer.Tick += LocationGoTimer_Tick;
-        }
-
-        private void StartLocationGo(DashboardLocationEntry location)
-        {
-            if (location == null) return;
-
-            StopLocationGo();
-            EnsureLocationsGoTimer();
-            _locationGoTargetName = location.Name ?? "";
-            _locationGoTargetX = location.X;
-            _locationGoTargetZ = location.Z;
-            _locationGoStartedAt = DateTime.Now;
-            _locationGoActive = true;
-
-            SendLocationGoMove();
-            _locationGoTimer.Start();
-        }
-
-        private void StopLocationGo()
-        {
-            _locationGoActive = false;
-            if (_locationGoTimer != null) _locationGoTimer.Stop();
-        }
-
-        private void LocationGoTimer_Tick(object sender, EventArgs e)
-        {
-            if (!_locationGoActive)
-            {
-                StopLocationGo();
-                return;
-            }
-
-            if (!IsDashboardSyncedForLocationsGo())
-            {
-                StopLocationGo();
-                return;
-            }
-
-            if (HasActiveModeForLocationGo())
-            {
-                StopLocationGo();
-                return;
-            }
-
-            double dist = CalcularDistancia(
-                statsJogador.X,
-                statsJogador.Z,
-                (float)_locationGoTargetX,
-                (float)_locationGoTargetZ);
-            if (dist <= LOCATION_GO_ARRIVAL_DISTANCE)
-            {
-                StopLocationGo();
-                return;
-            }
-
-            if ((DateTime.Now - _locationGoStartedAt).TotalSeconds >= LOCATION_GO_TIMEOUT_SECONDS)
-            {
-                StopLocationGo();
-                return;
-            }
-
-            SendLocationGoMove();
-        }
-
-        private void SendLocationGoMove()
-        {
-            if (chkUseMount != null)
-            {
-                EnviarComandoJogo($"MOUNT_CONFIG;{(chkUseMount.Checked ? "ON" : "OFF")}");
-            }
-
-            string x = _locationGoTargetX.ToString(CultureInfo.InvariantCulture);
-            string z = _locationGoTargetZ.ToString(CultureInfo.InvariantCulture);
-            EnviarComandoJogo($"MOVE;{x};{z}");
         }
 
         private bool HasActiveModeForLocationGo()
@@ -2380,8 +2314,6 @@ namespace WildTerraDashboard
 
             try { if (watchdogTimer != null) watchdogTimer.Stop(); } catch { }
             try { if (restartTimer != null) restartTimer.Stop(); } catch { }
-            try { StopLocationGo(); } catch { }
-
             if (rede != null) rede.Parar();
             if (enviadorUDP != null) enviadorUDP.Close();
 
