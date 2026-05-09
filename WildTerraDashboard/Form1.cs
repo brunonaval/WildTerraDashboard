@@ -48,6 +48,8 @@ namespace WildTerraDashboard
         private string _radarContextEntityName = "";
         private string _lastRadarListSnapshot = "";
         private string _lastBagListSnapshot = "";
+        private readonly string _locationsFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "locations.json");
+        private List<DashboardLocationEntry> _savedLocations = new List<DashboardLocationEntry>();
 
         // Anti-spam: evita flood de HARVEST idêntico (o timer roda a cada ~150ms).
         // Se o mesmo comando foi enviado há pouco, não reenviar e nem cair para MOVE no mesmo tick.
@@ -135,6 +137,7 @@ namespace WildTerraDashboard
             CarregarListaComerStatus();      // compat (txtAutoEatStatus)
             CarregarTextboxesSelecionadas(); // preferencial (sobrescreve se existir)
             CarregarDashboardProfileV1();    // consolidado v1 (sobrescreve legados se existir)
+            LoadLocations();                 // locations (fase 4.1A)
 
             // 1. INICIALIZAÇÃO DE DADOS E REDE (Primeiro)
             statsJogador = new PlayerStats();
@@ -580,6 +583,73 @@ namespace WildTerraDashboard
             finally
             {
                 _isLoadingUiText = false;
+            }
+        }
+
+        private void LoadLocations()
+        {
+            try
+            {
+                if (!File.Exists(_locationsFile))
+                {
+                    _savedLocations = new List<DashboardLocationEntry>();
+                    return;
+                }
+
+                string json = File.ReadAllText(_locationsFile, Encoding.UTF8);
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    _savedLocations = new List<DashboardLocationEntry>();
+                    return;
+                }
+
+                var serializer = new JavaScriptSerializer();
+                var file = serializer.Deserialize<DashboardLocationsFile>(json);
+                if (file == null || file.Version != 1 || file.Locations == null)
+                {
+                    _savedLocations = new List<DashboardLocationEntry>();
+                    return;
+                }
+
+                _savedLocations = file.Locations
+                    .Select(l => new DashboardLocationEntry
+                    {
+                        Name = l?.Name ?? "",
+                        X = l?.X ?? 0m,
+                        Z = l?.Z ?? 0m
+                    })
+                    .ToList();
+            }
+            catch
+            {
+                _savedLocations = new List<DashboardLocationEntry>();
+            }
+        }
+
+        private void SaveLocations()
+        {
+            try
+            {
+                var payload = new DashboardLocationsFile
+                {
+                    Version = 1,
+                    SavedAtUtc = DateTime.UtcNow.ToString("o"),
+                    Locations = (_savedLocations ?? new List<DashboardLocationEntry>())
+                        .Select(l => new DashboardLocationEntry
+                        {
+                            Name = l?.Name ?? "",
+                            X = l?.X ?? 0m,
+                            Z = l?.Z ?? 0m
+                        })
+                        .ToList()
+                };
+
+                var serializer = new JavaScriptSerializer();
+                string json = serializer.Serialize(payload);
+                File.WriteAllText(_locationsFile, json, Encoding.UTF8);
+            }
+            catch
+            {
             }
         }
 
@@ -1859,6 +1929,7 @@ namespace WildTerraDashboard
             SalvarListaComerStatus();
             SaveTrainingUi();
             SalvarDashboardProfileV1();
+            SaveLocations();
 
             base.OnFormClosing(e);
         }
@@ -1940,6 +2011,20 @@ namespace WildTerraDashboard
             public int ModeIndex { get; set; } = -1;
             public string TrapName { get; set; } = "";
             public string Targets { get; set; } = "";
+        }
+
+        private class DashboardLocationsFile
+        {
+            public int Version { get; set; } = 1;
+            public string SavedAtUtc { get; set; } = "";
+            public List<DashboardLocationEntry> Locations { get; set; } = new List<DashboardLocationEntry>();
+        }
+
+        private class DashboardLocationEntry
+        {
+            public string Name { get; set; } = "";
+            public decimal X { get; set; } = 0m;
+            public decimal Z { get; set; } = 0m;
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
