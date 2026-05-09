@@ -94,6 +94,7 @@ namespace WildTerraDashboard
         // =========================
         private bool _isLoadingUiText = false;
         private readonly string _uiTextFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ui_textboxes.json");
+        private readonly string _dashboardProfileFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dashboard_profile_v1.json");
 
         private const int UDP_BASE_PORT = 8888;
         private const int UDP_MAX_INSTANCES = 10;
@@ -129,6 +130,7 @@ namespace WildTerraDashboard
             CarregarListaComer();            // compat (txtAutoEat)
             CarregarListaComerStatus();      // compat (txtAutoEatStatus)
             CarregarTextboxesSelecionadas(); // preferencial (sobrescreve se existir)
+            CarregarDashboardProfileV1();    // consolidado v1 (sobrescreve legados se existir)
 
             // 1. INICIALIZAÇÃO DE DADOS E REDE (Primeiro)
             statsJogador = new PlayerStats();
@@ -141,8 +143,7 @@ namespace WildTerraDashboard
             botColeta = new BotHarvest();
             botMontaria = new BotMount();
             botCaçador = new BotHunter();
-            if (chkAtivarHunt != null && botCaçador != null)
-                botCaçador.IsAtivo = chkAtivarHunt.Checked;
+            SincronizarConfiguracoesCarregadasComBots();
 
             // 3. LIGAÇÃO DE EVENTOS DE REDE
             rede.OnPacoteRecebido += Rede_OnPacoteRecebido;
@@ -354,6 +355,145 @@ namespace WildTerraDashboard
             {
                 _isLoadingUiText = false;
             }
+        }
+
+        private void SalvarDashboardProfileV1()
+        {
+            try
+            {
+                var profile = new DashboardProfileV1
+                {
+                    Version = 1,
+                    SavedAtUtc = DateTime.UtcNow.ToString("o"),
+                    General = new DashboardGeneralSection
+                    {
+                        WeaponName = txtWeaponName != null ? (txtWeaponName.Text ?? "") : "",
+                        EnableHunt = chkAtivarHunt != null && chkAtivarHunt.Checked,
+                        UseMount = chkUseMount != null && chkUseMount.Checked
+                    },
+                    Bank = new DashboardBankSection
+                    {
+                        X = txtBankX != null ? (txtBankX.Text ?? "") : "",
+                        Z = txtBankZ != null ? (txtBankZ.Text ?? "") : "",
+                        Name = txtBankName != null ? (txtBankName.Text ?? "") : ""
+                    },
+                    Harvest = new DashboardHarvestSection
+                    {
+                        Items = txtListaColeta != null ? (txtListaColeta.Text ?? "") : "",
+                        DropList = txtDropList != null ? (txtDropList.Text ?? "") : "",
+                        SafeList = txtSafeList != null ? (txtSafeList.Text ?? "") : "",
+                        Enabled = chkAtivarColeta != null && chkAtivarColeta.Checked
+                    },
+                    Hunt = new DashboardHuntSection
+                    {
+                        Mobs = txtListaMobs != null ? (txtListaMobs.Text ?? "") : "",
+                        Enabled = chkAtivarHunt != null && chkAtivarHunt.Checked
+                    },
+                    Food = new DashboardFoodSection
+                    {
+                        EatList = txtAutoEat != null ? (txtAutoEat.Text ?? "") : "",
+                        EatStatusList = GetAutoEatStatusTextBox() != null ? (GetAutoEatStatusTextBox().Text ?? "") : "",
+                        Threshold = numEatThreshold != null ? Decimal.ToInt32(numEatThreshold.Value) : 0
+                    },
+                    Fishing = new DashboardFishingSection
+                    {
+                        RodName = txtRodName != null ? (txtRodName.Text ?? "") : "",
+                        BaitName = txtBaitName != null ? (txtBaitName.Text ?? "") : ""
+                    }
+                };
+
+                var ser = new JavaScriptSerializer();
+                var json = ser.Serialize(profile);
+                File.WriteAllText(_dashboardProfileFile, json, Encoding.UTF8);
+            }
+            catch { }
+        }
+
+        private void CarregarDashboardProfileV1()
+        {
+            try
+            {
+                if (!File.Exists(_dashboardProfileFile)) return;
+
+                var json = File.ReadAllText(_dashboardProfileFile, Encoding.UTF8);
+                var ser = new JavaScriptSerializer();
+                var profile = ser.Deserialize<DashboardProfileV1>(json);
+                if (profile == null) return;
+                if (profile.Version != 1) return;
+
+                _isLoadingUiText = true;
+
+                if (profile.General != null)
+                {
+                    if (txtWeaponName != null) txtWeaponName.Text = profile.General.WeaponName ?? "";
+                    if (chkAtivarHunt != null) chkAtivarHunt.Checked = profile.General.EnableHunt;
+                    if (chkUseMount != null) chkUseMount.Checked = profile.General.UseMount;
+                }
+
+                if (profile.Bank != null)
+                {
+                    if (txtBankX != null) txtBankX.Text = profile.Bank.X ?? "";
+                    if (txtBankZ != null) txtBankZ.Text = profile.Bank.Z ?? "";
+                    if (txtBankName != null) txtBankName.Text = profile.Bank.Name ?? "";
+                }
+
+                if (profile.Harvest != null)
+                {
+                    if (txtListaColeta != null) txtListaColeta.Text = profile.Harvest.Items ?? "";
+                    if (txtDropList != null) txtDropList.Text = profile.Harvest.DropList ?? "";
+                    if (txtSafeList != null) txtSafeList.Text = profile.Harvest.SafeList ?? "";
+                    if (chkAtivarColeta != null) chkAtivarColeta.Checked = profile.Harvest.Enabled;
+                }
+
+                if (profile.Hunt != null)
+                {
+                    if (txtListaMobs != null) txtListaMobs.Text = profile.Hunt.Mobs ?? "";
+                    if (chkAtivarHunt != null) chkAtivarHunt.Checked = profile.Hunt.Enabled;
+                }
+
+                if (profile.Food != null)
+                {
+                    if (txtAutoEat != null) txtAutoEat.Text = profile.Food.EatList ?? "";
+                    var txtAutoEatStatus = GetAutoEatStatusTextBox();
+                    if (txtAutoEatStatus != null) txtAutoEatStatus.Text = profile.Food.EatStatusList ?? "";
+                    if (numEatThreshold != null)
+                    {
+                        decimal threshold = profile.Food.Threshold;
+                        if (threshold < numEatThreshold.Minimum) threshold = numEatThreshold.Minimum;
+                        if (threshold > numEatThreshold.Maximum) threshold = numEatThreshold.Maximum;
+                        numEatThreshold.Value = threshold;
+                    }
+                }
+
+                if (profile.Fishing != null)
+                {
+                    if (txtRodName != null) txtRodName.Text = profile.Fishing.RodName ?? "";
+                    if (txtBaitName != null) txtBaitName.Text = profile.Fishing.BaitName ?? "";
+                }
+            }
+            catch { }
+            finally
+            {
+                _isLoadingUiText = false;
+            }
+        }
+
+        private void SincronizarConfiguracoesCarregadasComBots()
+        {
+            if (botColeta != null && txtListaColeta != null)
+                botColeta.DefinirLista(txtListaColeta.Text);
+
+            if (botCaçador != null && txtListaMobs != null)
+                botCaçador.DefinirLista(txtListaMobs.Text);
+
+            if (botColeta != null && chkAtivarColeta != null)
+                botColeta.IsAtivo = chkAtivarColeta.Checked;
+
+            if (botCaçador != null && chkAtivarHunt != null)
+                botCaçador.IsAtivo = chkAtivarHunt.Checked;
+
+            if (botMontaria != null && chkUseMount != null)
+                botMontaria.AtualizarConfig(chkUseMount.Checked);
         }
 
         // --- MÉTODOS DE LOG E UI ---
@@ -1338,8 +1478,62 @@ namespace WildTerraDashboard
             SalvarListaComer();
             SalvarListaComerStatus();
             SaveTrainingUi();
+            SalvarDashboardProfileV1();
 
             base.OnFormClosing(e);
+        }
+
+        private class DashboardProfileV1
+        {
+            public int Version { get; set; } = 1;
+            public string SavedAtUtc { get; set; } = "";
+            public DashboardGeneralSection General { get; set; } = new DashboardGeneralSection();
+            public DashboardBankSection Bank { get; set; } = new DashboardBankSection();
+            public DashboardHarvestSection Harvest { get; set; } = new DashboardHarvestSection();
+            public DashboardHuntSection Hunt { get; set; } = new DashboardHuntSection();
+            public DashboardFoodSection Food { get; set; } = new DashboardFoodSection();
+            public DashboardFishingSection Fishing { get; set; } = new DashboardFishingSection();
+        }
+
+        private class DashboardGeneralSection
+        {
+            public string WeaponName { get; set; } = "";
+            public bool EnableHunt { get; set; }
+            public bool UseMount { get; set; }
+        }
+
+        private class DashboardBankSection
+        {
+            public string X { get; set; } = "";
+            public string Z { get; set; } = "";
+            public string Name { get; set; } = "";
+        }
+
+        private class DashboardHarvestSection
+        {
+            public string Items { get; set; } = "";
+            public string DropList { get; set; } = "";
+            public string SafeList { get; set; } = "";
+            public bool Enabled { get; set; }
+        }
+
+        private class DashboardHuntSection
+        {
+            public string Mobs { get; set; } = "";
+            public bool Enabled { get; set; }
+        }
+
+        private class DashboardFoodSection
+        {
+            public string EatList { get; set; } = "";
+            public string EatStatusList { get; set; } = "";
+            public int Threshold { get; set; }
+        }
+
+        private class DashboardFishingSection
+        {
+            public string RodName { get; set; } = "";
+            public string BaitName { get; set; } = "";
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
