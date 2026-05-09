@@ -94,6 +94,7 @@ namespace WildTerraDashboard
         // =========================
         private bool _isLoadingUiText = false;
         private readonly string _uiTextFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ui_textboxes.json");
+        private readonly string _dashboardProfileFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "dashboard_profile_v1.json");
 
         private const int UDP_BASE_PORT = 8888;
         private const int UDP_MAX_INSTANCES = 10;
@@ -129,6 +130,7 @@ namespace WildTerraDashboard
             CarregarListaComer();            // compat (txtAutoEat)
             CarregarListaComerStatus();      // compat (txtAutoEatStatus)
             CarregarTextboxesSelecionadas(); // preferencial (sobrescreve se existir)
+            CarregarDashboardProfileV1();    // consolidado v1 (sobrescreve legados se existir)
 
             // 1. INICIALIZAÇÃO DE DADOS E REDE (Primeiro)
             statsJogador = new PlayerStats();
@@ -141,6 +143,7 @@ namespace WildTerraDashboard
             botColeta = new BotHarvest();
             botMontaria = new BotMount();
             botCaçador = new BotHunter();
+            SincronizarConfiguracoesCarregadasComBots();
 
             // 3. LIGAÇÃO DE EVENTOS DE REDE
             rede.OnPacoteRecebido += Rede_OnPacoteRecebido;
@@ -352,6 +355,244 @@ namespace WildTerraDashboard
             {
                 _isLoadingUiText = false;
             }
+        }
+
+        private void SalvarDashboardProfileV1()
+        {
+            try
+            {
+                var profile = new DashboardProfileV1
+                {
+                    Version = 1,
+                    SavedAtUtc = DateTime.UtcNow.ToString("o"),
+                    General = new DashboardGeneralSection
+                    {
+                        WeaponName = txtWeaponName != null ? (txtWeaponName.Text ?? "") : "",
+                        EnableHunt = chkAtivarHunt != null && chkAtivarHunt.Checked,
+                        UseMount = chkUseMount != null && chkUseMount.Checked
+                    },
+                    Bank = new DashboardBankSection
+                    {
+                        X = txtBankX != null ? (txtBankX.Text ?? "") : "",
+                        Z = txtBankZ != null ? (txtBankZ.Text ?? "") : "",
+                        Name = txtBankName != null ? (txtBankName.Text ?? "") : ""
+                    },
+                    Harvest = new DashboardHarvestSection
+                    {
+                        Items = txtListaColeta != null ? (txtListaColeta.Text ?? "") : "",
+                        DropList = txtDropList != null ? (txtDropList.Text ?? "") : "",
+                        SafeList = txtSafeList != null ? (txtSafeList.Text ?? "") : "",
+                        Enabled = chkAtivarColeta != null && chkAtivarColeta.Checked
+                    },
+                    Hunt = new DashboardHuntSection
+                    {
+                        Mobs = txtListaMobs != null ? (txtListaMobs.Text ?? "") : "",
+                        Enabled = chkAtivarHunt != null && chkAtivarHunt.Checked
+                    },
+                    Food = new DashboardFoodSection
+                    {
+                        EatList = txtAutoEat != null ? (txtAutoEat.Text ?? "") : "",
+                        EatStatusList = GetAutoEatStatusTextBox() != null ? (GetAutoEatStatusTextBox().Text ?? "") : "",
+                        Threshold = numEatThreshold != null ? Decimal.ToInt32(numEatThreshold.Value) : 0
+                    },
+                    Fishing = new DashboardFishingSection
+                    {
+                        RodName = txtRodName != null ? (txtRodName.Text ?? "") : "",
+                        BaitName = txtBaitName != null ? (txtBaitName.Text ?? "") : "",
+                        SpotIndex = cmbFishingSpot != null ? cmbFishingSpot.SelectedIndex : -1
+                    },
+                    Heal = new DashboardHealSection
+                    {
+                        WeaponName = txtHealWeaponName != null ? (txtHealWeaponName.Text ?? "") : "",
+                        TargetModeIndex = cmbHealTargetMode != null ? cmbHealTargetMode.SelectedIndex : -1,
+                        Radius = numHealRadius != null ? Decimal.ToInt32(numHealRadius.Value) : 18,
+                        Skills = txtHealSkills != null ? (txtHealSkills.Text ?? "") : "",
+                        TargetNames = txtHealTargetNames != null ? (txtHealTargetNames.Text ?? "") : "",
+                        FollowHealEnabled = chkHealFollowTopTarget != null && chkHealFollowTopTarget.Checked,
+                        FollowSkill = txtHealFollowSkill != null ? (txtHealFollowSkill.Text ?? "") : "",
+                        FollowTargetHpPct = numHealFollowTargetHpPct != null ? Decimal.ToInt32(numHealFollowTargetHpPct.Value) : 75,
+                        FollowDistance = numHealFollowDistance != null ? numHealFollowDistance.Value : 4.5m,
+                        SelfRecoveryItems = txtHealSelfRecoveryItems != null ? (txtHealSelfRecoveryItems.Text ?? "") : "",
+                        SelfRecoveryHpPct = numHealSelfRecoveryHpPct != null ? Decimal.ToInt32(numHealSelfRecoveryHpPct.Value) : 40,
+                        SelfRecoveryResumeHpPct = numHealSelfRecoveryResumeHpPct != null ? Decimal.ToInt32(numHealSelfRecoveryResumeHpPct.Value) : 55
+                    },
+                    Taming = new DashboardTamingSection
+                    {
+                        ModeIndex = cmbTamingMode != null ? cmbTamingMode.SelectedIndex : -1,
+                        TrapName = txtTamingTrapName != null ? (txtTamingTrapName.Text ?? "") : "",
+                        Targets = txtTamingTargets != null ? (txtTamingTargets.Text ?? "") : ""
+                    }
+                };
+
+                var ser = new JavaScriptSerializer();
+                var json = ser.Serialize(profile);
+                File.WriteAllText(_dashboardProfileFile, json, Encoding.UTF8);
+            }
+            catch { }
+        }
+
+        private void CarregarDashboardProfileV1()
+        {
+            try
+            {
+                if (!File.Exists(_dashboardProfileFile)) return;
+
+                var json = File.ReadAllText(_dashboardProfileFile, Encoding.UTF8);
+                var ser = new JavaScriptSerializer();
+                var profile = ser.Deserialize<DashboardProfileV1>(json);
+                if (profile == null) return;
+                if (profile.Version != 1) return;
+
+                _isLoadingUiText = true;
+
+                if (profile.General != null)
+                {
+                    if (txtWeaponName != null) txtWeaponName.Text = profile.General.WeaponName ?? "";
+                    if (chkAtivarHunt != null) chkAtivarHunt.Checked = profile.General.EnableHunt;
+                    if (chkUseMount != null) chkUseMount.Checked = profile.General.UseMount;
+                }
+
+                if (profile.Bank != null)
+                {
+                    if (txtBankX != null) txtBankX.Text = profile.Bank.X ?? "";
+                    if (txtBankZ != null) txtBankZ.Text = profile.Bank.Z ?? "";
+                    if (txtBankName != null) txtBankName.Text = profile.Bank.Name ?? "";
+                }
+
+                if (profile.Harvest != null)
+                {
+                    if (txtListaColeta != null) txtListaColeta.Text = profile.Harvest.Items ?? "";
+                    if (txtDropList != null) txtDropList.Text = profile.Harvest.DropList ?? "";
+                    if (txtSafeList != null) txtSafeList.Text = profile.Harvest.SafeList ?? "";
+                    if (chkAtivarColeta != null) chkAtivarColeta.Checked = profile.Harvest.Enabled;
+                }
+
+                if (profile.Hunt != null)
+                {
+                    if (txtListaMobs != null) txtListaMobs.Text = profile.Hunt.Mobs ?? "";
+                    if (chkAtivarHunt != null) chkAtivarHunt.Checked = profile.Hunt.Enabled;
+                }
+
+                if (profile.Food != null)
+                {
+                    if (txtAutoEat != null) txtAutoEat.Text = profile.Food.EatList ?? "";
+                    var txtAutoEatStatus = GetAutoEatStatusTextBox();
+                    if (txtAutoEatStatus != null) txtAutoEatStatus.Text = profile.Food.EatStatusList ?? "";
+                    if (numEatThreshold != null)
+                    {
+                        decimal threshold = profile.Food.Threshold;
+                        if (threshold < numEatThreshold.Minimum) threshold = numEatThreshold.Minimum;
+                        if (threshold > numEatThreshold.Maximum) threshold = numEatThreshold.Maximum;
+                        numEatThreshold.Value = threshold;
+                    }
+                }
+
+                if (profile.Fishing != null)
+                {
+                    if (txtRodName != null) txtRodName.Text = profile.Fishing.RodName ?? "";
+                    if (txtBaitName != null) txtBaitName.Text = profile.Fishing.BaitName ?? "";
+                    if (cmbFishingSpot != null)
+                    {
+                        int idx = profile.Fishing.SpotIndex;
+                        if (idx >= 0 && idx < cmbFishingSpot.Items.Count)
+                            cmbFishingSpot.SelectedIndex = idx;
+                    }
+                }
+
+                if (profile.Heal != null)
+                {
+                    if (txtHealWeaponName != null) txtHealWeaponName.Text = profile.Heal.WeaponName ?? "";
+                    if (cmbHealTargetMode != null)
+                    {
+                        int idx = profile.Heal.TargetModeIndex;
+                        if (idx >= 0 && idx < cmbHealTargetMode.Items.Count)
+                            cmbHealTargetMode.SelectedIndex = idx;
+                    }
+
+                    if (numHealRadius != null)
+                    {
+                        decimal val = profile.Heal.Radius;
+                        if (val < numHealRadius.Minimum) val = numHealRadius.Minimum;
+                        if (val > numHealRadius.Maximum) val = numHealRadius.Maximum;
+                        numHealRadius.Value = val;
+                    }
+
+                    if (txtHealSkills != null) txtHealSkills.Text = profile.Heal.Skills ?? "";
+                    if (txtHealTargetNames != null) txtHealTargetNames.Text = profile.Heal.TargetNames ?? "";
+                    if (chkHealFollowTopTarget != null) chkHealFollowTopTarget.Checked = profile.Heal.FollowHealEnabled;
+                    if (txtHealFollowSkill != null) txtHealFollowSkill.Text = profile.Heal.FollowSkill ?? "";
+
+                    if (numHealFollowTargetHpPct != null)
+                    {
+                        decimal val = profile.Heal.FollowTargetHpPct;
+                        if (val < numHealFollowTargetHpPct.Minimum) val = numHealFollowTargetHpPct.Minimum;
+                        if (val > numHealFollowTargetHpPct.Maximum) val = numHealFollowTargetHpPct.Maximum;
+                        numHealFollowTargetHpPct.Value = val;
+                    }
+
+                    if (numHealFollowDistance != null)
+                    {
+                        decimal val = profile.Heal.FollowDistance;
+                        if (val < numHealFollowDistance.Minimum) val = numHealFollowDistance.Minimum;
+                        if (val > numHealFollowDistance.Maximum) val = numHealFollowDistance.Maximum;
+                        numHealFollowDistance.Value = val;
+                    }
+
+                    if (txtHealSelfRecoveryItems != null) txtHealSelfRecoveryItems.Text = profile.Heal.SelfRecoveryItems ?? "";
+
+                    if (numHealSelfRecoveryHpPct != null)
+                    {
+                        decimal val = profile.Heal.SelfRecoveryHpPct;
+                        if (val < numHealSelfRecoveryHpPct.Minimum) val = numHealSelfRecoveryHpPct.Minimum;
+                        if (val > numHealSelfRecoveryHpPct.Maximum) val = numHealSelfRecoveryHpPct.Maximum;
+                        numHealSelfRecoveryHpPct.Value = val;
+                    }
+
+                    if (numHealSelfRecoveryResumeHpPct != null)
+                    {
+                        decimal val = profile.Heal.SelfRecoveryResumeHpPct;
+                        if (val < numHealSelfRecoveryResumeHpPct.Minimum) val = numHealSelfRecoveryResumeHpPct.Minimum;
+                        if (val > numHealSelfRecoveryResumeHpPct.Maximum) val = numHealSelfRecoveryResumeHpPct.Maximum;
+                        numHealSelfRecoveryResumeHpPct.Value = val;
+                    }
+                }
+
+                if (profile.Taming != null)
+                {
+                    if (cmbTamingMode != null)
+                    {
+                        int idx = profile.Taming.ModeIndex;
+                        if (idx >= 0 && idx < cmbTamingMode.Items.Count)
+                            cmbTamingMode.SelectedIndex = idx;
+                    }
+
+                    if (txtTamingTrapName != null) txtTamingTrapName.Text = profile.Taming.TrapName ?? "";
+                    if (txtTamingTargets != null) txtTamingTargets.Text = profile.Taming.Targets ?? "";
+                }
+            }
+            catch { }
+            finally
+            {
+                _isLoadingUiText = false;
+            }
+        }
+
+        private void SincronizarConfiguracoesCarregadasComBots()
+        {
+            if (botColeta != null && txtListaColeta != null)
+                botColeta.DefinirLista(txtListaColeta.Text);
+
+            if (botCaçador != null && txtListaMobs != null)
+                botCaçador.DefinirLista(txtListaMobs.Text);
+
+            if (botColeta != null && chkAtivarColeta != null)
+                botColeta.IsAtivo = chkAtivarColeta.Checked;
+
+            if (botCaçador != null && chkAtivarHunt != null)
+                botCaçador.IsAtivo = chkAtivarHunt.Checked;
+
+            if (botMontaria != null && chkUseMount != null)
+                botMontaria.AtualizarConfig(chkUseMount.Checked);
         }
 
         // --- MÉTODOS DE LOG E UI ---
@@ -1336,8 +1577,88 @@ namespace WildTerraDashboard
             SalvarListaComer();
             SalvarListaComerStatus();
             SaveTrainingUi();
+            SalvarDashboardProfileV1();
 
             base.OnFormClosing(e);
+        }
+
+        private class DashboardProfileV1
+        {
+            public int Version { get; set; } = 1;
+            public string SavedAtUtc { get; set; } = "";
+            public DashboardGeneralSection General { get; set; } = new DashboardGeneralSection();
+            public DashboardBankSection Bank { get; set; } = new DashboardBankSection();
+            public DashboardHarvestSection Harvest { get; set; } = new DashboardHarvestSection();
+            public DashboardHuntSection Hunt { get; set; } = new DashboardHuntSection();
+            public DashboardFoodSection Food { get; set; } = new DashboardFoodSection();
+            public DashboardFishingSection Fishing { get; set; } = new DashboardFishingSection();
+            public DashboardHealSection Heal { get; set; } = new DashboardHealSection();
+            public DashboardTamingSection Taming { get; set; } = new DashboardTamingSection();
+        }
+
+        private class DashboardGeneralSection
+        {
+            public string WeaponName { get; set; } = "";
+            public bool EnableHunt { get; set; }
+            public bool UseMount { get; set; }
+        }
+
+        private class DashboardBankSection
+        {
+            public string X { get; set; } = "";
+            public string Z { get; set; } = "";
+            public string Name { get; set; } = "";
+        }
+
+        private class DashboardHarvestSection
+        {
+            public string Items { get; set; } = "";
+            public string DropList { get; set; } = "";
+            public string SafeList { get; set; } = "";
+            public bool Enabled { get; set; }
+        }
+
+        private class DashboardHuntSection
+        {
+            public string Mobs { get; set; } = "";
+            public bool Enabled { get; set; }
+        }
+
+        private class DashboardFoodSection
+        {
+            public string EatList { get; set; } = "";
+            public string EatStatusList { get; set; } = "";
+            public int Threshold { get; set; }
+        }
+
+        private class DashboardFishingSection
+        {
+            public string RodName { get; set; } = "";
+            public string BaitName { get; set; } = "";
+            public int SpotIndex { get; set; } = -1;
+        }
+
+        private class DashboardHealSection
+        {
+            public string WeaponName { get; set; } = "";
+            public int TargetModeIndex { get; set; } = -1;
+            public int Radius { get; set; } = 18;
+            public string Skills { get; set; } = "";
+            public string TargetNames { get; set; } = "";
+            public bool FollowHealEnabled { get; set; }
+            public string FollowSkill { get; set; } = "";
+            public int FollowTargetHpPct { get; set; } = 75;
+            public decimal FollowDistance { get; set; } = 4.5m;
+            public string SelfRecoveryItems { get; set; } = "";
+            public int SelfRecoveryHpPct { get; set; } = 40;
+            public int SelfRecoveryResumeHpPct { get; set; } = 55;
+        }
+
+        private class DashboardTamingSection
+        {
+            public int ModeIndex { get; set; } = -1;
+            public string TrapName { get; set; } = "";
+            public string Targets { get; set; } = "";
         }
 
         private void Form1_Load(object sender, EventArgs e) { }
